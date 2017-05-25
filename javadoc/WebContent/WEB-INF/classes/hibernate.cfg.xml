@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/gameplatform</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+		<property name="connection.pool_size">100</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<mapping class="db.table.template.Permesso"/>
+		<mapping class="db.table.template.PermessoTemplate"/>
+		<mapping class="db.table.template.PermessoTemplateId"/>
+		<mapping class="db.table.template.Template"/>
+		<mapping class="db.table.template.Gruppo"/>
+		<mapping class="db.table.template.Utente"/>
+		<mapping class="db.table.template.Livello"/>
+		<mapping class="db.table.template.Gioco"/>
+		<mapping class="db.table.template.Giocare"/>
+		<mapping class="db.table.template.GiocareId"/>
+		<mapping class="db.table.template.Trofeo"/>
+	</session-factory>
+</hibernate-configuration>
