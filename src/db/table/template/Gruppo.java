@@ -39,7 +39,7 @@ public class Gruppo implements java.io.Serializable{
         this.nome = nome;
     }
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "username")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gruppo")
     public Set<Utente> getUtente() {
 		return utente;
 	}
@@ -60,19 +60,41 @@ public class Gruppo implements java.io.Serializable{
 		this.permesso = permesso;
 	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Gruppo)) return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((permesso == null) ? 0 : permesso.hashCode());
+		result = prime * result + ((utente == null) ? 0 : utente.hashCode());
+		return result;
+	}
 
-        Gruppo gruppo = (Gruppo) o;
-
-        return getNome() != null ? getNome().equals(gruppo.getNome()) : gruppo.getNome() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return getNome() != null ? getNome().hashCode() : 0;
-    }
-
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Gruppo other = (Gruppo) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (permesso == null) {
+			if (other.permesso != null)
+				return false;
+		} else if (!permesso.equals(other.permesso))
+			return false;
+		if (utente == null) {
+			if (other.utente != null)
+				return false;
+		} else if (!utente.equals(other.utente))
+			return false;
+		return true;
+	}
+	
 }

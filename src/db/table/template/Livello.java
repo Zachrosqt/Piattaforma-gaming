@@ -69,23 +69,41 @@ public class Livello implements java.io.Serializable{
 		this.utente = utente;
 	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Livello)) return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + id;
+		result = prime * result + livello;
+		result = prime * result + ((utente == null) ? 0 : utente.hashCode());
+		return result;
+	}
 
-        Livello livello1 = (Livello) o;
-
-        if (getId() != livello1.getId()) return false;
-        if (getLivello() != livello1.getLivello()) return false;
-        return getDate() != null ? getDate().equals(livello1.getDate()) : livello1.getDate() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getId();
-        result = 31 * result + getLivello();
-        result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Livello other = (Livello) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (id != other.id)
+			return false;
+		if (livello != other.livello)
+			return false;
+		if (utente == null) {
+			if (other.utente != null)
+				return false;
+		} else if (!utente.equals(other.utente))
+			return false;
+		return true;
+	}
+	
 }

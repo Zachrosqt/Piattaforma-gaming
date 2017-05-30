@@ -78,24 +78,50 @@ public class Trofeo implements java.io.Serializable{
 			this.gioco = gioco;
 		}
 
-	    @Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (!(o instanceof Trofeo)) return false;
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((gioco == null) ? 0 : gioco.hashCode());
+			result = prime * result + ((icona == null) ? 0 : icona.hashCode());
+			result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+			result = prime * result + obbiettivo;
+			result = prime * result + ((utente == null) ? 0 : utente.hashCode());
+			return result;
+		}
 
-	        Trofeo trofeo = (Trofeo) o;
-
-	        if (obbiettivo != trofeo.obbiettivo) return false;
-	        if (getIcona() != null ? !getIcona().equals(trofeo.getIcona()) : trofeo.getIcona() != null) return false;
-	        return getNome() != null ? getNome().equals(trofeo.getNome()) : trofeo.getNome() == null;
-	    }
-
-	    @Override
-	    public int hashCode() {
-	        int result = obbiettivo;
-	        result = 31 * result + (getIcona() != null ? getIcona().hashCode() : 0);
-	        result = 31 * result + (getNome() != null ? getNome().hashCode() : 0);
-	        return result;
-	    }
-
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Trofeo other = (Trofeo) obj;
+			if (gioco == null) {
+				if (other.gioco != null)
+					return false;
+			} else if (!gioco.equals(other.gioco))
+				return false;
+			if (icona == null) {
+				if (other.icona != null)
+					return false;
+			} else if (!icona.equals(other.icona))
+				return false;
+			if (nome == null) {
+				if (other.nome != null)
+					return false;
+			} else if (!nome.equals(other.nome))
+				return false;
+			if (obbiettivo != other.obbiettivo)
+				return false;
+			if (utente == null) {
+				if (other.utente != null)
+					return false;
+			} else if (!utente.equals(other.utente))
+				return false;
+			return true;
+		}
+		
 }

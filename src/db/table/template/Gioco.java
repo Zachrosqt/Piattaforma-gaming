@@ -19,6 +19,7 @@ public class Gioco implements java.io.Serializable{
     private String specifiche;
     private Set<Giocare> giocare = new HashSet<Giocare>(0);
     private Set<Trofeo> trofeo = new HashSet<Trofeo>(0);
+    private Set<Immagine> immagine = new HashSet<Immagine>(0);
     
     public Gioco(){
     	
@@ -67,7 +68,7 @@ public class Gioco implements java.io.Serializable{
 		this.giocare = giocare;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "nome")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "gioco")
 	public Set<Trofeo> getTrofeo() {
 		return trofeo;
 	}
@@ -76,25 +77,68 @@ public class Gioco implements java.io.Serializable{
 		this.trofeo = trofeo;
 	}
 	
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Gioco)) return false;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "gioco")
+	public Set<Immagine> getImmagine() {
+		return immagine;
+	}
 
-        Gioco gioco = (Gioco) o;
+	public void setImmagine(Set<Immagine> immagine) {
+		this.immagine = immagine;
+	}
 
-        if (getNome() != null ? !getNome().equals(gioco.getNome()) : gioco.getNome() != null) return false;
-        if (getDescrizione() != null ? !getDescrizione().equals(gioco.getDescrizione()) : gioco.getDescrizione() != null)
-            return false;
-        return getSpecifiche() != null ? getSpecifiche().equals(gioco.getSpecifiche()) : gioco.getSpecifiche() == null;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
+		result = prime * result + ((giocare == null) ? 0 : giocare.hashCode());
+		result = prime * result + ((immagine == null) ? 0 : immagine.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((specifiche == null) ? 0 : specifiche.hashCode());
+		result = prime * result + ((trofeo == null) ? 0 : trofeo.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = getNome() != null ? getNome().hashCode() : 0;
-        result = 31 * result + (getDescrizione() != null ? getDescrizione().hashCode() : 0);
-        result = 31 * result + (getSpecifiche() != null ? getSpecifiche().hashCode() : 0);
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Gioco other = (Gioco) obj;
+		if (descrizione == null) {
+			if (other.descrizione != null)
+				return false;
+		} else if (!descrizione.equals(other.descrizione))
+			return false;
+		if (giocare == null) {
+			if (other.giocare != null)
+				return false;
+		} else if (!giocare.equals(other.giocare))
+			return false;
+		if (immagine == null) {
+			if (other.immagine != null)
+				return false;
+		} else if (!immagine.equals(other.immagine))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (specifiche == null) {
+			if (other.specifiche != null)
+				return false;
+		} else if (!specifiche.equals(other.specifiche))
+			return false;
+		if (trofeo == null) {
+			if (other.trofeo != null)
+				return false;
+		} else if (!trofeo.equals(other.trofeo))
+			return false;
+		return true;
+	}
 
 }

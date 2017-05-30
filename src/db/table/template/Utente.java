@@ -25,6 +25,7 @@ public class Utente implements java.io.Serializable{
     private String password;
     private String email;
     private Integer exp_tot;
+    private boolean ban;
     private int numeroAccessi;
     private Gruppo gruppo; 
     private Set<Livello> livello = new HashSet<Livello>(0);
@@ -35,13 +36,14 @@ public class Utente implements java.io.Serializable{
     	
     }
 
-    public Utente(String nome, String cognome, int eta, String username, String password, String email, Integer exp_tot, int numeroAccessi) {
+    public Utente(String nome, String cognome, int eta, String username, String password, String email, Integer exp_tot, boolean ban, int numeroAccessi) {
         this.nome = nome;
         this.cognome = cognome;
         this.eta = eta;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.ban = ban;
         this.exp_tot = exp_tot;
         this.numeroAccessi = numeroAccessi;
     }
@@ -82,7 +84,12 @@ public class Utente implements java.io.Serializable{
         return exp_tot;
     }
 
-    @Column(name = "numaccessi", unique = false, nullable = false)
+    @Column(name = "ban", unique = false, nullable = false)
+    public boolean getBan() {
+		return ban;
+	}
+
+	@Column(name = "numaccessi", unique = false, nullable = false)
     public int getNumeroAccessi() {
         return numeroAccessi;
     }
@@ -93,7 +100,7 @@ public class Utente implements java.io.Serializable{
     	return this.gruppo;
     }
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "utente")
 	public Set<Livello> getLivello() {
 		return livello;
 	}
@@ -139,6 +146,10 @@ public class Utente implements java.io.Serializable{
     public void setExp_tot(Integer exp_tot) {
         this.exp_tot = exp_tot;
     }
+    
+	public void setBan(boolean ban) {
+		this.ban = ban;
+	}
 
     public void setNumeroAccessi(int numeroAccessi) {
         this.numeroAccessi = numeroAccessi;
@@ -160,35 +171,93 @@ public class Utente implements java.io.Serializable{
 		this.trofeo = trofeo;
 	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Utente)) return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (ban ? 1231 : 1237);
+		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + eta;
+		result = prime * result + ((exp_tot == null) ? 0 : exp_tot.hashCode());
+		result = prime * result + ((giocare == null) ? 0 : giocare.hashCode());
+		result = prime * result + ((gruppo == null) ? 0 : gruppo.hashCode());
+		result = prime * result + ((livello == null) ? 0 : livello.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + numeroAccessi;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((trofeo == null) ? 0 : trofeo.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
 
-        Utente utente = (Utente) o;
-
-        if (getEta() != utente.getEta()) return false;
-        if (getNumeroAccessi() != utente.getNumeroAccessi()) return false;
-        if (!getNome().equals(utente.getNome())) return false;
-        if (!getCognome().equals(utente.getCognome())) return false;
-        if (!getUsername().equals(utente.getUsername())) return false;
-        if (!getPassword().equals(utente.getPassword())) return false;
-        if (!getEmail().equals(utente.getEmail())) return false;
-        return getExp_tot().equals(utente.getExp_tot());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getNome().hashCode();
-        result = 31 * result + getCognome().hashCode();
-        result = 31 * result + getEta();
-        result = 31 * result + getUsername().hashCode();
-        result = 31 * result + getPassword().hashCode();
-        result = 31 * result + getEmail().hashCode();
-        result = 31 * result + getExp_tot().hashCode();
-        result = 31 * result + getNumeroAccessi();
-        return result;
-    }
-
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Utente other = (Utente) obj;
+		if (ban != other.ban)
+			return false;
+		if (cognome == null) {
+			if (other.cognome != null)
+				return false;
+		} else if (!cognome.equals(other.cognome))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (eta != other.eta)
+			return false;
+		if (exp_tot == null) {
+			if (other.exp_tot != null)
+				return false;
+		} else if (!exp_tot.equals(other.exp_tot))
+			return false;
+		if (giocare == null) {
+			if (other.giocare != null)
+				return false;
+		} else if (!giocare.equals(other.giocare))
+			return false;
+		if (gruppo == null) {
+			if (other.gruppo != null)
+				return false;
+		} else if (!gruppo.equals(other.gruppo))
+			return false;
+		if (livello == null) {
+			if (other.livello != null)
+				return false;
+		} else if (!livello.equals(other.livello))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (numeroAccessi != other.numeroAccessi)
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (trofeo == null) {
+			if (other.trofeo != null)
+				return false;
+		} else if (!trofeo.equals(other.trofeo))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	
 }
 

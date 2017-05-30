@@ -26,6 +26,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import db.table.template.Giocare;
 import db.table.template.Gioco;
 import db.table.template.Gruppo;
+import db.table.template.Immagine;
 import db.table.template.Livello;
 import db.table.template.Permesso;
 import db.table.template.PermessoTemplate;
@@ -88,7 +89,7 @@ public class TestPage extends HttpServlet {
 		Gruppo test = new Gruppo("Admin");
 		session.saveOrUpdate(test);
 		
-		Utente user = new Utente("Romolo", "De Roma", 20, "Er Zezzo", "Prova", "test@test.it", 3000, 3);
+		Utente user = new Utente("Romolo", "De Roma", 20, "Er Zezzo", "Prova", "test@test.it", 3000, false,  3);
 		user.setGruppo(test);
 		test.getUtente().add(user);
 		test.getPermesso().add(permesso);
@@ -135,6 +136,8 @@ public class TestPage extends HttpServlet {
 		giocare.setNumAccessi(30);
 		giocare.setRecensione("Bello ma Brutto");
 		giocare.setVoto(5);
+		giocare.setData(new GregorianCalendar(2017,5,20));
+		giocare.setApprovato(true);
 		giocare.setUtente(user);
 		giocare.setGioco(gioco);
 		
@@ -150,6 +153,12 @@ public class TestPage extends HttpServlet {
 		user.getTrofeo().add(trofeo);
 		
 		session.saveOrUpdate(trofeo);
+		
+		Immagine img = new Immagine();
+		img.setPath("image.jpg");
+		img.setGioco(gioco);
+		
+		session.saveOrUpdate(img);
 		
 		session.getTransaction().commit();
 		

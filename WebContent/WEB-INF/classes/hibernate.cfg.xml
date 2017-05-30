@@ -24,5 +24,6 @@
 		<mapping class="db.table.template.Giocare"/>
 		<mapping class="db.table.template.GiocareId"/>
 		<mapping class="db.table.template.Trofeo"/>
+		<mapping class="db.table.template.Immagine"/>
 	</session-factory>
 </hibernate-configuration>
