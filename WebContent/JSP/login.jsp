@@ -20,7 +20,7 @@
                 <a class="btn btn-default" href="#!" title="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
               </div>
 
-              <form action="http://html.nkdev.info/">
+              <form action="login.op" method="POST">
                 <div class="youplay-input">
                   <input type="text" name="login" placeholder="Login">
                 </div>
