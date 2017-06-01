@@ -61,10 +61,10 @@ public class TestPage extends HttpServlet {
 		session.beginTransaction();
 
 		Permesso permesso = new Permesso();
-		permesso.setNome("AccessDenied");
-		permesso.setIndirizzo("accessdenied.op");
+		permesso.setNome("Registration");
+		permesso.setIndirizzo("registration.op");
 
-		Template template = new Template("accessdenied.jsp");
+		Template template = new Template("registration.jsp");
 		session.saveOrUpdate(template);
 
 		PermessoTemplate permessoTemplate = new PermessoTemplate();

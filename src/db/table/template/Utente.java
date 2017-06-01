@@ -172,26 +172,6 @@ public class Utente implements java.io.Serializable{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (ban ? 1231 : 1237);
-		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + eta;
-		result = prime * result + ((exp_tot == null) ? 0 : exp_tot.hashCode());
-		result = prime * result + ((giocare == null) ? 0 : giocare.hashCode());
-		result = prime * result + ((gruppo == null) ? 0 : gruppo.hashCode());
-		result = prime * result + ((livello == null) ? 0 : livello.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + numeroAccessi;
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((trofeo == null) ? 0 : trofeo.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

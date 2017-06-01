@@ -84,4 +84,16 @@
     <servlet-name>allgame</servlet-name>
     <url-pattern>/allgame.op</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>registration</servlet-name>
+    <servlet-class>gameplatform.servlet.RegistrationPage</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>Registration</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>registration</servlet-name>
+    <url-pattern>/registration.op</url-pattern>
+  </servlet-mapping>
 </web-app>
