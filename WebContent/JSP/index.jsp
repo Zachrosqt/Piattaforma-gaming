@@ -83,6 +83,9 @@
 		  <!-- ImagesLoaded -->
 		  <script type="text/javascript" src="assets/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
 		  
+		  <!-- Isotope -->
+  		<script type="text/javascript" src="assets/bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+		  
 		
 		  <!-- Owl Carousel -->
 		  <script type="text/javascript" src="assets/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>

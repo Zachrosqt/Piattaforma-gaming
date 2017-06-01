@@ -61,16 +61,16 @@ public class TestPage extends HttpServlet {
 		session.beginTransaction();
 
 		Permesso permesso = new Permesso();
-		permesso.setNome("Registration");
-		permesso.setIndirizzo("registration.op");
+		permesso.setNome("AllGames");
+		permesso.setIndirizzo("allgame.op");
 
-		Template template = new Template("registration.jsp");
+		Template template = new Template("footer.jsp");
 		session.saveOrUpdate(template);
 
 		PermessoTemplate permessoTemplate = new PermessoTemplate();
 		permessoTemplate.setPermesso(permesso);
 		permessoTemplate.setTemplate(template);
-		permessoTemplate.setPriority(1);
+		permessoTemplate.setPriority(2);
 		
 		permesso.getPermessoTemplate().add(permessoTemplate);
 		
