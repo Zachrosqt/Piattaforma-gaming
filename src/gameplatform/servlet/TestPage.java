@@ -23,6 +23,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
+import db.table.template.Categoria;
 import db.table.template.Giocare;
 import db.table.template.Gioco;
 import db.table.template.Gruppo;
@@ -61,8 +62,8 @@ public class TestPage extends HttpServlet {
 		session.beginTransaction();
 
 		Permesso permesso = new Permesso();
-		permesso.setNome("AllGames");
-		permesso.setIndirizzo("allgame.op");
+		permesso.setNome("UserActivity");
+		permesso.setIndirizzo("useractivity.op");
 
 		Template template = new Template("footer.jsp");
 		session.saveOrUpdate(template);
@@ -70,7 +71,7 @@ public class TestPage extends HttpServlet {
 		PermessoTemplate permessoTemplate = new PermessoTemplate();
 		permessoTemplate.setPermesso(permesso);
 		permessoTemplate.setTemplate(template);
-		permessoTemplate.setPriority(2);
+		permessoTemplate.setPriority(4);
 		
 		permesso.getPermessoTemplate().add(permessoTemplate);
 		
@@ -125,10 +126,16 @@ public class TestPage extends HttpServlet {
     		session.saveOrUpdate(livello);
         }
         
+        Categoria categoria = new Categoria();
+        categoria.setCategoria("RPG");
+        
+        session.saveOrUpdate(categoria);
+        
         Gioco gioco = new Gioco();
         gioco.setNome("Zezzo");
         gioco.setDescrizione("Bel Gioco Di Merda");
         gioco.setSpecifiche("2Gb di Rom");
+        gioco.setCategoria(categoria);
 
 		Giocare giocare = new Giocare();
 		giocare.setExp(3000);

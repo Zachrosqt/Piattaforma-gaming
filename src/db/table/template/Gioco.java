@@ -1,5 +1,6 @@
 package db.table.template;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +23,7 @@ public class Gioco implements java.io.Serializable{
     private Set<Giocare> giocare = new HashSet<Giocare>(0);
     private Set<Trofeo> trofeo = new HashSet<Trofeo>(0);
     private Set<Immagine> immagine = new HashSet<Immagine>(0);
+    private Categoria categoria;
     
     public Gioco(){
     	
@@ -58,7 +62,7 @@ public class Gioco implements java.io.Serializable{
     public void setSpecifiche(String specifiche) {
         this.specifiche = specifiche;
     }
-
+    
     @OneToMany(mappedBy = "pk.gioco", cascade = CascadeType.ALL)
 	public Set<Giocare> getGiocare() {
 		return giocare;
@@ -84,6 +88,16 @@ public class Gioco implements java.io.Serializable{
 
 	public void setImmagine(Set<Immagine> immagine) {
 		this.immagine = immagine;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoria", nullable = false)
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override
