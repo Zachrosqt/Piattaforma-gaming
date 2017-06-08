@@ -13,18 +13,18 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		
-		<mapping class="db.table.template.Permesso"/>
-		<mapping class="db.table.template.PermessoTemplate"/>
-		<mapping class="db.table.template.PermessoTemplateId"/>
-		<mapping class="db.table.template.Template"/>
-		<mapping class="db.table.template.Gruppo"/>
-		<mapping class="db.table.template.Utente"/>
-		<mapping class="db.table.template.Livello"/>
-		<mapping class="db.table.template.Gioco"/>
-		<mapping class="db.table.template.Giocare"/>
-		<mapping class="db.table.template.GiocareId"/>
-		<mapping class="db.table.template.Trofeo"/>
-		<mapping class="db.table.template.Immagine"/>
-		<mapping class="db.table.template.Categoria"/>
+		<mapping class="gameplatform.db.table.Permesso"/>
+		<mapping class="gameplatform.db.table.PermessoTemplate"/>
+		<mapping class="gameplatform.db.table.PermessoTemplateId"/>
+		<mapping class="gameplatform.db.table.Template"/>
+		<mapping class="gameplatform.db.table.Gruppo"/>
+		<mapping class="gameplatform.db.table.Utente"/>
+		<mapping class="gameplatform.db.table.Livello"/>
+		<mapping class="gameplatform.db.table.Gioco"/>
+		<mapping class="gameplatform.db.table.Giocare"/>
+		<mapping class="gameplatform.db.table.GiocareId"/>
+		<mapping class="gameplatform.db.table.Trofeo"/>
+		<mapping class="gameplatform.db.table.Immagine"/>
+		<mapping class="gameplatform.db.table.Categoria"/>
 	</session-factory>
 </hibernate-configuration>

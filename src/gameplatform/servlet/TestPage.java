@@ -23,6 +23,8 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
+import gameplatform.business.GameplatformCRUD;
+import gameplatform.business.impl.GameplatformCRUDImpl;
 import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Gioco;
@@ -162,12 +164,14 @@ public class TestPage extends HttpServlet {
 		session.saveOrUpdate(trofeo);
 		
 		Immagine img = new Immagine();
-		img.setPath("image.jpg");
+		img.setPath("image11.jpg");
 		img.setGioco(gioco);
 		
-		session.saveOrUpdate(img);
+		//session.saveOrUpdate(img);
 		
 		session.getTransaction().commit();
+		
+		GameplatformCRUDImpl.getGameplatformCRUDImpl().saveOrUpdate(img);
 		
 	}
 
