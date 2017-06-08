@@ -18,7 +18,7 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown dropdown-hover ">
-            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="/registration.op" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                       Giochi
             </a>
           </li>
@@ -31,11 +31,11 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown dropdown-hover">
             <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                      John Doe <span class="badge bg-default">2</span> <span class="caret"></span> <span class="label">Bentornato!</span>
+                      John Doe <span class="badge bg-default"></span> <span class="caret"></span> <span class="label">Bentornato!</span>
             </a>
             <div class="dropdown-menu">
               <ul role="menu">
-                <li><a href="user-profile.html">Profilo <span class="badge pull-right bg-warning">13</span></a>
+                <li><a href="user-profile.html">Profilo <span class="badge pull-right bg-warning"></span></a>
 
                 <li><a href="login.html">Log Out</a>
                 </li>
