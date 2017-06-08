@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
-import db.table.template.Template;
+import gameplatform.db.table.Template;
 import gameplatform.pojo.PageControl;
 
 /**

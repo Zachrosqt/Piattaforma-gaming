@@ -17,7 +17,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
-import db.table.template.Template;
+import gameplatform.db.table.Gioco;
+import gameplatform.db.table.Template;
 import gameplatform.pojo.PageControl;
 
 /**
@@ -53,6 +54,18 @@ public class IndexPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		Configuration conf = new Configuration().configure();
+		Session session = conf.buildSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		Query query = session.createQuery("from Gioco");
+		List<Gioco> giochi = query.list();
+		
+		session.getTransaction().commit();
+		
+		request.setAttribute("giochi", giochi);
+		
 		process(request, response);
 	}
 

@@ -23,17 +23,17 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
-import db.table.template.Categoria;
-import db.table.template.Giocare;
-import db.table.template.Gioco;
-import db.table.template.Gruppo;
-import db.table.template.Immagine;
-import db.table.template.Livello;
-import db.table.template.Permesso;
-import db.table.template.PermessoTemplate;
-import db.table.template.Template;
-import db.table.template.Trofeo;
-import db.table.template.Utente;
+import gameplatform.db.table.Categoria;
+import gameplatform.db.table.Giocare;
+import gameplatform.db.table.Gioco;
+import gameplatform.db.table.Gruppo;
+import gameplatform.db.table.Immagine;
+import gameplatform.db.table.Livello;
+import gameplatform.db.table.Permesso;
+import gameplatform.db.table.PermessoTemplate;
+import gameplatform.db.table.Template;
+import gameplatform.db.table.Trofeo;
+import gameplatform.db.table.Utente;
 
 /**
  * Servlet implementation class IndexPage

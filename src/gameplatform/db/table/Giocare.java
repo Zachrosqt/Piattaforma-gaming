@@ -1,4 +1,4 @@
-package db.table.template;
+package gameplatform.db.table;
 
 import java.sql.Time;
 import java.util.Calendar;

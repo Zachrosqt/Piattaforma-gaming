@@ -1,44 +1,31 @@
-package db.table.template;
+package gameplatform.db.table;
 
 import java.util.*;
 
 import javax.persistence.*;
 
-
 @Entity
-@Table(name = "permesso")
-public class Permesso implements java.io.Serializable{
-	
-	private String nome;
+@Table(name = "template")
+public class Template implements java.io.Serializable{
+
 	private String indirizzo;
 	private Set<PermessoTemplate> permessoTemplate = new HashSet<PermessoTemplate>(0);
-	private Set<Gruppo> gruppo = new HashSet<Gruppo>(0);  
 	
-	public Permesso(){
+	public Template(){
 		
 	}
 	
-	public Permesso(String nome, String indirizzo){
-		this.nome = nome;
+	public Template(String indirizzo){
 		this.indirizzo = indirizzo;
 	}
-
-	public Permesso(String nome, String indirizzo, Set<PermessoTemplate> permessoTemplate){
-		this.nome = nome;
+	
+	public Template(String indirizzo, Set<PermessoTemplate> permessoTemplate){
 		this.indirizzo = indirizzo;
 		this.permessoTemplate = permessoTemplate;
 	}
 	
 	@Id
-	@Column(name = "PageNome", unique = true, nullable = false)
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	@Column(name = "PageIndirizzo", unique = true, nullable = false)
+	@Column(name = "TemplateNome", unique = true, nullable = false)
 	public String getIndirizzo() {
 		return indirizzo;
 	}
@@ -46,7 +33,7 @@ public class Permesso implements java.io.Serializable{
 		this.indirizzo = indirizzo;
 	}
 	
-	@OneToMany(mappedBy = "pk.permesso", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pk.template", cascade = CascadeType.ALL)
 	public Set<PermessoTemplate> getPermessoTemplate() {
 		return permessoTemplate;
 	}
@@ -54,22 +41,11 @@ public class Permesso implements java.io.Serializable{
 		this.permessoTemplate = permessoTemplate;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "permesso")
-	public Set<Gruppo> getGruppo() {
-		return gruppo;
-	}
-
-	public void setGruppo(Set<Gruppo> gruppo) {
-		this.gruppo = gruppo;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((gruppo == null) ? 0 : gruppo.hashCode());
 		result = prime * result + ((indirizzo == null) ? 0 : indirizzo.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((permessoTemplate == null) ? 0 : permessoTemplate.hashCode());
 		return result;
 	}
@@ -82,21 +58,11 @@ public class Permesso implements java.io.Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Permesso other = (Permesso) obj;
-		if (gruppo == null) {
-			if (other.gruppo != null)
-				return false;
-		} else if (!gruppo.equals(other.gruppo))
-			return false;
+		Template other = (Template) obj;
 		if (indirizzo == null) {
 			if (other.indirizzo != null)
 				return false;
 		} else if (!indirizzo.equals(other.indirizzo))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
 			return false;
 		if (permessoTemplate == null) {
 			if (other.permessoTemplate != null)

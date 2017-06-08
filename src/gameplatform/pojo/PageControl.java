@@ -7,7 +7,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
-import db.table.template.Template;
+import gameplatform.db.table.Template;
 
 public class PageControl {
 
