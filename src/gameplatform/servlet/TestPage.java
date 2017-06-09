@@ -171,7 +171,8 @@ public class TestPage extends HttpServlet {
 		
 		session.getTransaction().commit();
 		
-		GameplatformCRUDImpl.getGameplatformCRUDImpl().saveOrUpdate(img);
+		GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
+		crud.saveOrUpdate(img);
 		
 	}
 
