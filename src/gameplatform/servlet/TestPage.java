@@ -195,7 +195,7 @@ public class TestPage extends HttpServlet {
         Iterator<?> it2 = templ.iterator();
         while (it2.hasNext()) { 
         	Template te = (Template) it2.next();
-            response.getWriter().append("<br> " + te.getIndirizzo());          
+            response.getWriter().append("\n " + te.getIndirizzo());          
         }
 	}
 

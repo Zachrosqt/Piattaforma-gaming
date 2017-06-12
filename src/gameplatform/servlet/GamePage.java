@@ -1,22 +1,18 @@
 package gameplatform.servlet;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-import org.hibernate.cfg.Configuration;
-
+import gameplatform.business.GameplatformService;
+import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.db.table.Template;
-import gameplatform.pojo.PageControl;
 
 /**
  * Servlet implementation class GamePage
@@ -27,6 +23,7 @@ public class GamePage extends HttpServlet {
        
 	private String pageName;
 	private List<Template> template;
+	GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,7 +39,7 @@ public class GamePage extends HttpServlet {
 		super.init(config);
     	this.pageName = getInitParameter("pageName");
     	
-    	this.template = PageControl.getPageControl().getTemplate(pageName);
+    	this.template = service.templates(pageName);
 		
 	}
 

@@ -1,25 +1,21 @@
 package gameplatform.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.cfg.Configuration;
-
+import gameplatform.business.GameplatformCRUD;
+import gameplatform.business.GameplatformService;
+import gameplatform.business.impl.GameplatformCRUDImpl;
+import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Template;
-import gameplatform.pojo.PageControl;
 
 /**
  * Servlet implementation class IndexPage
@@ -30,6 +26,8 @@ public class IndexPage extends HttpServlet {
 	
 	private String pageName;
 	private List<Template> template;
+	GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
+	GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -45,7 +43,7 @@ public class IndexPage extends HttpServlet {
 		super.init(config);
     	this.pageName = getInitParameter("pageName");
     	
-    	this.template = PageControl.getPageControl().getTemplate(pageName);
+    	this.template = service.templates(pageName);
 		
 	}
 
@@ -55,14 +53,7 @@ public class IndexPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Configuration conf = new Configuration().configure();
-		Session session = conf.buildSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		
-		Query query = session.createQuery("from Gioco");
-		List<Gioco> giochi = query.list();
-		
-		session.getTransaction().commit();
+		List<Gioco> giochi = crud.executeQuery("from Gioco");
 		
 		request.setAttribute("giochi", giochi);
 		

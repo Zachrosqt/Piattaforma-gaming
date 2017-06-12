@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import gameplatform.business.GameplatformService;
+import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.db.table.Template;
-import gameplatform.pojo.PageControl;
 
 /**
  * Servlet implementation class RegistrationPage
@@ -23,6 +24,7 @@ public class RegistrationPage extends HttpServlet {
 	
 	private String pageName;
 	private List<Template> template;
+	GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -38,7 +40,7 @@ public void init(ServletConfig config) throws ServletException {
 		super.init(config);
     	this.pageName = getInitParameter("pageName");
     	
-    	this.template = PageControl.getPageControl().getTemplate(pageName);
+    	this.template = service.templates(pageName);
 		
 	}
 
