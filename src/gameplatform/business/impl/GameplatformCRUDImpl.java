@@ -1,5 +1,9 @@
 package gameplatform.business.impl;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
@@ -72,4 +76,16 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		session.getTransaction().commit();
 	}
 
+	@Override
+	public <T> List<T> executeQuery(String query) {
+		Configuration conf = new Configuration().configure();
+		Session session = conf.buildSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		Query insideQuery = session.createQuery(query);
+		List<T> queryList = insideQuery.getResultList();
+		session.getTransaction().commit();
+		
+		return queryList;
+	}
 }

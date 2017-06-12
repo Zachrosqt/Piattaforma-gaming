@@ -24,7 +24,9 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
 import gameplatform.business.GameplatformCRUD;
+import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformCRUDImpl;
+import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Gioco;
@@ -174,6 +176,27 @@ public class TestPage extends HttpServlet {
 		GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
 		crud.saveOrUpdate(img);
 		
+		//Query query = session.createQuery("from Template template join template.permessoTemplate joinPage where joinPage.pk.permesso = 'Index' order by joinPage.priority");
+		//List<Template> temp = query.list();
+		
+		List<?> temp1 = crud.executeQuery("from Template template join template.permessoTemplate joinPage where joinPage.pk.permesso = 'Index' order by joinPage.priority");
+		
+		Iterator<?> it1 = temp1.iterator();
+        while (it1.hasNext()) { 
+        	Object[] obj = (Object[]) it1.next();
+        	Template test1 = (Template) obj[0];
+            response.getWriter().append(" " + test1.getIndirizzo());          
+        }
+        
+        GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
+		
+        List<Template> templ = service.templates("Game");
+        
+        Iterator<?> it2 = templ.iterator();
+        while (it2.hasNext()) { 
+        	Template te = (Template) it2.next();
+            response.getWriter().append("<br> " + te.getIndirizzo());          
+        }
 	}
 
 	/**
