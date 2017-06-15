@@ -14,21 +14,18 @@
             <div class="youplay-form">
               <h1>Login</h1>
 
-              <div class="btn-group social-list dib">
-                <a class="btn btn-default" title="Share on Facebook" href="#!"><i class="fa fa-facebook"></i></a>
-                <a class="btn btn-default" href="#!" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
-                <a class="btn btn-default" href="#!" title="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
-              </div>
-
-              <form action="login.op" method="POST">
+              <form id="loginform">
                 <div class="youplay-input">
                   <input type="text" name="username" placeholder="Username">
                 </div>
                 <div class="youplay-input">
                   <input type="password" name="password" placeholder="Password">
                 </div>
+             	<a href="registration.op"> Password dimenticata? Clicca qui </a>
                 <button class="btn btn-default db">Login</button>
               </form>
+              <br>
+               <button class="btn btn-default db"> Registrazione </button>            
             </div>
           </div>
         </div>

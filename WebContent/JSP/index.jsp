@@ -131,6 +131,6 @@
 		        });
 		    }
 		  </script>
-		
+		<script type="text/javascript" src="assets/gameplatform/ajaxcall.js"></script>
 	</body>
 </html>
