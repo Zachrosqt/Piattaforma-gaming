@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>YouPlay GamePlatform - ${PageName} </title>
+	
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta charset="utf-8">
 		 <meta http-equiv="X-UA-Compatible" content="IE=edge">

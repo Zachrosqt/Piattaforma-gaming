@@ -7,10 +7,12 @@ import java.util.List;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 
 public class GameplatformServiceImpl implements GameplatformService{
 	
 	private volatile static GameplatformServiceImpl istanza = null;
+	private GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
 	
 	private GameplatformServiceImpl() {}
 	
@@ -29,9 +31,7 @@ public class GameplatformServiceImpl implements GameplatformService{
 		
 		List<Template> listTemplate = new ArrayList<Template>();
 		
-		GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
-		
-		List<?> template = crud.executeQuery("from Template template join template.permessoTemplate joinPage where joinPage.pk.permesso = '" + nomePagina + "' order by joinPage.priority");
+		List<?> template = crud.executeQuery("FROM Template template JOIN template.permessoTemplate joinPage WHERE joinPage.pk.permesso = '" + nomePagina + "' ORDER BY joinPage.priority");
 		
 		Iterator<?> it = template.iterator();
 
@@ -45,8 +45,20 @@ public class GameplatformServiceImpl implements GameplatformService{
 	}
 
 	@Override
-	public boolean login(String username, String Password) {
-		return false;
+	public boolean login(String username, String password) {
+		
+		List<Utente> login = crud.executeQuery("FROM Utente user WHERE user.username = '" + username + "' AND user.password='" + password + "'");
+		
+		Iterator<Utente> it = login.iterator();
+		
+		if (!it.hasNext()){
+			return false;
+		} else {
+			
+			return true;
+			
+		}
+		
 	}
 
 	@Override

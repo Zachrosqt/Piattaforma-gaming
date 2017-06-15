@@ -22,7 +22,7 @@
 
               <form action="login.op" method="POST">
                 <div class="youplay-input">
-                  <input type="text" name="login" placeholder="Login">
+                  <input type="text" name="username" placeholder="Username">
                 </div>
                 <div class="youplay-input">
                   <input type="password" name="password" placeholder="Password">

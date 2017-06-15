@@ -23,7 +23,7 @@ public class LoginPage extends HttpServlet {
 	
 	private String pageName;
 	private List<Template> template;
-	GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
+	private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,6 +56,7 @@ public class LoginPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println(service.login(request.getParameter("username"), request.getParameter("password")));
 		process(request, response);
 	}
 	

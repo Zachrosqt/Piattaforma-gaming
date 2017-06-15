@@ -26,8 +26,8 @@ public class IndexPage extends HttpServlet {
 	
 	private String pageName;
 	private List<Template> template;
-	GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
-	GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
+	private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
+	private GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -71,6 +71,7 @@ public class IndexPage extends HttpServlet {
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("template", this.template);
+		request.setAttribute("PageName", this.pageName);
 		
 		RequestDispatcher view = request.getRequestDispatcher("JSP/index.jsp");
 		view.forward(request, response);
