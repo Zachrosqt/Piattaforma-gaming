@@ -9,10 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 
 /**
  * Servlet implementation class IndexPage
@@ -56,8 +58,20 @@ public class LoginPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println(service.login(request.getParameter("username"), request.getParameter("password")));
-		process(request, response);
+		boolean log = service.login(request.getParameter("username"), request.getParameter("password"), request);
+		
+		String text = "";
+		
+		if (!log){
+			text = "false";
+		} else {
+			text = "true";
+		}
+		
+
+	    response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+	    response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+	    response.getWriter().write(text);
 	}
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

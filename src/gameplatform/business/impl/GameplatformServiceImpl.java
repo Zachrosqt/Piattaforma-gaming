@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.db.table.Template;
@@ -45,19 +49,20 @@ public class GameplatformServiceImpl implements GameplatformService{
 	}
 
 	@Override
-	public boolean login(String username, String password) {
+	public boolean login(String username, String password, HttpServletRequest request) {
 		
 		List<Utente> login = crud.executeQuery("FROM Utente user WHERE user.username = '" + username + "' AND user.password='" + password + "'");
 		
 		Iterator<Utente> it = login.iterator();
 		
-		if (!it.hasNext()){
-			return false;
-		} else {
-			
+		if (it.hasNext()){
+			Utente utente = it.next();
+			HttpSession session =  request.getSession();
+			session.setAttribute("utente", utente);
 			return true;
-			
 		}
+			
+		return false;
 		
 	}
 
