@@ -14,18 +14,27 @@
             <div class="youplay-form">
               <h1>Login</h1>
 
-              <form id="loginform">
+				<div id="alert">
+				</div>
+				
+              <form onsubmit="return false" id="loginform">
+              <div id="alertusername">
+				</div>
                 <div class="youplay-input">
-                  <input type="text" name="username" placeholder="Username">
+                  <input type="text" id="username" name="username" placeholder="Username">
                 </div>
+              <div id="alertpassword">
+				</div>
                 <div class="youplay-input">
-                  <input type="password" name="password" placeholder="Password">
+                  <input type="password" id="password" name="password" placeholder="Password">
                 </div>
              	<a href="registration.op"> Password dimenticata? Clicca qui </a>
                 <button class="btn btn-default db">Login</button>
               </form>
               <br>
-               <button class="btn btn-default db"> Registrazione </button>            
+              <a href="registration.op">
+               <button class="btn btn-default db"> Registrazione </button>    
+              </a>        
             </div>
           </div>
         </div>
