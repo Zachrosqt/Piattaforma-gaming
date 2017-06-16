@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -57,8 +56,10 @@ public class GameplatformServiceImpl implements GameplatformService{
 		
 		if (it.hasNext()){
 			Utente utente = it.next();
+			utente.setNumeroAccessi(utente.getNumeroAccessi() + 1 );
+			crud.saveOrUpdate(utente);
 			HttpSession session =  request.getSession();
-			session.setAttribute("utente", utente);
+			session.setAttribute("utenteGameplatform", utente);
 			return true;
 		}
 			
@@ -69,6 +70,23 @@ public class GameplatformServiceImpl implements GameplatformService{
 	@Override
 	public boolean logout(String username) {
 		return false;
+	}
+
+	@Override
+	public boolean registration(Utente user, HttpServletRequest request) {
+		
+		try{
+			
+			user.setNumeroAccessi(user.getNumeroAccessi() + 1 );
+			crud.saveOrUpdate(user);
+			return true;
+			
+		} catch(Exception e){
+			
+			return false;
+			
+		}
+		
 	}
 
 }

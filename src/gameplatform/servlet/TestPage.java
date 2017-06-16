@@ -91,10 +91,10 @@ public class TestPage extends HttpServlet {
             response.getWriter().append(" " + test.getIndirizzo());          
         }
 		
-		Gruppo test = new Gruppo("Admin");
+		Gruppo test = new Gruppo("User");
 		session.saveOrUpdate(test);
 		
-		Utente user = new Utente("Romolo", "De Roma", 20, "Er Zezzo", "Prova", "test@test.it", 3000, false,  3);
+		Utente user = new Utente("Temo", "La Morte", 20, "Morte", "Prova", "test1@test.it", 3000, false,  3);
 		user.setGruppo(test);
 		test.getUtente().add(user);
 		test.getPermesso().add(permesso);

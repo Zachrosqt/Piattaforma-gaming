@@ -14,6 +14,7 @@
           <div class="container align-center">
             <div class="youplay-form">
               <h1>Registration</h1>
+              <div id="alert"></div>
 
               <form onsubmit="return false" id="registrationform">
               	<div id="alertname"></div>

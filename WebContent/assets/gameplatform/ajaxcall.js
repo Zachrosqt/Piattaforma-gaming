@@ -1,9 +1,11 @@
 $("#loginform").submit(function(e){
 	if ($("#username").val()== ''){
+		$('#alert').html("");
 		$('#alertusername').html("<p style='color: red;'> Username obbligatoria</p>");
 	} else
 		$('#alertusername').html(""); 
 	if ($("#password").val()==''){
+		$('#alert').html("");
 		$('#alertpassword').html("<p style='color: red;'> Password obbligatoria </p>");
 	} else
 		$('#alertpassword').html("");
@@ -35,48 +37,58 @@ $("#loginform").submit(function(e){
 $("#registrationform").submit(function(e){
 	
 	if ($("#username").val()== ''){
+		$('#alert').html("");
 		$('#alertusername').html("<p style='color: red;'> Username obbligatoria</p>");
 	} else
 		$('#alertusername').html(""); 
 	
 	if ($("#password").val()==''){
+		$('#alert').html("");
 		$('#alertpassword').html("<p style='color: red;'> Password obbligatoria </p>");
 	} else
 		$('#alertpassword').html("");
 	
 	if ($("#confirmpassword").val()==''){
+		$('#alert').html("");
 		$('#alertconfirm').html("<p style='color: red;'> Conferma password obbligatoria </p>");
 	}
 	else if ($('#password').val() != $('#confirmpassword').val()) {
+		$('#alert').html("");
 		$('#alertconfirm').html("<p style='color: red;'> Password non corrispondenti </p>");
 	}
 	else
 		$('#alertconfirm').html("");
 	
 	if ($("#eta").val()== ''){
+		$('#alert').html("");
 		$('#alerteta').html("<p style='color: red;'> Eta' obbligatoria</p>");
 	} else
 		$('#alerteta').html(""); 
 	
 	if ($("#nome").val()== ''){
+		$('#alert').html("");
 		$('#alertname').html("<p style='color: red;'> Nome obbligatorio</p>");
 	} else
 		$('#alertname').html(""); 
 	
 	if ($("#cognome").val()== ''){
+		$('#alert').html("");
 		$('#alertsurname').html("<p style='color: red;'> Cognome obbligatorio</p>");
 	} else
 		$('#alertsurname').html(""); 
 	
 	if ($("#mail").val()== ''){
+		$('#alert').html("");
 		$('#alertemail').html("<p style='color: red;'> email obbligatoria</p>");
 	} else
 		$('#alertemail').html(""); 
 	
 	if ($("#confirmmail").val()== ''){
+		$('#alert').html("");
 		$('#alertconfirmemail').html("<p style='color: red;'> Conferma email obbligatoria</p>");
 	}
 	else if ($('#mail').val() != $('#confirmmail').val()) {
+		$('#alert').html("");
 		$('#alertconfirmemail').html("<p style='color: red;'> E-mail non corrispondenti </p>");
 	}
 	else
@@ -92,9 +104,12 @@ $("#registrationform").submit(function(e){
 			success: function(data){
 				if (data == "true") {
 					$('#alert').html("");
-					$(window.location).attr("href", "gameplatform.op");
-				}
-				else {
+					$(window.location).attr("href", "login.op");
+				} else if (data == "false username"){
+					$('#alert').html("<p style='color: red;'> Username gi&agrave in uso </p>");
+				} else if (data == "false mail"){
+					$('#alert').html("<p style='color: red;'> E-Mail gi&agrave in uso </p>");
+				} else {
 					$('#alert').html("<p style='color: red;'> Errore in fase di registrazione </p>");
 				}
 			},
