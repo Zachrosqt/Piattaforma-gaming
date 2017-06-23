@@ -106,7 +106,7 @@ public class GameplatformServiceImpl implements GameplatformService{
 
 	@Override
 	public List<Gioco> allGames() {
-		List<Gioco> games = crud.executeQuery("FROM Gioco");
+		List<Gioco> games = crud.executeQuery("FROM Gioco games ORDER BY games.date DESC");
 		
 		return games;
 	}

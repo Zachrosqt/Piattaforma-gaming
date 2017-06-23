@@ -62,6 +62,8 @@ public class AllGamesPage extends HttpServlet {
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setAttribute("giochi", service.allGames());
+		
 		request.setAttribute("template", this.template);
 		
 		RequestDispatcher view = request.getRequestDispatcher("JSP/index.jsp");
