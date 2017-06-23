@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
+import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Template;
 import gameplatform.db.table.Utente;
 
@@ -101,6 +102,13 @@ public class GameplatformServiceImpl implements GameplatformService{
 		} else {
 			return false;
 		}	
+	}
+
+	@Override
+	public List<Gioco> allGames() {
+		List<Gioco> games = crud.executeQuery("FROM Gioco");
+		
+		return games;
 	}
 
 }

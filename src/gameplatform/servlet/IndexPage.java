@@ -51,10 +51,6 @@ public class IndexPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		/*List<Gioco> giochi = crud.executeQuery("from Gioco");
-		
-		request.setAttribute("giochi", giochi);*/
-		
 		HttpSession session =  request.getSession();
 		if (session.getAttribute("utenteGameplatform")==null){
 			response.sendRedirect("login.op");
@@ -82,6 +78,8 @@ public class IndexPage extends HttpServlet {
 
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		
+		request.setAttribute("giochi", service.allGames());
 		
 		request.setAttribute("template", this.template);
 		request.setAttribute("PageName", this.pageName);

@@ -12,7 +12,7 @@
 	<c:forEach items="${giochi}" var="gioco">
       <a class="angled-img" href="store-product-1.html">
         <div class="img">
-          <img src="assets/images/game-bloodborne-500x375.jpg" alt="">
+          <img src="assets/images/games/${gioco.nome}/cover.jpg" alt="">
         </div>
         <div class="over-info">
           <div>

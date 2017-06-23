@@ -20,6 +20,7 @@ public class Gioco implements java.io.Serializable{
 	private String nome;
     private String descrizione;
     private String specifiche;
+    private int mediaGioco;
     private Set<Giocare> giocare = new HashSet<Giocare>(0);
     private Set<Trofeo> trofeo = new HashSet<Trofeo>(0);
     private Set<Immagine> immagine = new HashSet<Immagine>(0);
@@ -62,6 +63,15 @@ public class Gioco implements java.io.Serializable{
     public void setSpecifiche(String specifiche) {
         this.specifiche = specifiche;
     }
+    
+    @Column(name = "media", unique = false, nullable = false)
+    public int getMediaGioco() {
+		return mediaGioco;
+	}
+
+	public void setMediaGioco(int mediaGioco) {
+		this.mediaGioco = mediaGioco;
+	}
     
     @OneToMany(mappedBy = "pk.gioco", cascade = CascadeType.ALL)
 	public Set<Giocare> getGiocare() {
