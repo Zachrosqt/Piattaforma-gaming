@@ -15,7 +15,7 @@
           <div class="container align-center">
             <h2 class="h1">401</h2>
             <h3>Access Denied ;(</h3>
-            <h3>Non hai i permessi necessari per accedere a questa pagina. <a href="../gameplatform.op">Clicca qui</a></h3>
+            <h3>Non hai i permessi necessari per accedere a questa pagina. <a href="gameplatform.op">Clicca qui</a></h3>
             
           </div>
         </div>

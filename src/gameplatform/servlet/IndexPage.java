@@ -9,13 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
-import gameplatform.business.impl.GameplatformCRUDImpl;
 import gameplatform.business.impl.GameplatformServiceImpl;
-import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 
 /**
  * Servlet implementation class IndexPage
@@ -27,7 +26,6 @@ public class IndexPage extends HttpServlet {
 	private String pageName;
 	private List<Template> template;
 	private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
-	private GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,22 +51,37 @@ public class IndexPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		List<Gioco> giochi = crud.executeQuery("from Gioco");
+		/*List<Gioco> giochi = crud.executeQuery("from Gioco");
 		
-		request.setAttribute("giochi", giochi);
+		request.setAttribute("giochi", giochi);*/
 		
-		process(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		process(request, response);
+		HttpSession session =  request.getSession();
+		if (session.getAttribute("utenteGameplatform")==null){
+			response.sendRedirect("login.op");
+		} else {
+			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+			if (perm == true){
+				process(request, response);
+			} else {
+				response.sendRedirect("accessdenied.op");
+			}	
+		}
 	}
 	
-	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session =  request.getSession();
+		service.logout((Utente)session.getAttribute("utenteGameplatform"), session);
+		
+		String text = "true";
+
+	    response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+	    response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+	    response.getWriter().write(text);
+	}
+
+	
+	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		
 		request.setAttribute("template", this.template);
 		request.setAttribute("PageName", this.pageName);

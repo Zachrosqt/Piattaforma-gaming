@@ -78,10 +78,8 @@ public void init(ServletConfig config) throws ServletException {
 		
 		Iterator<Utente> usernameit = username.iterator();
 		
-		System.out.println("Test");
-		
 		if (usernameit.hasNext()){
-			System.out.println("Test1");
+
 			text = "false username";
 			
 		} else {
@@ -89,9 +87,7 @@ public void init(ServletConfig config) throws ServletException {
 			List<Utente> mail = crud.executeQuery("FROM Utente user WHERE user.email='" + request.getParameter("mail") + "'");
 			
 			Iterator<Utente> mailit = mail.iterator();
-			System.out.println("Test2");
 			if (mailit.hasNext()){
-				System.out.println("Test3");
 				text = "false mail";
 				
 			} else {
@@ -123,7 +119,7 @@ public void init(ServletConfig config) throws ServletException {
 					user.setUsername(request.getParameter("username"));
 					user.setPassword(request.getParameter("password"));
 					
-					boolean reg = service.registration(user, request);
+					boolean reg = service.registration(user);
 					
 					if (!reg){
 						text = "false";

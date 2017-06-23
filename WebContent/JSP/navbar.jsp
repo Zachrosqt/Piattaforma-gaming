@@ -37,7 +37,7 @@
               <ul role="menu">
                 <li><a href="user-profile.html">Profilo <span class="badge pull-right bg-warning"></span></a>
 
-                <li><a id = "logout" href="">Log Out</a>
+                <li  id = "logout"><a>Log Out</a>
                 </li>
               </ul>
             </div>

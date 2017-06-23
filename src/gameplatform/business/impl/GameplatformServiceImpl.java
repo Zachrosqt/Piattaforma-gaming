@@ -68,12 +68,12 @@ public class GameplatformServiceImpl implements GameplatformService{
 	}
 
 	@Override
-	public boolean logout(String username) {
-		return false;
+	public void logout(Utente user, HttpSession session) {
+		session.invalidate();
 	}
 
 	@Override
-	public boolean registration(Utente user, HttpServletRequest request) {
+	public boolean registration(Utente user) {
 		
 		try{
 			
@@ -87,6 +87,20 @@ public class GameplatformServiceImpl implements GameplatformService{
 			
 		}
 		
+	}
+
+	@Override
+	public boolean permControl(Utente user,  String pageName) {
+		
+		List<Object> control = crud.executeQuery("FROM Permesso perm JOIN perm.gruppo permGroup WHERE permGroup.nome = '" + user.getGruppo().getNome() + "' AND perm.nome = '" + pageName + "'");
+		
+		Iterator<Object> it = control.iterator();
+		
+		if (it.hasNext()){
+			return true;
+		} else {
+			return false;
+		}	
 	}
 
 }
