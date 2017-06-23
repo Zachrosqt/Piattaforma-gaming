@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page import="java.util.*, gameplatform.db.table.Gioco" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
  <!-- Main Content -->
@@ -27,415 +30,37 @@
         <div class="isotope-list row vertical-gutter">
 
           <!-- Single Product Block -->
+          <c:forEach items="${giochi}" var="gioco">
           <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
             <a href="#!" class="angled-img">
               <div class="img img-offset">
-                <img src="assets/images/game-bloodborne-500x375.jpg" alt="">
+                <img src="assets/images/games/${gioco.nome}/cover.jpg" alt="">
               </div>
               <div class="bottom-info">
-                <h4>Bloodborne</h4>
+              
+                <h4>${gioco.nome}</h4>
                 <div class="row">
                   <div class="col-xs-6">
                     <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $50.00
+                     <c:forEach var="i" begin= "1" end = "5">
+              	 	 	<c:choose>
+         					<c:when test = "${gioco.mediaGioco >= i}">
+           						<i class="fa fa-star"></i>
+         					</c:when>
+         					<c:otherwise>
+           						<i class="fa fa-star-o"></i>
+         					</c:otherwise>
+      					</c:choose>
+              		</c:forEach>
                     </div>
                   </div>
                 </div>
               </div>
             </a>
           </div>
+          </c:forEach>
           <!-- /Single Product Block -->
 
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular,specials">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-dark-souls-ii-500x375.jpg" alt="">
-                <div class="badge show bg-default">-20%</div>
-              </div>
-              <div class="bottom-info">
-                <h4>Dark Souls II</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $39.99 <sup><del>$49.99</del></sup>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-kingdoms-of-amalur-reckoning-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Kingdoms of Amalur</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $20.00
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-the-witcher-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>The Witcher</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $14.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-skyrim-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Skyrim</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $11.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-middle-eart-shadow-of-mordor-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Middle-earth</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $29.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="specials,free">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-soul-sacrifice-500x375.jpg" alt="">
-                <div class="badge show bg-success">-100%</div>
-              </div>
-              <div class="bottom-info">
-                <h4>Soul Sacrifice</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      <span class="text-success">FREE!</span>  <sup><del>$29.99</del></sup>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-diablo-iii-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Diablo III</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $10.00
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="specials">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-dragons-dogma-500x375.jpg" alt="">
-                <div class="badge show bg-default">-30%</div>
-              </div>
-              <div class="bottom-info">
-                <h4>Dragons Dogma</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-half-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $34.99 <sup><del>$49.99</del></sup>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-lords-of-the-fallen-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Lords of the Fallen</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $14.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="upcoming">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-prototype-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Prototype 3</h4>
-                <div class="date">
-                  <i class="fa fa-calendar"></i> beginning of 2015
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-risen-3-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Risen 3</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $9.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-neverwinter-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Neverwinter</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $13.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-assassins-creed-4-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Assassin's Creed 4</h4>
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="price">
-                      $21.99
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <!-- /Single Product Block -->
-
-          <!-- Single Product Block -->
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="upcoming">
-            <a href="#!" class="angled-img">
-              <div class="img img-offset">
-                <img src="assets/images/game-half-life-3-500x375.jpg" alt="">
-              </div>
-              <div class="bottom-info">
-                <h4>Half-Life 3</h4>
-                <div class="date">
-                  <i class="fa fa-calendar"></i> never
-                </div>
-              </div>
-            </a>
-          </div>
           <!-- /Single Product Block -->
         </div>
 
@@ -460,68 +85,33 @@
         <div class="side-block">
           <h4 class="block-title">Last Games</h4>
           <div class="block-content p-0">
-            <!-- Single News Block -->
-            <div class="row youplay-side-news">
-              <div class="col-xs-3 col-md-4">
-                <a href="store-product-1.html" class="angled-img">
-                  <div class="img">
-                    <img src="assets/images/game-bloodborne-500x375.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-              <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="store-product-1.html" title="Bloodborne">Bloodborne</a></h4>
-                <span class="price">$50.00</span>
-              </div>
-            </div>
-            <!-- /Single News Block -->
 
             <!-- Single News Block -->
+            <%
+            boolean esc = false;
+            List<Gioco> game = (List<Gioco>)request.getAttribute("giochi");
+            Iterator<Gioco> it = game.iterator();
+            int counter = 0;
+            while (!esc && it.hasNext()) {
+            	Gioco obj = it.next();
+            %>
             <div class="row youplay-side-news">
               <div class="col-xs-3 col-md-4">
                 <a href="#!" class="angled-img">
                   <div class="img">
-                    <img src="assets/images/game-dark-souls-ii-500x375.jpg" alt="">
+                    <img src="assets/images/games/<%= obj.getNome() %>/cover.jpg" alt="">
                   </div>
                 </a>
               </div>
               <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="#!" title="Dark Souls II">Dark Souls II</a></h4>
-                <span class="price">$39.99 <sup><del>$49.99</del></sup></span>
+                <h4 class="ellipsis"><a href="#!" title="Dark Souls II"><%= obj.getNome() %></a></h4>
               </div>
             </div>
-            <!-- /Single News Block -->
-
-            <!-- Single News Block -->
-            <div class="row youplay-side-news">
-              <div class="col-xs-3 col-md-4">
-                <a href="#!" class="angled-img">
-                  <div class="img">
-                    <img src="assets/images/game-kingdoms-of-amalur-reckoning-500x375.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-              <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="#!" title="Kingdoms of Amalur">Kingdoms of Amalur</a></h4>
-                <span class="price">$20.00</span>
-              </div>
-            </div>
-            <!-- /Single News Block -->
-
-            <!-- Single News Block -->
-            <div class="row youplay-side-news">
-              <div class="col-xs-3 col-md-4">
-                <a href="#!" class="angled-img">
-                  <div class="img">
-                    <img src="assets/images/game-diablo-iii-500x375.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-              <div class="col-xs-9 col-md-8">
-                <h4 class="ellipsis"><a href="#!" title="Let's Grind Diablo III">Diablo III</a></h4>
-                <span class="price">$10.00</span>
-              </div>
-            </div>
+            <% if (counter == 3){
+            	esc = true;
+            }
+            counter++;
+            } %>
             <!-- /Single News Block -->
           </div>
         </div>
