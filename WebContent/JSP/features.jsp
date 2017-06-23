@@ -4,34 +4,34 @@
 
 	<section style="background-color: #201B3A;">
     <!-- Features -->
-    <h2 class="container h1">Why Play with our Games</h2>
+    <h2 class="container h1">Perchè giocare sulla nostra piattaforma?</h2>
     <section class="youplay-features container">
       <div class="col-md-3 col-sm-6">
-        <a class="feature angled-bg" href="#">
-          <i class="fa fa-cc-visa"></i>
-          <h3>Payment</h3>
-          <small>More than 10 payment systems</small>
+        <a class="feature angled-bg">
+          <i class="fa fa-trophy"></i>
+          <h3>Trofei</h3>
+          <small>Ottieni innumerevoli trofei per ogni gioco</small>
         </a>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="feature angled-bg">
           <i class="fa fa-gamepad"></i>
-          <h3>Games</h3>
-          <small>A large number of games</small>
+          <h3>Giochi</h3>
+          <small>Gioca a più di 10000 giochi avvincenti</small>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="feature angled-bg">
           <i class="fa fa-money"></i>
-          <h3>Cheap</h3>
-          <small>Lowest prices on the Internet</small>
+          <h3>Gratis</h3>
+          <small>I nostri giochi sono totalmente gratuiti e senza restrizioni</small>
         </div>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="feature angled-bg">
           <i class="fa fa-users"></i>
           <h3>Community</h3>
-          <small>The largest gaming community</small>
+          <small>Unisciti agli oltre 5000 utenti, che aspetti? Gioca ora!</small>
         </div>
       </div>
     </section>

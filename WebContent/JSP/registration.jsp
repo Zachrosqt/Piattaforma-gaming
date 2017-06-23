@@ -7,7 +7,7 @@
 
     <!-- Banner -->
     <div class="youplay-banner banner-top">
-      <div class="image" style="background-image: url('assets/images/banner-bg.jpg')"></div>
+      <div class="image" style="background-image: url('assets/images/banner-bg.jpg'); background-repeat: repeat-y;"></div>
 
       <div class="info">
         <div>

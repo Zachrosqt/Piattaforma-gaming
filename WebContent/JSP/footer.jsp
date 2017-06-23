@@ -13,27 +13,27 @@
 
             <div class="social-icons">
               <div class="social-icon">
-                <a href="#!">
+                <a href="https://www.facebook.com/">
                   <i class="fa fa-facebook-square"></i>
-                  <span>Like on Facebook</span>
+                  <span>Metti mi piace</span>
                 </a>
               </div>
               <div class="social-icon">
-                <a href="#!">
+                <a href="https://twitter.com/">
                   <i class="fa fa-twitter-square"></i>
-                  <span>Follow on Twitter</span>
+                  <span>Seguici su Twitter</span>
                 </a>
               </div>
               <div class="social-icon">
-                <a href="#!">
+                <a href="https://www.twitch.tv/">
                   <i class="fa fa-twitch" aria-hidden="true"></i>
-                  <span>Watch on Twitch</span>
+                  <span>Seguici su Twitch</span>
                 </a>
               </div>
               <div class="social-icon">
-                <a href="#!">
+                <a href="https://www.youtube.com/">
                   <i class="fa fa-youtube-square"></i>
-                  <span>Watch on Youtube</span>
+                  <span>Iscriviti al nostro canale</span>
                 </a>
               </div>
             </div>

@@ -121,3 +121,17 @@ $("#registrationform").submit(function(e){
 	}
 });
 
+$('#logout').click(function(){
+	var url = "gameplatform.op";
+	$.ajax ({
+		type: "POST",
+		url: url,
+		
+		success: function(data){
+			$(window.location).attr("href", "login.op");
+		},
+		
+	});
+	e.preventDefault();
+});
+

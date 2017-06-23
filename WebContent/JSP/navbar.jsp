@@ -18,26 +18,26 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown dropdown-hover ">
-            <a href="registration.op" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="#!" class="dropdown-toggle" role="button" aria-expanded="false">
                       Giochi
             </a>
           </li>
           <li class="dropdown dropdown-hover ">
-            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="#!" class="dropdown-toggle" role="button" aria-expanded="false">
                       Contattaci
             </a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown dropdown-hover">
-            <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="#!" class="dropdown-toggle"  role="button" aria-expanded="false">
                       ${utenteGameplatform.nome} ${utenteGameplatform.cognome} <span class="badge bg-default"></span> <span class="caret"></span> <span class="label">Bentornato!</span>
             </a>
             <div class="dropdown-menu">
               <ul role="menu">
                 <li><a href="user-profile.html">Profilo <span class="badge pull-right bg-warning"></span></a>
 
-                <li><a href="logout.op">Log Out</a>
+                <li><a id = "logout" href="">Log Out</a>
                 </li>
               </ul>
             </div>
