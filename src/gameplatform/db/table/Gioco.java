@@ -21,6 +21,7 @@ public class Gioco implements java.io.Serializable{
     private String descrizione;
     private String specifiche;
     private int mediaGioco;
+    private Calendar date = Calendar.getInstance();
     private Set<Giocare> giocare = new HashSet<Giocare>(0);
     private Set<Trofeo> trofeo = new HashSet<Trofeo>(0);
     private Set<Immagine> immagine = new HashSet<Immagine>(0);
@@ -71,6 +72,15 @@ public class Gioco implements java.io.Serializable{
 
 	public void setMediaGioco(int mediaGioco) {
 		this.mediaGioco = mediaGioco;
+	}
+	
+	@Column(name = "date", unique = false, nullable = false)
+	public Calendar getDate() {
+		return date;
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
 	}
     
     @OneToMany(mappedBy = "pk.gioco", cascade = CascadeType.ALL)
