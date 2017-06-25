@@ -9,7 +9,7 @@
         <!-- Social Buttons -->
         <div class="social">
           <div class="container">
-            <h3>Connect socially with <strong>youplay</strong></h3>
+            <h3>Entra in contatto con noi sui social network più popolari</h3>
 
             <div class="social-icons">
               <div class="social-icon">

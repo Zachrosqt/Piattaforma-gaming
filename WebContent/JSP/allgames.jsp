@@ -14,15 +14,15 @@
       <div class="col-md-9 isotope">
         <!-- Sort Categories -->
         <ul class="pagination isotope-options">
-          <li data-filter="all" class="active"><span>All</span>
+          <li data-filter="all" class="active"><span>Tutti</span>
           </li>
-          <li data-filter="free"><span>Free</span>
+          <li data-filter="free"><span>Gratis</span>
           </li>
-          <li data-filter="popular"><span>Popular</span>
+          <li data-filter="popular"><span>Popolari</span>
           </li>
-          <li data-filter="specials"><span>Specials</span>
+          <li data-filter="specials"><span>Speciali</span>
           </li>
-          <li data-filter="upcoming"><span>Upcoming</span>
+          <li data-filter="upcoming"><span>In arrivo</span>
           </li>
         </ul>
         <!-- /Sort Categories -->
@@ -72,10 +72,10 @@
 
         <!-- Side Search -->
         <div class="side-block">
-          <p>Search by Games:</p>
+          <p>Cerca giochi:</p>
           <form action="http://html.nkdev.info/youplay/dark/search.html">
             <div class="youplay-input">
-              <input type="text" name="search" placeholder="enter search term">
+              <input type="text" name="search" placeholder="cerca...">
             </div>
           </form>
         </div>
@@ -83,7 +83,7 @@
 
         <!-- Side Popular News -->
         <div class="side-block">
-          <h4 class="block-title">Last Games</h4>
+          <h4 class="block-title">Ultimi giochi</h4>
           <div class="block-content p-0">
 
             <!-- Single News Block -->
