@@ -18,12 +18,12 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="dropdown dropdown-hover ">
-            <a href="#!" class="dropdown-toggle" role="button" aria-expanded="false">
+            <a href="allgame.op" class="dropdown-toggle" role="button" aria-expanded="false">
                       Giochi
             </a>
           </li>
           <li class="dropdown dropdown-hover ">
-            <a href="#!" class="dropdown-toggle" role="button" aria-expanded="false">
+            <a href="contact.op" class="dropdown-toggle" role="button" aria-expanded="false">
                       Contattaci
             </a>
           </li>
