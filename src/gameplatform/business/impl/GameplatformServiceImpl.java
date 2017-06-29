@@ -129,7 +129,8 @@ public class GameplatformServiceImpl implements GameplatformService{
 
 	@Override
 	public List<UtenteGiocare> recensioni(String game) {
-		List<?> recensioni = crud.executeQuery("FROM Utente user JOIN user.giocare game WHERE game.pk.gioco.nome = '" + game + "'");
+		List<UtenteGiocare> review = new ArrayList<UtenteGiocare>();		
+		List<?> recensioni = crud.executeQuery("FROM Utente user JOIN user.giocare game WHERE game.pk.gioco.nome = '" + game + "' AND game.approvato = '1'");
 		
 		Iterator<?> it = recensioni.iterator();
 		
@@ -137,10 +138,11 @@ public class GameplatformServiceImpl implements GameplatformService{
 			Object[] obj = (Object[]) it.next();
         	Utente user = (Utente) obj[0];
         	Giocare giocare = (Giocare) obj[1];
-        	System.out.println("Utente: " + user.getUsername() + " Giocare: " + giocare.getGioco().getNome());
+        	UtenteGiocare userGame = new UtenteGiocare(user, giocare);
+        	review.add(userGame);
 		}
 		
-		return null;
+		return review;
 	}
 
 }

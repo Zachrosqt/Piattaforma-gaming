@@ -142,7 +142,7 @@ public class Utente implements java.io.Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
     public void setExp_tot(Integer exp_tot) {
         this.exp_tot = exp_tot;
     }
@@ -238,6 +238,6 @@ public class Utente implements java.io.Serializable{
 			return false;
 		return true;
 	}
-	
+
 }
 
