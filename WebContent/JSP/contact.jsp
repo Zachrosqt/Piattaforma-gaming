@@ -27,7 +27,7 @@
           <div class="youplay-form p-0" style="background-color: #201B3A;">
             <h2 class="mt-0">Drop us a line</h2>
 
-            <form action="http://html.nkdev.info/youplay/dark/php/contact.php" method="POST" role="form" class="youplay-form-ajax" data-toggle="validator">
+            <form class="youplay-form-ajax" data-toggle="validator" onsubmit="return false" id="contactform">
               <div class="row">
                 <div class="col-md-6">
                   <div class="youplay-input form-group">

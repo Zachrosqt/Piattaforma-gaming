@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.db.table.Gioco;
+import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Template;
 import gameplatform.db.table.Utente;
 
@@ -109,6 +110,20 @@ public class GameplatformServiceImpl implements GameplatformService{
 		List<Gioco> games = crud.executeQuery("FROM Gioco games ORDER BY games.date DESC");
 		
 		return games;
+	}
+	
+	@Override
+	public List<Gioco> game(String game) {
+		List<Gioco> games = crud.executeQuery("FROM Gioco game WHERE game.nome = '" + game + "'");
+		
+		return games;
+	}
+	
+	@Override
+	public List<Immagine> allImmages(String game) {
+		List<Immagine> immagine = crud.executeQuery("FROM Immagine img WHERE img.gioco.nome = '" + game + "'");
+		
+		return immagine;
 	}
 
 }
