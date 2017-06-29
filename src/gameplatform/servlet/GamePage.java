@@ -66,7 +66,7 @@ public class GamePage extends HttpServlet {
 		
 		//new part
 		request.setAttribute("gallery", service.allImmages(request.getParameter("id")));
-		request.setAttribute("giochi", service.game(request.getParameter("id")));
+		request.setAttribute("gioco", service.game(request.getParameter("id")));
 		request.setAttribute("template", this.template);
 		
 		RequestDispatcher view = request.getRequestDispatcher("JSP/index.jsp");
