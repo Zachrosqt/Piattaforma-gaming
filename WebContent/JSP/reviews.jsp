@@ -2,8 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<%@page import="java.io.File, gameplatform.business.impl.UtenteGiocare" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	
 	<section style="background-color: #201B3A;">
 	<div style="margin: 10%; margin-top: 5%; margin-bottom: 5%;">
 	<!-- Reviews -->
@@ -15,8 +17,18 @@
             <c:forEach items="${review}" var="recensione">
             <li>
               <article>
-                <div class="review-avatar pull-left">
-                  <img src="assets/images/avatar-user-1.png" alt="">
+              	<div class="review-avatar pull-left">
+              	
+              	<% 	ServletContext app=getServletContext();
+					String path=app.getRealPath("");
+					File f=new File(path+"assets/images/avatar/" + ((UtenteGiocare)(pageContext.findAttribute("recensione"))).getUser().getUsername() + ".png");
+					if(!f.exists()){ %>
+						<img src="assets/images/avatar.png" alt="">
+				<%	}
+					else { %>
+						<img src="assets/images/avatar/${recensione.user.username}.png" alt="">
+				<%	} %>
+ 
                 </div>
                 <div class="review-cont clearfix">
                   <div class="rating pull-right">
@@ -31,7 +43,7 @@
       					</c:choose>
               		</c:forEach>
                   </div>
-                  <a class="review-author h4" href="#!">${recensione.user.username}</a>
+                  <a class="review-author h4" href="userprofile.op">${recensione.user.username}</a>
                   <div class="date"><i class="fa fa-calendar"></i><fmt:formatDate value="${recensione.game.data.time}" type="both"/></div>
                   <div class="review-text">
                     <p>
@@ -48,15 +60,17 @@
           <!-- /Reviews List -->
 
           <!-- Review Form -->
-          <h2>Add a Review</h2>
+           <c:set var = "check" value = "0"/>
+           <c:forEach items="${review}" var="recensione">
+          	 <c:if test = "${recensione.user.username == utenteGameplatform.username}">
+         		 <c:set var = "check" value = "1"/>
+      		 </c:if>
+           </c:forEach>
+           <c:if test = "check==0">
+          <h2>Aggiungi una recensione</h2>
           <form action="#!" class="review-form mb-0">
             <div class="review-cont clearfix">
-              <div class="youplay-input">
-                <input type="text" name="username" placeholder="Your Name *">
-              </div>
-              <div class="youplay-input">
-                <input type="email" name="email" placeholder="Your Email *">
-              </div>
+             
               <div class="youplay-textarea">
                 <textarea name="message" rows="5" placeholder="Your Review..."></textarea>
               </div>
@@ -81,6 +95,7 @@
               <button class="btn btn-default pull-right">Submit</button>
             </div>
           </form>
+          </c:if>
           <!-- /Review Form -->
         </div>
         </div>
