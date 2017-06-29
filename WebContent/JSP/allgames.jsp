@@ -32,7 +32,7 @@
           <!-- Single Product Block -->
           <c:forEach items="${giochi}" var="gioco">
           <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
-            <a href="#!" class="angled-img">
+            <a href="game.op?id=${gioco.nome}" class="angled-img">
               <div class="img img-offset">
                 <img src="assets/images/games/${gioco.nome}/cover.jpg" alt="">
               </div>
