@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <!-- Banner -->
     <div class="youplay-banner youplay-banner-parallax banner-top">
-      <div class="image" style="background-image: url('assets/images/game-bloodborne-1920x1151.jpg')">
+    <c:set var="first" value="${gioco[0]}"/>
+    <c:set var="firstimage" value="${gallery[0]}"/>
+      <div class="image" style="background-image: url('assets/images/games/${first.nome}/${firstimage.path}')">
       </div>
 
       <div class="info">
         <div>
           <div class="container">
-            <h1>Bloodborne</h1>
+            <h1>${first.nome}</h1>
             <br>
-            <a href="#!" class="btn btn-lg" title="Add to Cart">$50.00</a>
+            <a href="#!" class="btn btn-lg" title="Add to Cart">Gioca</a>
           </div>
         </div>
       </div>
@@ -22,47 +26,14 @@
 
     <!-- Images With Text -->
     <div class="youplay-carousel gallery-popup">
-      <a class="angled-img" href="http://www.youtube.com/watch?v=9FOP2oLb31o">
+    <c:forEach items="${gallery}" var="immagine">
+        
+      <a class="angled-img" href="assets/images/games/${first.nome}/${immagine.path}">
         <div class="img">
-          <img src="assets/images/game-bloodborne-500x375.jpg" alt="">
-        </div>
-        <i class="fa fa-play icon"></i>
-      </a>
-      <a class="angled-img" href="assets/images/game-bloodborne-4-1920x1080.jpg">
-        <div class="img">
-          <img src="assets/images/game-bloodborne-4-500x375.jpg" alt="">
+          <img src="assets/images/games/${first.nome}/${immagine.path}" alt="">
         </div>
         <i class="fa fa-search-plus icon"></i>
       </a>
-      <a class="angled-img" href="assets/images/game-bloodborne-5-1920x1080.jpg">
-        <div class="img">
-          <img src="assets/images/game-bloodborne-5-500x375.jpg" alt="">
-        </div>
-        <i class="fa fa-search-plus icon"></i>
-      </a>
-      <a class="angled-img" href="assets/images/game-bloodborne-2-1920x1080.jpg">
-        <div class="img">
-          <img src="assets/images/game-bloodborne-2-500x375.jpg" alt="">
-        </div>
-        <i class="fa fa-search-plus icon"></i>
-      </a>
-      <a class="angled-img" href="assets/images/game-bloodborne-3-1920x1080.jpg">
-        <div class="img">
-          <img src="assets/images/game-bloodborne-3-500x375.jpg" alt="">
-        </div>
-        <i class="fa fa-search-plus icon"></i>
-      </a>
-      <a class="angled-img" href="assets/images/game-bloodborne-6-1920x1080.jpg">
-        <div class="img">
-          <img src="assets/images/game-bloodborne-6-500x375.jpg" alt="">
-        </div>
-        <i class="fa fa-search-plus icon"></i>
-      </a>
-      <a class="angled-img" href="assets/images/game-bloodborne-7-1920x1080.jpg">
-        <div class="img">
-          <img src="assets/images/game-bloodborne-7-500x375.jpg" alt="">
-        </div>
-        <i class="fa fa-search-plus icon"></i>
-      </a>
+    </c:forEach>
     </div>
     <!-- /Images With Text -->

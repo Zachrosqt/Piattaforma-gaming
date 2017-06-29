@@ -35,7 +35,7 @@
             </a>
             <div class="dropdown-menu">
               <ul role="menu">
-                <li><a href="user-profile.html">Profilo <span class="badge pull-right bg-warning"></span></a>
+                <li><a href="userprofile.op">Profilo <span class="badge pull-right bg-warning"></span></a>
 
                 <li><a id = "logout" style="cursor: pointer; cursor: hand;">Log Out</a>
                 </li>

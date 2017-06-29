@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 	<section style="background-color: #201B3A;">
 	<div style="margin: 10%; margin-top: 5%; margin-bottom: 5%;">
 	<!-- Reviews -->
         <div class="reviews-block mb-0">
-          <h2>Reviews <small>(3)</small></h2>
-
+          <h2>Recensioni <small>(3)</small></h2>
           <!-- Reviews List -->
           <ul class="reviews-list">
             <!-- Kristen Bradley review -->
+            <c:forEach items="${review}" var="recensione">
             <li>
               <article>
                 <div class="review-avatar pull-left">
@@ -18,84 +20,30 @@
                 </div>
                 <div class="review-cont clearfix">
                   <div class="rating pull-right">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                  	<c:forEach var="i" begin= "1" end = "5">
+              	 	 	<c:choose>
+         					<c:when test = "${recensione.game.voto >= i}">
+           						<i class="fa fa-star"></i>
+         					</c:when>
+         					<c:otherwise>
+           						<i class="fa fa-star-o"></i>
+         					</c:otherwise>
+      					</c:choose>
+              		</c:forEach>
                   </div>
-                  <a class="review-author h4" href="#!">Kristen Bradley</a>
-                  <div class="date"><i class="fa fa-calendar"></i> April 3, 2015</div>
+                  <a class="review-author h4" href="#!">${recensione.user.username}</a>
+                  <div class="date"><i class="fa fa-calendar"></i><fmt:formatDate value="${recensione.game.data.time}" type="both"/></div>
                   <div class="review-text">
                     <p>
-                      Quod satis pecuniae sempiternum. Ut sciat oportet motum. Nunquam invenies eum. Hic de tabula. Ego vivere, ut debui, et nunc fiant. Istuc quod opus non est. Lorem ipsum occurrebat pragmaticam semper ut, si quis ita velim tibi bene recognoscere. Quorum
-                      duo te mihi videtur.
-                    </p>
-                    <p>
-                      Mauris a nunc occideritis me rectum. Videtur quod Ive facillimum, qui fecit vos. Potes me interficere, sine testibus et tunc manere in pauci weeks vel mensis vestigia Isai Pinkman et vos quoque illum occidere. Exercitium inutili option A. Videtur mihi
-                      quod autem est.
+                      ${recensione.game.recensione }
                     </p>
                   </div>
                 </div>
               </article>
             </li>
+            </c:forEach>
             <!-- /Kristen Bradley review -->
-            <!-- Clyde Fields review -->
-            <li>
-              <article>
-                <div class="review-avatar pull-left">
-                  <img src="assets/images/avatar-user-4.png" alt="">
-                </div>
-                <div class="review-cont clearfix">
-                  <div class="rating pull-right">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                  </div>
-                  <a class="review-author h4" href="#!">Clyde Fields</a>
-                  <div class="date"><i class="fa fa-calendar"></i> March 13, 2015</div>
-                  <div class="review-text">
-                    <p>
-                      Uno ictu cruentus ille utrimque - statuit American Mexicanus gubernationes contra CONEXUS, et amputavit auriculam eius generis copia methamphetamine ad Africum. Quo facto suo, si huius huc termini velit vitae ipsum. Praemia essent ... ingentibus.
-                    </p>
-                    <p>
-                      Sumus tam adultis. Non est enim tibi nescio fingunt. Confusio esse cupio. Scio te debeo meae. At etiam, ut caveant ab his eu. In tuo positum, idem fecissem. Constitutione, quam molesta est mihi tres menses nescio quid de contractu fines nostros. Scis
-                      quare hoc facere. Lorem satis quaesitum.
-                    </p>
-                    <p>
-                      Loquélæ. Brevis oratio. Hodie particeps tua perdideris. Quid sui nominis - Emilio? Emilio gradiens ad carcerem. Tulitque omnem pecuniam tuam in DEA tuus Lab. Vos got nihil. Quadratum unum. Et ego agnosco rem, nisi te scire elit. Cogito ... maybe vos possem
-                      socium ascendit.
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </li>
-            <!-- /Clyde Fields review -->
-            <!-- Scott Sutton review -->
-            <li>
-              <article>
-                <div class="review-avatar pull-left">
-                  <img src="assets/images/avatar.png" alt="">
-                </div>
-                <div class="review-cont clearfix">
-                  <div class="rating pull-right">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                    <i class="fa fa-star-o"></i>
-                  </div>
-                  <a class="review-author h4" href="#!">Scott Sutton</a>
-                  <div class="date"><i class="fa fa-calendar"></i> March 2, 2015</div>
-                  <div class="review-text">
-                    Perdet eam batch nostri.
-                  </div>
-                </div>
-              </article>
-            </li>
-            <!-- /Scott Sutton review -->
+           
           </ul>
           <!-- /Reviews List -->
 

@@ -10,7 +10,7 @@
 	<div class="youplay-carousel" data-autoplay="5000">
 	
 	<c:forEach items="${giochi}" var="gioco">
-      <a class="angled-img" href="store-product-1.html">
+      <a class="angled-img" href="game.op?id=${gioco.nome}">
         <div class="img">
           <img src="assets/images/games/${gioco.nome}/cover.jpg" alt="">
         </div>
