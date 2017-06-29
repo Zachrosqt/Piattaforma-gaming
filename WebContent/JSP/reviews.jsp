@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="java.io.File, gameplatform.business.impl.UtenteGiocare" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	
@@ -10,7 +10,7 @@
 	<div style="margin: 10%; margin-top: 5%; margin-bottom: 5%;">
 	<!-- Reviews -->
         <div class="reviews-block mb-0">
-          <h2>Recensioni <small>(3)</small></h2>
+          <h2>Recensioni <small>(${fn:length(review)})</small></h2>
           <!-- Reviews List -->
           <ul class="reviews-list">
             <!-- Kristen Bradley review -->
@@ -66,7 +66,7 @@
          		 <c:set var = "check" value = "1"/>
       		 </c:if>
            </c:forEach>
-           <c:if test = "check==0">
+           <c:if test = "${check==0}">
           <h2>Aggiungi una recensione</h2>
           <form action="#!" class="review-form mb-0">
             <div class="review-cont clearfix">
