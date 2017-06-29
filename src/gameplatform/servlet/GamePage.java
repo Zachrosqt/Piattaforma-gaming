@@ -63,6 +63,8 @@ public class GamePage extends HttpServlet {
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		//new part
 		request.setAttribute("gallery", service.allImmages(request.getParameter("id")));
 		request.setAttribute("giochi", service.game(request.getParameter("id")));
 		request.setAttribute("template", this.template);
