@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
+import gameplatform.business.impl.UtenteGiocare;
 import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Template;
 
@@ -63,8 +64,7 @@ public class GamePage extends HttpServlet {
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		//new part
+		request.setAttribute("review", service.recensioni(request.getParameter("id")));
 		request.setAttribute("gallery", service.allImmages(request.getParameter("id")));
 		request.setAttribute("gioco", service.game(request.getParameter("id")));
 		request.setAttribute("template", this.template);

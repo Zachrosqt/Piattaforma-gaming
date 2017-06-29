@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import gameplatform.business.impl.UtenteGiocare;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Template;
@@ -20,5 +21,6 @@ public interface GameplatformService {
 	List<Gioco> allGames();
 	List<Gioco> game(String game);
 	List<Immagine> allImmages(String game);
+	List<UtenteGiocare> recensioni(String game);
 	
 }

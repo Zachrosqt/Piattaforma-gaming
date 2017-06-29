@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
+import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Template;
@@ -124,6 +125,22 @@ public class GameplatformServiceImpl implements GameplatformService{
 		List<Immagine> immagine = crud.executeQuery("FROM Immagine img WHERE img.gioco.nome = '" + game + "'");
 		
 		return immagine;
+	}
+
+	@Override
+	public List<UtenteGiocare> recensioni(String game) {
+		List<?> recensioni = crud.executeQuery("FROM Utente user JOIN user.giocare game WHERE game.pk.gioco.nome = '" + game + "'");
+		
+		Iterator<?> it = recensioni.iterator();
+		
+		while(it.hasNext()){
+			Object[] obj = (Object[]) it.next();
+        	Utente user = (Utente) obj[0];
+        	Giocare giocare = (Giocare) obj[1];
+        	System.out.println("Utente: " + user.getUsername() + " Giocare: " + giocare.getGioco().getNome());
+		}
+		
+		return null;
 	}
 
 }
