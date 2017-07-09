@@ -43,7 +43,7 @@
       					</c:choose>
               		</c:forEach>
                   </div>
-                  <a class="review-author h4" href="userprofile.op">${recensione.user.username}</a>
+                  <a class="review-author h4">${recensione.user.username}</a>
                   <div class="date"><i class="fa fa-calendar"></i><fmt:formatDate value="${recensione.game.data.time}" type="both"/></div>
                   <div class="review-text">
                     <p>

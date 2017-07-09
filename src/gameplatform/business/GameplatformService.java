@@ -27,6 +27,8 @@ public interface GameplatformService {
 	List<Utente> username(String username);
 	List<Utente> userEmail(String email);
 	List<Gruppo> group (String group);
+	String livelli (String usarname);
+	int giocare(String usarname);
 	
 	
 }

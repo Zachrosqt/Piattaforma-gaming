@@ -140,9 +140,22 @@
 				$(document).ready(function(){
 					 if( $('#profileBody').length )
 					 {
-						 profileInfo();
+						 var items = ${livelli};
+						 $('#dataIscrizione').html(items.length-1);
+						 profileInfo('${utenteGameplatform.username}', '${utenteGameplatform.eta}', items,'${utenteGameplatform.exp_tot}', '${utenteGameplatform.numeroAccessi}', '${utenteGameplatform.email}');
 					 }
+					 
+					 $("#profileButton").click(function(){
+						 var items = ${livelli};
+						 profileInfo('${utenteGameplatform.username}', '${utenteGameplatform.eta}', items,'${utenteGameplatform.exp_tot}', '${utenteGameplatform.numeroAccessi}', '${utenteGameplatform.email}');
+					}); 
+					 
+					 $("#activityButton").click(function(){
+						 var items = ${livelli};
+						 profileActivity(items);
+					 }); 
 				});
+				
 			</script>
 	</body>
 </html>

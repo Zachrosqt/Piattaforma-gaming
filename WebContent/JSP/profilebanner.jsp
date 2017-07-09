@@ -10,9 +10,9 @@
       <div class="youplay-user-navigation">
         <div class="container">
           <ul>
-          	<li id="profileButton"><a onclick="profileInfo()">Profile</a>
+          	<li id="profileButton"><a>Profile</a>
             </li>
-            <li id="activityButton"><a onclick="profileActivity()">Activity</a>
+            <li id="activityButton"><a>Activity</a>
             </li>
           </ul>
         </div>
@@ -30,19 +30,19 @@
             <!--
                 -->
             <div class="user-data">
-              <h2>John Doe</h2>
+              <h2>${utenteGameplatform.nome} ${utenteGameplatform.cognome}</h2>
               <div class="activity">
                 <div>
-                  <div class="num">69</div>
-                  <div class="title">Posts</div>
+                  <div class="num">${utenteGameplatform.username}</div>
+                  <div class="title">Username</div>
                 </div>
                 <div>
-                  <div class="num">12</div>
+                  <div class="num" id="dataIscrizione"></div>
+                  <div class="title">Livello</div>
+                </div>
+                <div>
+                  <div class="num">${giocati}</div>
                   <div class="title">Games</div>
-                </div>
-                <div>
-                  <div class="num">689</div>
-                  <div class="title">Followers</div>
                 </div>
               </div>
             </div>

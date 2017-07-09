@@ -1,5 +1,6 @@
 package gameplatform.business.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -168,6 +169,36 @@ public class GameplatformServiceImpl implements GameplatformService{
 		
 		List<Gruppo> g = crud.executeQuery("FROM Gruppo groups WHERE groups.nome='" + group + "'");
 		return g;
+	}
+
+	@Override
+	public String livelli(String usarname) {
+		// TODO Auto-generated method stub
+		
+		List<Livello> lv = crud.executeQuery("FROM Livello lv WHERE lv.utente.username='" + usarname + "' ORDER BY lv.livello");
+		
+		Iterator<Livello> it = lv.iterator();
+		String arrayScript= "[";
+		while(it.hasNext()){
+			Livello temp = it.next();
+			SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy");
+			String formatted = format1.format(temp.getDate().getTime());
+			arrayScript += "['" + temp.getLivello() + "', '" + formatted + "']";
+			if(it.hasNext()){
+				arrayScript += ",";
+			}
+		}
+		arrayScript += "]";
+		return arrayScript;
+	}
+
+	@Override
+	public int giocare(String usarname) {
+		// TODO Auto-generated method stub
+		
+		List<Giocare> giocare = crud.executeQuery("FROM Giocare gioca WHERE gioca.pk.utente.username='" + usarname + "'");
+		
+		return giocare.size();
 	}
 
 }

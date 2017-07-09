@@ -2,7 +2,8 @@
  * 
  */
 
-function profileInfo(){
+
+function profileInfo(username, age, data, exp, accessi, mail){
 	$("#profileButton").addClass("active");
 	$("#activityButton").removeClass("active");
 	$('#profileBody').html(' <div class="row">' +
@@ -17,7 +18,16 @@ function profileInfo(){
 	                  '<p>Username</p>' +
 	                '</td>' +
 	                '<td>' +
-	                  '<p><a href="#"></a>' +
+	                  '<p>' + username +
+	                  '</p>' +
+	                '</td>' +
+	              '</tr>' +
+	              '<tr>' +
+	                '<td style="width: 200px;">' +
+	                  '<p>Et&agrave</p>' +
+	                '</td>' +
+	                '<td>' +
+	                  '<p>' + age +
 	                  '</p>' +
 	                '</td>' +
 	              '</tr>' +
@@ -26,7 +36,7 @@ function profileInfo(){
 	                  '<p>Data Iscrizione</p>' +
 	                '</td>' +
 	                '<td>' +
-	                  '<p><a href="#">Married</a>' +
+	                  '<p>' + data[0][1] +
 	                  '</p>' +
 	                '</td>' +
 	              '</tr>' +
@@ -35,7 +45,7 @@ function profileInfo(){
 	                  '<p>Exp</p>' +
 	                '</td>' +
 	                '<td>' +
-	                  '<p><a href="#">Married</a>' +
+	                  '<p>' + exp +
 	                  '</p>' +
 	                '</td>' +
 	              '</tr>' +
@@ -44,7 +54,7 @@ function profileInfo(){
 	                  '<p>Numero Accessi</p>' +
 	                '</td>' +
 	                '<td>' +
-	                  '<p><a href="#">New York University, NYU</a>' +
+	                  '<p>' + accessi +
 	                  '</p>' +
 	                '</td>' +
 	              '</tr>' +
@@ -53,7 +63,7 @@ function profileInfo(){
  	                  '<p>E-Mail</p>' +
 	                '</td>' +
 	                '<td>' +
-	                  '<p><a href="#">English</a>, <a href="#">Japan</a>' +
+	                  '<p>' + mail +
 	                  '</p>' +
 	                '</td>' +
 	              '</tr>' +
@@ -65,37 +75,42 @@ function profileInfo(){
 	      '</div>');
 };
 
-function profileActivity(){
+function profileActivity(livelli){
 	$("#profileButton").removeClass("active");
 	$("#activityButton").addClass("active");
-	$('#profileBody').html('<div class="row">' +
+	var activityHtml = '<div class="row">' +
 
-	        '<div class="col-md-9">' +
+    '<div class="col-md-9">' +
 
-	          '<!-- Activity -->' +
-	          '<h2 class="mt-0">Activity</h2>' +
-	          '<div class="youplay-timeline">' +
+      '<!-- Activity -->' +
+      '<h2 class="mt-0">Activity</h2>' +
+      '<div class="youplay-timeline">';
+	for (i = 0; i < livelli.length; i++) {
+		
+		activityHtml +=  '<!-- Timeline Notification -->' +
+        '<div class="youplay-timeline-block">' +
+        '<!-- icon -->' +
+        '<div class="youplay-timeline-icon bg-warning">' +
+          '<i class="fa fa-arrow-up"></i>' +
+        '</div>' +
+        '<!-- /icon -->' +
 
-	            '<!-- Timeline Notification -->' +
-	            '<div class="youplay-timeline-block">' +
-	              '<!-- icon -->' +
-	              '<div class="youplay-timeline-icon bg-warning">' +
-	                '<i class="fa fa-bell"></i>' +
-	              '</div>' +
-	              '<!-- /icon -->' +
+        '<!-- content -->' +
+        '<div class="youplay-timeline-content">' +
+          '<h3 class="mb-0">Livello ' + livelli[i][0] + '</h3>' +
+          '<span class="youplay-timeline-date pt-0">' + livelli[i][1] + '</span>' +
+        '</div>' +
+        '<!-- content -->' +
+      '</div>' +
+      '<!-- /Timeline Notification -->';
+	} 
+	
+	activityHtml += '</div>' +
+    '<!-- /Activity -->' +
 
-	              '<!-- content -->' +
-	              '<div class="youplay-timeline-content">' +
-	                '<h3 class="mb-0">Livello 0</h3>' +
-	                '<span class="youplay-timeline-date pt-0">20 minutes ago</span>' +
-	              '</div>' +
-	              '<!-- content -->' +
-	            '</div>' +
-	            '<!-- /Timeline Notification -->' +
-	          '</div>' +
-	          '<!-- /Activity -->' +
+  '</div>' +
 
-	        '</div>' +
-
-	      '</div>');
+'</div>';
+	$('#profileBody').html(activityHtml);
+	
 }

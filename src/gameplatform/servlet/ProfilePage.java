@@ -10,10 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 
 /**
  * Servlet implementation class ProfilePageOne
@@ -49,7 +51,17 @@ public class ProfilePage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		process(request, response);
+		HttpSession session =  request.getSession();
+		if (session.getAttribute("utenteGameplatform")==null){
+			response.sendRedirect("login.op");
+		} else {
+			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+			if (perm == true){
+				process(request, response);
+			} else {
+				response.sendRedirect("accessdenied.op");
+			}	
+		}
 	}
 
 	/**
@@ -62,6 +74,9 @@ public class ProfilePage extends HttpServlet {
 	}
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("livelli", service.livelli(request.getParameter("user")));
+		request.setAttribute("giocati", service.giocare(request.getParameter("user")));
 		
 		request.setAttribute("template", this.template);
 		
