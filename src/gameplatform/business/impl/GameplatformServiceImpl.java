@@ -149,7 +149,6 @@ public class GameplatformServiceImpl implements GameplatformService{
 
 	@Override
 	public List<Utente> username(String username) {
-		// TODO Auto-generated method stub
 		
 		List<Utente> user = crud.executeQuery("FROM Utente user WHERE user.username='" + username + "'");
 		return user;
