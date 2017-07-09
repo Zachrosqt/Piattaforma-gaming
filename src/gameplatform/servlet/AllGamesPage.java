@@ -26,7 +26,7 @@ public class AllGamesPage extends HttpServlet {
 	
 	private String pageName;
 	private List<Template> template;
-	GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
+	private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()

@@ -1,11 +1,9 @@
 $("#loginform").submit(function(e){
 	if ($("#username").val()== ''){
-		$('#alert').html("");
 		$('#alertusername').html("<p style='color: red;'> Username obbligatoria</p>");
 	} else
 		$('#alertusername').html(""); 
 	if ($("#password").val()==''){
-		$('#alert').html("");
 		$('#alertpassword').html("<p style='color: red;'> Password obbligatoria </p>");
 	} else
 		$('#alertpassword').html("");
@@ -18,16 +16,15 @@ $("#loginform").submit(function(e){
 		
 		success: function(data){
 			if (data == "true") {
-				$('#alert').html("");
 				$(window.location).attr("href", "gameplatform.op");
 			}
 			else {
-				$('#alert').html("<p style='color: red;'> Username o password non corretti </p>");
+				sweetAlert("Oops...", "Username o password non corretti!", "error");
 			}
 		},
 		
 		error: function(){
-			$('#alert').html("<p style='color: red;'> Errore comunicazione con il server </p>");
+			sweetAlert("Oops...", "Errore comunicazione con il server!", "error");
 		}
 	});
 	e.preventDefault();
@@ -37,58 +34,48 @@ $("#loginform").submit(function(e){
 $("#registrationform").submit(function(e){
 	
 	if ($("#username").val()== ''){
-		$('#alert').html("");
 		$('#alertusername').html("<p style='color: red;'> Username obbligatoria</p>");
 	} else
 		$('#alertusername').html(""); 
 	
 	if ($("#password").val()==''){
-		$('#alert').html("");
 		$('#alertpassword').html("<p style='color: red;'> Password obbligatoria </p>");
 	} else
 		$('#alertpassword').html("");
 	
 	if ($("#confirmpassword").val()==''){
-		$('#alert').html("");
 		$('#alertconfirm').html("<p style='color: red;'> Conferma password obbligatoria </p>");
 	}
 	else if ($('#password').val() != $('#confirmpassword').val()) {
-		$('#alert').html("");
 		$('#alertconfirm').html("<p style='color: red;'> Password non corrispondenti </p>");
 	}
 	else
 		$('#alertconfirm').html("");
 	
 	if ($("#eta").val()== ''){
-		$('#alert').html("");
 		$('#alerteta').html("<p style='color: red;'> Eta' obbligatoria</p>");
 	} else
 		$('#alerteta').html(""); 
 	
 	if ($("#nome").val()== ''){
-		$('#alert').html("");
 		$('#alertname').html("<p style='color: red;'> Nome obbligatorio</p>");
 	} else
 		$('#alertname').html(""); 
 	
 	if ($("#cognome").val()== ''){
-		$('#alert').html("");
 		$('#alertsurname').html("<p style='color: red;'> Cognome obbligatorio</p>");
 	} else
 		$('#alertsurname').html(""); 
 	
 	if ($("#mail").val()== ''){
-		$('#alert').html("");
 		$('#alertemail').html("<p style='color: red;'> email obbligatoria</p>");
 	} else
 		$('#alertemail').html(""); 
 	
 	if ($("#confirmmail").val()== ''){
-		$('#alert').html("");
 		$('#alertconfirmemail').html("<p style='color: red;'> Conferma email obbligatoria</p>");
 	}
 	else if ($('#mail').val() != $('#confirmmail').val()) {
-		$('#alert').html("");
 		$('#alertconfirmemail').html("<p style='color: red;'> E-mail non corrispondenti </p>");
 	}
 	else
@@ -103,18 +90,24 @@ $("#registrationform").submit(function(e){
 			
 			success: function(data){
 				if (data == "true") {
-					$('#alert').html("");
-					$(window.location).attr("href", "login.op");
+					swal({
+						  title: "Ottimo!",
+						  text: "La tua registrazione e' andata a buon fine!",
+						  type: "success",
+						  closeOnConfirm: false}, 
+						  function(){
+							  $(window.location).attr("href", "login.op");
+						});
 				} else if (data == "false username"){
-					$('#alert').html("<p style='color: red;'> Username gi&agrave in uso </p>");
+					sweetAlert("Oops...", "Username gia' in uso!", "error");
 				} else if (data == "false mail"){
-					$('#alert').html("<p style='color: red;'> E-Mail gi&agrave in uso </p>");
+					sweetAlert("Oops...", "E-Mail gia' in uso!", "error");
 				} else {
-					$('#alert').html("<p style='color: red;'> Errore in fase di registrazione </p>");
+					sweetAlert("Oops...", "Errore in fase di registrazione!", "error");
 				}
 			},
 			error: function(){
-				$('#alert').html("<p style='color: red;'> Errore comunicazione con il server </p>");
+				sweetAlert("Oops...", "Errore comunicazione con il server!", "error");
 			}
 		});
 		e.preventDefault();
@@ -134,4 +127,36 @@ $('#logout').click(function(){
 	});
 	e.preventDefault();
 });
+
+$("#contactform").submit(function(e){
+	
+	if ($("#message").val()==''){
+		$('#alert').html("");
+		$('#alertmessage').html("<p style='color: red;'> Messaggio obbligatorio </p>");
+	} else
+		$('#alertmessage').html("");
+	
+	if ($("#message").val()!=''){
+		var url = "contact.op";
+		$.ajax ({
+			type: "POST",
+			url: url,
+			data: $("#contactform").serialize(),
+			
+			success: function(data){
+				if (data == "true") {
+					sweetAlert("Ottimo!", "Messaggio inviato correttamente", "success");
+				} else {
+					sweetAlert("Oops...", "Errore invio messaggio!", "error");
+				}
+			},
+			
+			error: function(){
+				sweetAlert("Oops...", "Errore comunicazione con il server!", "error");
+			}
+		});
+		e.preventDefault();
+	}
+});
+
 

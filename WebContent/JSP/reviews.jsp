@@ -66,7 +66,7 @@
          		 <c:set var = "check" value = "1"/>
       		 </c:if>
            </c:forEach>
-           <c:if test = "check==0">
+           <c:if test = "${check==0}">
           <h2>Aggiungi una recensione</h2>
           <form action="#!" class="review-form mb-0">
             <div class="review-cont clearfix">

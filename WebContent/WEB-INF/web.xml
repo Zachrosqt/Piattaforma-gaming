@@ -98,7 +98,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>userprofile</servlet-name>
-    <servlet-class>gameplatform.servlet.ProfilePageOne</servlet-class>
+    <servlet-class>gameplatform.servlet.ProfilePage</servlet-class>
     <init-param>
       <param-name>pageName</param-name>
       <param-value>UserProfile</param-value>
@@ -107,17 +107,5 @@
   <servlet-mapping>
     <servlet-name>userprofile</servlet-name>
     <url-pattern>/userprofile.op</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>useractivity</servlet-name>
-    <servlet-class>gameplatform.servlet.ProfilePageTwo</servlet-class>
-    <init-param>
-      <param-name>pageName</param-name>
-      <param-value>UserActivity</param-value>
-    </init-param>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>useractivity</servlet-name>
-    <url-pattern>/useractivity.op</url-pattern>
   </servlet-mapping>
 </web-app>

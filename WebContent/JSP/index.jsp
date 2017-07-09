@@ -109,6 +109,10 @@
 		  
 		  <!-- Youplay -->
 		  <script type="text/javascript" src="assets/youplay/js/youplay.min.js"></script>
+		  
+		  <!-- Personal JavaScript -->
+		  <script type="text/javascript" src="assets/gameplatform/ajaxcall.js"></script>
+		  <script type="text/javascript" src="assets/gameplatform/profile.js"></script>
 		
 		  <!-- init youplay -->
 		  <script>
@@ -131,6 +135,14 @@
 		        });
 		    }
 		  </script>
-		<script type="text/javascript" src="assets/gameplatform/ajaxcall.js"></script>
+		  
+			<script type="text/javascript">
+				$(document).ready(function(){
+					 if( $('#profileBody').length )
+					 {
+						 profileInfo();
+					 }
+				});
+			</script>
 	</body>
 </html>

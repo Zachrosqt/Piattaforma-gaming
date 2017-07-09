@@ -33,7 +33,6 @@ public class RegistrationPage extends HttpServlet {
 	private String pageName;
 	private List<Template> template;
 	private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
-    private GameplatformCRUD crud = GameplatformCRUDImpl.getGameplatformCRUDImpl(); 
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -74,7 +73,7 @@ public void init(ServletConfig config) throws ServletException {
 		
 		String text = "";
 		
-		List<Utente> username = crud.executeQuery("FROM Utente user WHERE user.username='" + request.getParameter("username") + "'");
+		List<Utente> username = service.username(request.getParameter("username"));
 		
 		Iterator<Utente> usernameit = username.iterator();
 		
@@ -84,7 +83,7 @@ public void init(ServletConfig config) throws ServletException {
 			
 		} else {
 			
-			List<Utente> mail = crud.executeQuery("FROM Utente user WHERE user.email='" + request.getParameter("mail") + "'");
+			List<Utente> mail = service.userEmail(request.getParameter("mail"));
 			
 			Iterator<Utente> mailit = mail.iterator();
 			if (mailit.hasNext()){
@@ -92,11 +91,13 @@ public void init(ServletConfig config) throws ServletException {
 				
 			} else {
 				
-				List<Gruppo> group = crud.executeQuery("FROM Gruppo groups WHERE groups.nome='User'");
+				List<Gruppo> group = service.group("User");
 				
 				Iterator<Gruppo> it = group.iterator();
 				
 				if (it.hasNext()){
+					
+					System.out.println("Test");
 					
 					Utente user = new Utente();
 					user.setBan(false);
@@ -109,17 +110,19 @@ public void init(ServletConfig config) throws ServletException {
 					
 					user.setGruppo(gruppo);
 					
-					Livello lv = new Livello();
-					lv.setDate(Calendar.getInstance());
-					lv.setLivello(0);
-					
-					user.getLivello().add(lv);
 					user.setNome(request.getParameter("nome"));
 					user.setNumeroAccessi(0);
 					user.setUsername(request.getParameter("username"));
 					user.setPassword(request.getParameter("password"));
 					
-					boolean reg = service.registration(user);
+					Livello lv = new Livello();
+					lv.setDate(Calendar.getInstance());
+					lv.setLivello(0);
+					lv.setUtente(user);
+					
+					user.getLivello().add(lv);
+					
+					boolean reg = service.registration(user, lv);
 					
 					if (!reg){
 						text = "false";

@@ -25,31 +25,10 @@
                 <h3 class="mb-0">Notification</h3>
                 <span class="youplay-timeline-date pt-0">20 minutes ago</span>
                 <p>We invite you to test-drive the new service <a href="#!">Lorem</a>. Confirm the invitation and we will send you notes and hints.</p>
-                <a href="#!" class="btn">Confirm</a>
-                <a href="#!">Cancel</a>
               </div>
               <!-- content -->
             </div>
             <!-- /Timeline Notification -->
-
-
-            <!-- Timeline Message -->
-            <div class="youplay-timeline-block">
-              <!-- icon -->
-              <div class="youplay-timeline-icon bg-primary">
-                <img src="assets/images/avatar-user-2.png" alt="John Doe" title="John Doe">
-              </div>
-              <!-- /icon -->
-
-              <!-- content -->
-              <div class="youplay-timeline-content">
-                <h3 class="mb-0">Message</h3>
-                <span class="youplay-timeline-date pt-0">Saturday, March 8, 2015</span>
-                Received a <a href="main-inbox.html">message</a> from <strong>Max Brooks</strong>
-              </div>
-              <!-- /content -->
-            </div>
-            <!-- /Timeline Message -->
 
           </div>
           <!-- /Activity -->

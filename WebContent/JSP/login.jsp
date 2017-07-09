@@ -13,9 +13,6 @@
           <div class="container align-center">
             <div class="youplay-form">
               <h1>Login</h1>
-
-				<div id="alert">
-				</div>
 				
               <form onsubmit="return false" id="loginform">
               <div id="alertusername">

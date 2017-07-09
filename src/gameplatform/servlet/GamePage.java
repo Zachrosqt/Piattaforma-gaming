@@ -9,12 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.business.impl.UtenteGiocare;
 import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 
 /**
  * Servlet implementation class GamePage
@@ -51,7 +53,17 @@ public class GamePage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		process(request, response);
+		HttpSession session =  request.getSession();
+		if (session.getAttribute("utenteGameplatform")==null){
+			response.sendRedirect("login.op");
+		} else {
+			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+			if (perm == true){
+				process(request, response);
+			} else {
+				response.sendRedirect("accessdenied.op");
+			}	
+		}
 	}
 
 	/**

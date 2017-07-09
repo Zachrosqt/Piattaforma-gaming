@@ -10,9 +10,9 @@
       <div class="youplay-user-navigation">
         <div class="container">
           <ul>
-          	<li class="active"><a href="user-profile.html">Profile</a>
+          	<li id="profileButton"><a onclick="profileInfo()">Profile</a>
             </li>
-            <li><a href="user-activity.html">Activity</a>
+            <li id="activityButton"><a onclick="profileActivity()">Activity</a>
             </li>
           </ul>
         </div>
@@ -31,7 +31,6 @@
                 -->
             <div class="user-data">
               <h2>John Doe</h2>
-              <div class="location"><i class="fa fa-map-marker"></i> Los Angeles</div>
               <div class="activity">
                 <div>
                   <div class="num">69</div>
@@ -49,10 +48,6 @@
             </div>
           </div>
 
-          <div class="container mt-20">
-            <a href="#!" class="btn btn-sm btn-default ml-0">Add Friend</a>
-            <a href="#!" class="btn btn-sm btn-default">Private Message</a>
-          </div>
         </div>
       </div>
     </div>

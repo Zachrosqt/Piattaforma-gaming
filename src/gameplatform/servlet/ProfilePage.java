@@ -19,7 +19,7 @@ import gameplatform.db.table.Template;
  * Servlet implementation class ProfilePageOne
  */
 @WebServlet("/ProfilePageOne")
-public class ProfilePageOne extends HttpServlet {
+public class ProfilePage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private String pageName;
@@ -29,7 +29,7 @@ public class ProfilePageOne extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfilePageOne() {
+    public ProfilePage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,6 +57,7 @@ public class ProfilePageOne extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		process(request, response);
 	}
 	

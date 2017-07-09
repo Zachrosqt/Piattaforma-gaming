@@ -11,7 +11,9 @@ import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Gioco;
+import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Immagine;
+import gameplatform.db.table.Livello;
 import gameplatform.db.table.Template;
 import gameplatform.db.table.Utente;
 
@@ -76,12 +78,12 @@ public class GameplatformServiceImpl implements GameplatformService{
 	}
 
 	@Override
-	public boolean registration(Utente user) {
+	public boolean registration(Utente user, Livello lv) {
 		
 		try{
 			
-			user.setNumeroAccessi(user.getNumeroAccessi() + 1 );
 			crud.saveOrUpdate(user);
+			crud.saveOrUpdate(lv);
 			return true;
 			
 		} catch(Exception e){
@@ -143,6 +145,30 @@ public class GameplatformServiceImpl implements GameplatformService{
 		}
 		
 		return review;
+	}
+
+	@Override
+	public List<Utente> username(String username) {
+		// TODO Auto-generated method stub
+		
+		List<Utente> user = crud.executeQuery("FROM Utente user WHERE user.username='" + username + "'");
+		return user;
+	}
+
+	@Override
+	public List<Utente> userEmail(String email) {
+		// TODO Auto-generated method stub
+		
+		List<Utente> mail = crud.executeQuery("FROM Utente user WHERE user.email='" + email + "'");
+		return mail;
+	}
+
+	@Override
+	public List<Gruppo> group(String group) {
+		// TODO Auto-generated method stub
+		
+		List<Gruppo> g = crud.executeQuery("FROM Gruppo groups WHERE groups.nome='" + group + "'");
+		return g;
 	}
 
 }
