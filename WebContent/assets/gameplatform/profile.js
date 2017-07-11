@@ -72,7 +72,10 @@ function profileInfo(nome, cognome, username, age, data, exp, accessi, mail){
 
 	        '</div>' +
 
-	      '</div>');
+	      '</div>' +
+	      	'<div>' +
+	      		'<button class="btn btn-default db">Modifica profilo</button>' +
+	      	'</div>');
 };
 
 function profileActivity(livelli){
