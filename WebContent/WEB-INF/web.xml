@@ -108,4 +108,17 @@
     <servlet-name>userprofile</servlet-name>
     <url-pattern>/userprofile.op</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>editprofile</servlet-name>
+    <servlet-class>gameplatform.servlet.EditProfiloPage</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>EditProfile</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editprofile</servlet-name>
+    <url-pattern>/editprofile.op</url-pattern>
+  </servlet-mapping>
 </web-app>

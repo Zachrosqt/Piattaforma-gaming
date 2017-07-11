@@ -12,7 +12,9 @@
 	                  <p>Nome</p>
 	                </td>
 	                <td>
+	                <div class="youplay-input">
 	                  <input type="text" name="inome" required>
+	                </div>
 	                </td>
 	              </tr>
 	              <tr>

@@ -74,7 +74,7 @@ function profileInfo(nome, cognome, username, age, data, exp, accessi, mail){
 
 	      '</div>' +
 	      	'<div>' +
-	      		'<button class="btn btn-default db">Modifica profilo</button>' +
+	      		'<a href="editprofile.op?user=' + username + '"><button class="btn btn-default db">Modifica profilo</button></a>' +
 	      	'</div>');
 };
 
