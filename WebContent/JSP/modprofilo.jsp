@@ -22,7 +22,9 @@
 	                  <p>Cognome</p>
 	                </td>
 	                <td>
-	                  <input type="text" name="icognome" required>
+	                <div class="youplay-input">
+	                    <input type="text" name="icognome" required>
+	               	</div>
 	                </td>
 	              </tr>
 	              <tr>
@@ -30,7 +32,9 @@
 	                  <p>Et&agrave</p>
 	                </td>
 	                <td>
-	                  <input type="int" name="ieta" required>
+	                <div class="youplay-input">
+	                	<input type="int" name="ieta" required>
+	                </div>
 	                </td>
 	              </tr>
 	              <tr>
@@ -38,7 +42,9 @@
 	                  <p>e-mail</p>
 	                </td>
 	                <td>
-	                  <input type="email" name="iemail" required>
+	                <div class="youplay-input">
+	                	<input type="email" name="iemail" required>
+	                </div>
 	                </td>
 	              </tr>
 	              <tr>
@@ -46,7 +52,9 @@
 	                  <p>Password</p>
 	                </td>
 	                <td>
-	                  <input type="password" name="ipassword" required>
+	                <div class="youplay-input">
+	                	<input type="password" name="ipassword" required>
+	                </div>
 	                </td>
 	              </tr>
 	            </tbody>
