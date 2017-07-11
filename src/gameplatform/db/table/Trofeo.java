@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "trofeo")
 public class Trofeo implements java.io.Serializable{
-	    private int obbiettivo;
+	    private String obbiettivo;
 	    private String icona;
 	    private String nome;
 	    private Set<Utente> utente = new HashSet<Utente>(0); 
@@ -25,18 +25,18 @@ public class Trofeo implements java.io.Serializable{
 	    	
 	    }
 
-	    public Trofeo(int obiettivo, String icona, String nome) {
+	    public Trofeo(String obiettivo, String icona, String nome) {
 	        this.obbiettivo = obiettivo;
 	        this.icona = icona;
 	        this.nome = nome;
 	    }
 
 	    @Column(name = "obiettivo", unique = false, nullable = false)
-	    public int getObiettivo() {
+	    public String getObiettivo() {
 	        return obbiettivo;
 	    }
 
-	    public void setObiettivo(int obiettivo) {
+	    public void setObiettivo(String obiettivo) {
 	        this.obbiettivo = obiettivo;
 	    }
 
@@ -85,7 +85,7 @@ public class Trofeo implements java.io.Serializable{
 			result = prime * result + ((gioco == null) ? 0 : gioco.hashCode());
 			result = prime * result + ((icona == null) ? 0 : icona.hashCode());
 			result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-			result = prime * result + obbiettivo;
+			result = prime * result + ((obbiettivo == null) ? 0 : nome.hashCode());
 			result = prime * result + ((utente == null) ? 0 : utente.hashCode());
 			return result;
 		}

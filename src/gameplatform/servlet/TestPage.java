@@ -159,7 +159,7 @@ public class TestPage extends HttpServlet {
 		Trofeo trofeo = new Trofeo();
 		trofeo.setNome("Test");
 		trofeo.setIcona("icona.jpg");
-		trofeo.setObiettivo(5);
+		trofeo.setObiettivo("Vinci 5 Partite");
 		trofeo.setGioco(gioco);
 		user.getTrofeo().add(trofeo);
 		
