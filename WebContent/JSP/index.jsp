@@ -158,5 +158,17 @@
 				});
 				
 			</script>
+			<script type="text/javascript">
+				//Profilo
+				$(document).ready(function(){
+					 if( $('#modProfile').length )
+					 {
+						 var items = ${livelli};
+						 $('#dataIscrizione').html(items.length-1);
+					}
+					 
+				});
+				
+			</script>
 	</body>
 </html>

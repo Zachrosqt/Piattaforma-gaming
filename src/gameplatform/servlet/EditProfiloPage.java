@@ -74,6 +74,9 @@ public class EditProfiloPage extends HttpServlet {
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setAttribute("livelli", service.livelli(request.getParameter("user")));
+		request.setAttribute("giocati", service.giocare(request.getParameter("user")));
+		
 		request.setAttribute("template", this.template);
 		
 		RequestDispatcher view = request.getRequestDispatcher("JSP/index.jsp");
