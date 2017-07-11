@@ -137,6 +137,7 @@
 		  </script>
 		  
 			<script type="text/javascript">
+				//Profilo
 				$(document).ready(function(){
 					 if( $('#profileBody').length )
 					 {
