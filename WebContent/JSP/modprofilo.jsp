@@ -59,7 +59,7 @@
 	              </tr>
 	            </tbody>
 	          </table>
-	          <button class="btn btn-default db">Modifica</button>
+	          <button class="btn btn-default db">Salva modifiche</button>
 			  </form>
 	        </div>
 
