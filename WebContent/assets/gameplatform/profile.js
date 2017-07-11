@@ -3,14 +3,14 @@
  */
 
 
-function profileInfo(username, age, data, exp, accessi, mail){
+function profileInfo(nome, cognome, username, age, data, exp, accessi, mail){
 	$("#profileButton").addClass("active");
 	$("#activityButton").removeClass("active");
 	$('#profileBody').html(' <div class="row">' +
 
 	        '<div class="col-md-9">' +
 
-	          '<h3 class="mt-0 mb-20">John Doe</h3>' +
+	          '<h3 class="mt-0 mb-20">' + nome + ' ' + cognome + '</h3>' +
 	          '<table class="table table-bordered">' +
 	            '<tbody>' +
 	              '<tr>' +
