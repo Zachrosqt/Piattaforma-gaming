@@ -131,7 +131,6 @@ $('#logout').click(function(){
 $("#contactform").submit(function(e){
 	
 	if ($("#message").val()==''){
-		$('#alert').html("");
 		$('#alertmessage').html("<p style='color: red;'> Messaggio obbligatorio </p>");
 	} else
 		$('#alertmessage').html("");
@@ -148,6 +147,42 @@ $("#contactform").submit(function(e){
 					sweetAlert("Ottimo!", "Messaggio inviato correttamente", "success");
 				} else {
 					sweetAlert("Oops...", "Errore invio messaggio!", "error");
+				}
+			},
+			
+			error: function(){
+				sweetAlert("Oops...", "Errore comunicazione con il server!", "error");
+			}
+		});
+		e.preventDefault();
+	}
+});
+
+$("#reviewform").submit(function(e){
+	
+	if ($("#messagereview").val()==''){
+		$('#alertmessagerew').html("<p style='color: red;'> Campo obbligatorio </p>");
+	} else
+		$('#alertmessagerew').html("");
+	
+	if ($("input[name=review-rate]").val()==''){
+		$('#alertmessagerew').html("<p style='color: red;'> Valutazione obbligatoria </p>");
+	} else
+		$('#alertmessagerew').html("");
+	
+	if ($("#messagereview").val()!='' && $("input[name=review-rate]").val()!=''){
+		var url = "game.op";
+		$.ajax ({
+			type: "POST",
+			url: url,
+			data: $("#reviewform").serialize(),
+			
+			success: function(data){
+				if (data == "true") {
+					sweetAlert("Ottimo!", "Recensione inviata correttamente", "success");
+					$('#reviewBox').html("");
+				} else {
+					sweetAlert("Oops...", "Errore inserimento recensione!", "error");
 				}
 			},
 			

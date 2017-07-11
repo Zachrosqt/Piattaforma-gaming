@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import gameplatform.business.impl.UtenteGiocare;
+import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Immagine;
@@ -27,8 +28,10 @@ public interface GameplatformService {
 	List<Utente> username(String username);
 	List<Utente> userEmail(String email);
 	List<Gruppo> group (String group);
+	List<Giocare> allReview(String game);
 	String livelli (String usarname);
 	int giocare(String usarname);
+	boolean insertReview(String review, int voto, String gioco, String username);
 	
 	
 }

@@ -71,11 +71,29 @@ public class GamePage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		process(request, response);
+		
+		boolean  test= service.insertReview(request.getParameter("messagereview"), Integer.parseInt(request.getParameter("review-rate")), request.getParameter("game-review"), request.getParameter("user-review"));
+		System.out.println("Messaggio: " + request.getParameter("messagereview"));
+		System.out.println("Valutazione: " + request.getParameter("review-rate"));
+		System.out.println("Utente: " + request.getParameter("user-review"));
+		System.out.println("Gioco: " + request.getParameter("game-review"));
+		
+		String text = "";
+		
+		if(!test){
+			text = "false";
+		} else {
+			text = "true";
+		}
+
+	    response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.
+	    response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+	    response.getWriter().write(text);
 	}
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setAttribute("allreview", service.allReview(request.getParameter("id")));
 		request.setAttribute("review", service.recensioni(request.getParameter("id")));
 		request.setAttribute("gallery", service.allImmages(request.getParameter("id")));
 		request.setAttribute("gioco", service.game(request.getParameter("id")));

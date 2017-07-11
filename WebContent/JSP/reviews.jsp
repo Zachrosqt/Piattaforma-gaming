@@ -60,19 +60,28 @@
           <!-- /Reviews List -->
 
           <!-- Review Form -->
-           <c:set var = "check" value = "0"/>
+           <c:set var = "check" value = "1"/>
+           <c:forEach items="${allreview}" var="allgamer">
+          	 <c:if test = "${allgamer.pk.utente.username == utenteGameplatform.username}">
+         		 <c:set var = "check" value = "0"/>
+      		 </c:if>
+           </c:forEach>
            <c:forEach items="${review}" var="recensione">
           	 <c:if test = "${recensione.user.username == utenteGameplatform.username}">
          		 <c:set var = "check" value = "1"/>
       		 </c:if>
            </c:forEach>
            <c:if test = "${check==0}">
+           
+           <c:set var="first" value="${gioco[0]}"/>
+           <div id="reviewBox">
           <h2>Aggiungi una recensione</h2>
-          <form action="#!" class="review-form mb-0">
+          <form onsubmit="return false" id="reviewform" class="review-form mb-0">
             <div class="review-cont clearfix">
-             
+              <div id="alertmessagerew">
+			  </div>
               <div class="youplay-textarea">
-                <textarea name="message" rows="5" placeholder="Your Review..."></textarea>
+                <textarea name="messagereview" rows="5" placeholder="Your Review..."></textarea>
               </div>
               <div class="youplay-rating pull-right">
                 <input type="radio" id="review-rate-5" name="review-rate" value="5">
@@ -94,7 +103,10 @@
               <div class="clearfix"></div>
               <button class="btn btn-default pull-right">Submit</button>
             </div>
+            <input type="hidden" name="user-review" value="${utenteGameplatform.username}">
+            <input type="hidden" name="game-review" value="${first.nome}">
           </form>
+          </div>
           </c:if>
           <!-- /Review Form -->
         </div>

@@ -147,6 +147,11 @@ public class GameplatformServiceImpl implements GameplatformService{
 		
 		return review;
 	}
+	
+	public List<Giocare> allReview(String game){
+		List<Giocare> recensioni = crud.executeQuery("FROM Giocare game WHERE game.pk.gioco.nome = '" + game + "'");
+		return recensioni;
+	}
 
 	@Override
 	public List<Utente> username(String username) {
@@ -199,6 +204,28 @@ public class GameplatformServiceImpl implements GameplatformService{
 		List<Giocare> giocare = crud.executeQuery("FROM Giocare gioca WHERE gioca.pk.utente.username='" + usarname + "'");
 		
 		return giocare.size();
+	}
+
+	@Override
+	public boolean insertReview(String review, int voto, String gioco, String username) {
+		// TODO Auto-generated method stub
+		
+		List<Giocare> giocare = crud.executeQuery("FROM Giocare gioca WHERE gioca.pk.utente.username='" + username + "' AND gioca.pk.gioco.nome='" + gioco + "'");
+		
+		Iterator<Giocare> it = giocare.iterator();
+		
+		if(it.hasNext()){
+			Giocare gioc = it.next();
+			gioc.setRecensione(review);
+			gioc.setVoto(voto);
+			
+			crud.saveOrUpdate(gioc);
+			
+			return true;
+		}
+		
+		return false;
+		
 	}
 
 }
