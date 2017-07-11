@@ -13,7 +13,7 @@
 	                </td>
 	                <td>
 	                <div class="youplay-input">
-	                  <input type="text" name="inome" required>
+	                  <input type="text" name="inome" value="${utenteGameplatform.nome}" required>
 	                </div>
 	                </td>
 	              </tr>
@@ -23,7 +23,7 @@
 	                </td>
 	                <td>
 	                <div class="youplay-input">
-	                    <input type="text" name="icognome" required>
+	                    <input type="text" name="icognome" value="${utenteGameplatform.cognome}" required>
 	               	</div>
 	                </td>
 	              </tr>
@@ -33,7 +33,7 @@
 	                </td>
 	                <td>
 	                <div class="youplay-input">
-	                	<input type="int" name="ieta" required>
+	                	<input type="int" name="ieta" value="${utenteGameplatform.eta}" required>
 	                </div>
 	                </td>
 	              </tr>
@@ -43,7 +43,7 @@
 	                </td>
 	                <td>
 	                <div class="youplay-input">
-	                	<input type="email" name="iemail" required>
+	                	<input type="email" name="iemail" value="${utenteGameplatform.email}" required>
 	                </div>
 	                </td>
 	              </tr>
@@ -53,7 +53,7 @@
 	                </td>
 	                <td>
 	                <div class="youplay-input">
-	                	<input type="password" name="ipassword" required>
+	                	<input type="password" name="ipassword" value="${utenteGameplatform.password}" required>
 	                </div>
 	                </td>
 	              </tr>
