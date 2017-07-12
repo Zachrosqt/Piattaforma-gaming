@@ -32,6 +32,7 @@ public interface GameplatformService {
 	String livelli (String usarname);
 	int giocare(String usarname);
 	boolean insertReview(String review, int voto, String gioco, String username);
+	void insertUser(Utente user);
 	
 	
 }

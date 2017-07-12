@@ -195,3 +195,49 @@ $("#reviewform").submit(function(e){
 });
 
 
+$("#modificaform").submit(function(e){
+	
+		var url = "editprofile.op";
+		
+		var user = $("#iusername").val();
+		
+		var form = $('#modificaform')[0];
+
+		var data = new FormData(form);
+		$.ajax ({
+			type: "POST",
+			enctype: 'multipart/form-data',
+			processData: false,  // Important!
+	        contentType: false,
+			url: url,
+			data: data,
+			
+			success: function(data){
+				if (data == "true") {
+					swal({
+						  title: "Ottimo!",
+						  text: "Profilo modificato correttamente!",
+						  type: "success",
+						  closeOnConfirm: false}, 
+						  function(){
+							  $(window.location).attr("href", "userprofile.op?user=" + user);
+						});
+				} else if (data == "false form") {
+					sweetAlert("Oops...", "Errore comunicazione dati!", "error");
+				} else if (data == "false file") {
+					sweetAlert("Oops...", "File selezionato incorretto! Inserire un file di tipo png", "error");
+				} else if (data == "false email") {
+					sweetAlert("Oops...", "E-Mail inserita gia' in uso", "error");
+				} else {
+					sweetAlert("Oops...", "Errore modifica profilo!", "error");
+				}
+			},
+			
+			error: function(){
+				sweetAlert("Oops...", "Errore comunicazione con il server!", "error");
+			}
+		});
+		e.preventDefault();
+});
+
+

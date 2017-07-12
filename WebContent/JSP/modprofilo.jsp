@@ -9,6 +9,16 @@
 	            <tbody>
 	              <tr>
 	                <td style="width: 200px;">
+	                  <p>Immagine</p>
+	                </td>
+	                <td>
+	                <div class="youplay-input">
+	                  <input type = "file" name = "file" size = "50" required />
+	                </div>
+	                </td>
+	              </tr>
+	              <tr>
+	                <td style="width: 200px;">
 	                  <p>Nome</p>
 	                </td>
 	                <td>
@@ -60,6 +70,7 @@
 	            </tbody>
 	          </table>
 	          <button class="btn btn-default db">Salva modifiche</button>
+	          <input type="hidden" id="iusername" name="iusername" value="${utenteGameplatform.username}">
 			  </form>
 	        </div>
 

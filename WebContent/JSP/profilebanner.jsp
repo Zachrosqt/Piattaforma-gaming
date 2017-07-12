@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.io.File, gameplatform.db.table.Utente" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <!-- Banner -->
@@ -23,6 +24,15 @@
           <div class="container youplay-user">
             <a href="assets/images/user-photo.jpg" class="angled-img image-popup">
               <div class="img">
+              	<% 	ServletContext app=getServletContext();
+					String path=app.getRealPath("");
+					File f=new File(path+"assets/images/avatar/" + ((Utente)(pageContext.findAttribute("utenteGameplatform"))).getUsername() + ".png");
+					if(!f.exists()){ %>
+						<img src="assets/images/avatar.png" alt="">
+				<%	}
+					else { %>
+						<img src="assets/images/avatar/${utenteGameplatform.username}.png" alt="">
+				<%	} %>
                 <img src="assets/images/user-avatar.jpg" alt="">
               </div>
               <i class="fa fa-search-plus icon"></i>
