@@ -33,7 +33,6 @@
 					else { %>
 						<img src="assets/images/avatar/${utenteGameplatform.username}.png" alt="">
 				<%	} %>
-                <img src="assets/images/user-avatar.jpg" alt="">
               </div>
               <i class="fa fa-search-plus icon"></i>
             </a>
