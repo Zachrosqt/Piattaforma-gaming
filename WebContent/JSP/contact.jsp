@@ -12,7 +12,7 @@
       <div class="info">
         <div>
           <div class="container">
-            <h1>Contact Us</h1>
+            <h1>Contattaci</h1>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
         <div class="col-md-9 col-md-push-3">
           <!-- Contact Form -->
           <div class="youplay-form p-0" style="background-color: #201B3A;">
-            <h2 class="mt-0">Drop us a line</h2>
+            <h2 class="mt-0">Contattaci</h2>
             
             <div id="alert">
 			</div>
@@ -37,21 +37,20 @@
               <div id="alertmessage">
 			  </div>
               <div class="youplay-textarea form-group">
-                <textarea name="message" placeholder="Message" rows="5" required></textarea>
+                <textarea name="message" placeholder="Messaggio" rows="5" required></textarea>
               </div>
-              <button type="submit" class="btn btn-default">Submit</button>
+              <button type="submit" class="btn btn-default">Invia</button>
             </form>
           </div>
           <!-- /Contact Form -->
         </div>
         <div class="col-md-3 col-md-pull-9">
-          <h2 class="mt-0">Contact info</h2>
-          12345 North Main Street,
-          <br>New York, NY 555555
+          <h2 class="mt-0">Informazioni di contatto</h2>
+          Via Vetoio 40,
+          <br>67100 Coppito AQ
           <br>
-          <br>Phone: 1.800.555.6789
-          <br>Email: demo@demo.com
-          <br>Web: <a href="#">nkdev.info</a>
+          <br>Telefono: 320991338
+          <br>Email: page404@univaq.it
           <br>
           <br>
         </div>

@@ -44,7 +44,7 @@
         <!-- Copyright -->
         <div class="copyright">
           <div class="container">
-            <strong>nK</strong> &copy; 2016. All rights reserved
+            <strong>Page 404</strong> &copy; 2017. All rights reserved
           </div>
         </div>
         <!-- /Copyright -->

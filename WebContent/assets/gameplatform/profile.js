@@ -86,7 +86,7 @@ function profileActivity(livelli){
     '<div class="col-md-9">' +
 
       '<!-- Activity -->' +
-      '<h2 class="mt-0">Activity</h2>' +
+      '<h2 class="mt-0">Attivit&agrave</h2>' +
       '<div class="youplay-timeline">';
 	for (i = 0; i < livelli.length; i++) {
 		

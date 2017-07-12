@@ -14,7 +14,7 @@
             <br>
             <br>
             <br>
-            <a class="btn btn-lg" href="#!">Purchase</a>
+            <a class="btn btn-lg" href="#!">Gioca ora!</a>
           </div>
         </div>
       </div>

@@ -10,9 +10,9 @@
       <div class="youplay-user-navigation">
         <div class="container">
           <ul>
-          	<li id="profileButton"><a>Profile</a>
+          	<li id="profileButton" style="cursor: pointer; cursor: hand;"><a>Profilo</a>
             </li>
-            <li id="activityButton"><a>Activity</a>
+            <li id="activityButton" style="cursor: pointer; cursor: hand;"><a>Cronologia attivit&agrave</a>
             </li>
           </ul>
         </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div>
                   <div class="num">${giocati}</div>
-                  <div class="title">Games</div>
+                  <div class="title">Giochi</div>
                 </div>
               </div>
             </div>
