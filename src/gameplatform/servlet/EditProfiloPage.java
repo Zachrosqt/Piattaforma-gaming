@@ -188,7 +188,6 @@ public class EditProfiloPage extends HttpServlet {
 				            	text = "false file";
 				           	}
 				           
-								
 			            } else {
 			            	String fieldname = fi.getFieldName();
 			                String fieldvalue = fi.getString();
