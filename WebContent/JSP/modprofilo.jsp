@@ -12,8 +12,10 @@
 	                  <p>Immagine</p>
 	                </td>
 	                <td>
+	                <div id="alertfile">
+			  		</div>
 	                <div class="youplay-input">
-	                  <input type = "file" name = "file" size = "50" required />
+	                  <input type = "file" name = "file" id="file" size = "50"/>
 	                </div>
 	                </td>
 	              </tr>
@@ -22,8 +24,10 @@
 	                  <p>Nome</p>
 	                </td>
 	                <td>
+	                <div id="alertinome">
+			  		</div>
 	                <div class="youplay-input">
-	                  <input type="text" name="inome" value="${utenteGameplatform.nome}" required>
+	                  <input type="text" name="inome" id="inome" value="${utenteGameplatform.nome}">
 	                </div>
 	                </td>
 	              </tr>
@@ -32,8 +36,10 @@
 	                  <p>Cognome</p>
 	                </td>
 	                <td>
+	                <div id="alerticognome">
+			  		</div>
 	                <div class="youplay-input">
-	                    <input type="text" name="icognome" value="${utenteGameplatform.cognome}" required>
+	                    <input type="text" name="icognome" id="icognome" value="${utenteGameplatform.cognome}">
 	               	</div>
 	                </td>
 	              </tr>
@@ -42,8 +48,10 @@
 	                  <p>Et&agrave</p>
 	                </td>
 	                <td>
+	                <div id="alertieta">
+			  		</div>
 	                <div class="youplay-input">
-	                	<input type="int" name="ieta" value="${utenteGameplatform.eta}" required>
+	                	<input type="int" name="ieta" id="ieta" value="${utenteGameplatform.eta}">
 	                </div>
 	                </td>
 	              </tr>
@@ -52,8 +60,10 @@
 	                  <p>e-mail</p>
 	                </td>
 	                <td>
+	                <div id="alertiemail">
+			  		</div>
 	                <div class="youplay-input">
-	                	<input type="email" name="iemail" value="${utenteGameplatform.email}" required>
+	                	<input type="email" name="iemail" id="iemail" value="${utenteGameplatform.email}">
 	                </div>
 	                </td>
 	              </tr>
@@ -62,8 +72,10 @@
 	                  <p>Password</p>
 	                </td>
 	                <td>
+	                <div id="alertipassword">
+			  		</div>
 	                <div class="youplay-input">
-	                	<input type="password" name="ipassword" value="${utenteGameplatform.password}" required>
+	                	<input type="password" name="ipassword" id="ipassword" value="${utenteGameplatform.password}">
 	                </div>
 	                </td>
 	              </tr>

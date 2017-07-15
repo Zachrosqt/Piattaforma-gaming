@@ -16,14 +16,12 @@
         <ul class="pagination isotope-options">
           <li data-filter="all" class="active"><span>Tutti</span>
           </li>
-          <li data-filter="free"><span>Gratis</span>
+          
+          <c:forEach items="${categorie}" var="categoria">
+          	<li data-filter="${categoria.categoria}"><span>${categoria.categoria}</span>
           </li>
-          <li data-filter="popular"><span>Popolari</span>
-          </li>
-          <li data-filter="specials"><span>Speciali</span>
-          </li>
-          <li data-filter="upcoming"><span>In arrivo</span>
-          </li>
+          </c:forEach>
+          
         </ul>
         <!-- /Sort Categories -->
 
@@ -31,7 +29,9 @@
 
           <!-- Single Product Block -->
           <c:forEach items="${giochi}" var="gioco">
-          <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
+          
+          	<div class="item col-lg-4 col-md-6 col-xs-12" data-filters="${gioco.categoria.categoria }">
+          		
             <a href="game.op?id=${gioco.nome}" class="angled-img">
               <div class="img img-offset">
                 <img src="assets/images/games/${gioco.nome}/cover.jpg" alt="">
