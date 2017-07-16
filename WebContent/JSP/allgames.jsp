@@ -97,7 +97,7 @@
             %>
             <div class="row youplay-side-news">
               <div class="col-xs-3 col-md-4">
-                <a href="#!" class="angled-img">
+                <a href="game.op?id=<%= obj.getNome() %>" class="angled-img">
                   <div class="img">
                     <img src="assets/images/games/<%= obj.getNome() %>/cover.jpg" alt="">
                   </div>

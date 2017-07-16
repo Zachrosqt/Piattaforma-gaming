@@ -25,7 +25,6 @@
                 <div class="youplay-input">
                   <input type="password" id="password" name="password" placeholder="Password">
                 </div>
-             	<a href="registration.op"> Password dimenticata? Clicca qui </a>
                 <button class="btn btn-default db">Login</button>
               </form>
               <br>
