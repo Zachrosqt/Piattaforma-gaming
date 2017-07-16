@@ -329,7 +329,6 @@ public class GameplatformServiceImpl implements GameplatformService{
 
 	@Override
 	public void updateGameplay(Giocare game) {
-		// TODO Auto-generated method stub
 		crud.saveOrUpdate(game);
 	}
 
