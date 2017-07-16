@@ -27,7 +27,7 @@
     <!-- Images With Text -->
     <div class="youplay-carousel gallery-popup">
     <c:forEach items="${gallery}" var="immagine">
-        
+         
       <a class="angled-img" href="assets/images/games/${first.nome}/${immagine.path}">
         <div class="img">
           <img src="assets/images/games/${first.nome}/${immagine.path}" alt="">
