@@ -196,7 +196,40 @@ $("#reviewform").submit(function(e){
 
 
 $("#modificaform").submit(function(e){
+		
+		if ($("#file").size()>1){
+			$('#alertfile').html("<p style='color: red;'> Inserire immagine < 5MB</p>");
+		} else
+			$('#alertfile').html("");
 	
+		if ($("#inome").val()==''){
+			$('#alertinome').html("<p style='color: red;'> Campo obbligatorio</p>");
+		} else
+			$('#alertinome').html("");
+		
+		if ($("#icognome").val()==''){
+			$('#alerticognome').html("<p style='color: red;'> Campo obbligatorio</p>");
+		} else
+			$('#alerticognome').html("");
+		
+		if ($("#ieta").val()==''){
+			$('#alertieta').html("<p style='color: red;'> Campo obbligatorio</p>");
+		} else
+			$('#alertieta').html("");
+		
+		if ($("#iemail").val()==''){
+			$('#alertiemail').html("<p style='color: red;'> Campo obbligatorio</p>");
+		} else
+			$('#alertiemail').html("");
+		
+		if ($("#ipassword").val()==''){
+			$('#alertipassword').html("<p style='color: red;'> Campo obbligatorio</p>");
+		} else
+			$('#alertipassword').html("");
+		
+		if ($("#file").size()<=5000000 && $("#inome").val()!='' && $("#icognome").val()!='' && $("#ieta").val()!='' && $("#iemail").val()!='' && $("#ipassword").val()!=''){
+			
+		
 		var url = "editprofile.op";
 		
 		var user = $("#iusername").val();
@@ -226,6 +259,8 @@ $("#modificaform").submit(function(e){
 					sweetAlert("Oops...", "Errore comunicazione dati!", "error");
 				} else if (data == "false file") {
 					sweetAlert("Oops...", "File selezionato incorretto! Inserire un file di tipo png", "error");
+				} else if (data == "false size") {
+					sweetAlert("Oops...", "Sembra che il tuo file sia di dimensioni superiori a 5Mb", "error");
 				} else if (data == "false email") {
 					sweetAlert("Oops...", "E-Mail inserita gia' in uso", "error");
 				} else {
@@ -238,6 +273,7 @@ $("#modificaform").submit(function(e){
 			}
 		});
 		e.preventDefault();
+		}
 });
 
 

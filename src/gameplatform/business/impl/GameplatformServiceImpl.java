@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
+import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
@@ -131,7 +132,14 @@ public class GameplatformServiceImpl implements GameplatformService{
 		
 		return immagine;
 	}
-
+	
+	@Override
+	public List<Categoria> allCategorie() {
+		List<Categoria> categoria = crud.executeQuery("FROM Categoria categoria");
+		
+		return categoria;
+	}
+	
 	@Override
 	public List<UtenteGiocare> recensioni(String game) {
 		List<UtenteGiocare> review = new ArrayList<UtenteGiocare>();		

@@ -171,9 +171,11 @@ public class EditProfiloPage extends HttpServlet {
 			               // Get the uploaded file parameters
 			               String fileName = user;
 			               String contentType = fi.getContentType();
-			               
-				            
-				           if (contentType.equals("image/png")){
+			               long maxGrandezza = 5000000;
+				        
+			               if(fi.getSize() > maxGrandezza) {
+				        	   text = "false size";
+				           } else if (contentType.equals("image/png")){
 					           // Write the file
 					           if( fileName.lastIndexOf("\\") >= 0 ) {
 					               file = new File( path + filePath + fileName + ".png") ;
@@ -186,7 +188,6 @@ public class EditProfiloPage extends HttpServlet {
 				            	text = "false file";
 				           	}
 				           
-								
 			            } else {
 			            	String fieldname = fi.getFieldName();
 			                String fieldvalue = fi.getString();
