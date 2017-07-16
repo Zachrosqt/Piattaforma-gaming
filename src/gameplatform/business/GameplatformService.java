@@ -18,10 +18,6 @@ import gameplatform.db.table.Utente;
 public interface GameplatformService {
 	
 	List<Template> templates(String nomePagina);
-	boolean login(String username, String Password, HttpServletRequest request);
-	void logout(Utente user, HttpSession session);
-	boolean registration(Utente user, Livello lv);
-	boolean permControl(Utente user, String pageName);
 	List<Gioco> allGames();
 	List<Categoria> allCategorie();
 	List<Gioco> game(String game);
@@ -31,10 +27,18 @@ public interface GameplatformService {
 	List<Utente> userEmail(String email);
 	List<Gruppo> group (String group);
 	List<Giocare> allReview(String game);
+	List<Giocare> playGame(String gioco, String username);
 	String livelli (String usarname);
 	int giocare(String usarname);
-	boolean insertReview(String review, int voto, String gioco, String username);
+	void logout(Utente user, HttpSession session);
 	void insertUser(Utente user);
+	void startGiocare(String gioco, String username);
+	void updateGameplay(Giocare game);
+	boolean insertReview(String review, int voto, String gioco, String username);
+	boolean login(String username, String Password, HttpServletRequest request);
+	boolean registration(Utente user, Livello lv);
+	boolean permControl(Utente user, String pageName);
+	boolean giocareAtGame(String gioco, String username);
 	
 	
 }

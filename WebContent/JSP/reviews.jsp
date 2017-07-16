@@ -81,7 +81,7 @@
               <div id="alertmessagerew">
 			  </div>
               <div class="youplay-textarea">
-                <textarea name="messagereview" rows="5" placeholder="Your Review..."></textarea>
+                <textarea id="messagereview" name="messagereview" rows="5" placeholder="Your Review..."></textarea>
               </div>
               <div class="youplay-rating pull-right">
                 <input type="radio" id="review-rate-5" name="review-rate" value="5">

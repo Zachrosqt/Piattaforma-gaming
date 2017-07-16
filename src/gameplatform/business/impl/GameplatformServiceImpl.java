@@ -1,7 +1,9 @@
 package gameplatform.business.impl;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -226,10 +228,36 @@ public class GameplatformServiceImpl implements GameplatformService{
 			Giocare gioc = it.next();
 			gioc.setRecensione(review);
 			gioc.setVoto(voto);
+			gioc.setData(Calendar.getInstance());
 			
 			crud.saveOrUpdate(gioc);
 			
-			return true;
+			List<Giocare> mediaGioco = crud.executeQuery("FROM Giocare gioca WHERE gioca.pk.gioco.nome='" + gioco + "'");
+			
+			Iterator<Giocare> medIt = mediaGioco.iterator();
+			
+			int somma=0;
+			
+			while(medIt.hasNext()){
+				Giocare play = medIt.next();
+				somma += play.getVoto();
+			}
+			
+			int media=somma/giocare.size();
+			
+			List<Gioco> game = crud.executeQuery("FROM Gioco game WHERE game.nome='" + gioco + "'");
+			
+			Iterator<Gioco> gameIt = game.iterator();
+			
+			if(gameIt.hasNext()){
+				Gioco gameMed = gameIt.next();
+				gameMed.setMediaGioco(media);
+				
+				crud.saveOrUpdate(gameMed);
+				
+				return true;
+			}
+			
 		}
 		
 		return false;
@@ -240,6 +268,68 @@ public class GameplatformServiceImpl implements GameplatformService{
 	public void insertUser(Utente user) {
 		// TODO Auto-generated method stub
 		crud.saveOrUpdate(user);
+	}
+
+	@Override
+	public boolean giocareAtGame(String gioco, String username) {
+		// TODO Auto-generated method stub
+		
+		List<Giocare> giocare = crud.executeQuery("FROM Giocare gioca WHERE gioca.pk.utente.username='" + username + "' AND gioca.pk.gioco.nome='" + gioco + "'");
+		
+		Iterator<Giocare> it = giocare.iterator();
+		
+		if(it.hasNext()){
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public void startGiocare(String gioco, String username) {
+		// TODO Auto-generated method stub
+		
+		Giocare startGioco = new Giocare();
+		Gioco gameToPlay = null;
+		Utente player = null;
+		
+		startGioco.setApprovato(false);
+		startGioco.setData(Calendar.getInstance());
+		startGioco.setExp(0);
+		Time time = new Time(0);
+		startGioco.setMinuti(time);
+		startGioco.setNumAccessi(1);
+		
+		List<Gioco> game = crud.executeQuery("FROM Gioco game WHERE game.nome='" + gioco + "'");
+		
+		Iterator<Gioco> gameIt = game.iterator();
+		
+		if(gameIt.hasNext()){
+			gameToPlay = gameIt.next();
+		}
+		
+		List<Utente> user = crud.executeQuery("FROM Utente user WHERE user.username='" + username + "'");
+		
+		Iterator<Utente> userIt = user.iterator();
+		
+		if(userIt.hasNext()){
+			player = userIt.next();
+		}
+		
+		startGioco.setUtente(player);
+		startGioco.setGioco(gameToPlay);
+		
+	}
+
+	@Override
+	public List<Giocare> playGame(String gioco, String username) {
+		List<Giocare> giocare = crud.executeQuery("FROM Giocare game WHERE game.pk.gioco.nome = '" + gioco + "' AND game.pk.utente.username='" + username + "'");
+		return giocare;
+	}
+
+	@Override
+	public void updateGameplay(Giocare game) {
+		crud.saveOrUpdate(game);
 	}
 
 }
