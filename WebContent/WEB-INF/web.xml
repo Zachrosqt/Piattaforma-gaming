@@ -4,13 +4,13 @@
   <welcome-file-list>
     <welcome-file>gameplatform.op</welcome-file>
   </welcome-file-list>
-  <context-param> 
-      <description>Location to store uploaded file</description> 
-      <param-name>file-upload</param-name> 
-      <param-value>
+  <context-param>
+    <description>Location to store uploaded file</description>
+    <param-name>file-upload</param-name>
+    <param-value>
          assets\images\avatar\
-      </param-value> 
-   </context-param>
+      </param-value>
+  </context-param>
   <servlet>
     <servlet-name>test</servlet-name>
     <servlet-class>gameplatform.servlet.TestPage</servlet-class>
@@ -115,7 +115,6 @@
     <servlet-name>userprofile</servlet-name>
     <url-pattern>/userprofile.op</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>editprofile</servlet-name>
     <servlet-class>gameplatform.servlet.EditProfiloPage</servlet-class>
