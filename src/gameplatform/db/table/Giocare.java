@@ -26,6 +26,7 @@ public class Giocare implements java.io.Serializable{
 	private long exp;
 	private Time minuti;
 	private int voto;
+	private int livello;
 	private String recensione;
 	private Calendar data;
 	private boolean approvato;
@@ -74,6 +75,15 @@ public class Giocare implements java.io.Serializable{
 
 	public void setExp(long exp) {
 		this.exp = exp;
+	}
+	
+	@Column(name = "lv", nullable = false)
+	public int getLivello() {
+		return livello;
+	}
+
+	public void setLivello(int livelli) {
+		this.livello = livelli;
 	}
 
 	@Column(name = "minuti", nullable = false)

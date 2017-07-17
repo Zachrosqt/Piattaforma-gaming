@@ -12,14 +12,6 @@
       </param-value>
   </context-param>
   <servlet>
-    <servlet-name>test</servlet-name>
-    <servlet-class>gameplatform.servlet.TestPage</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>test</servlet-name>
-    <url-pattern>/test.op</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>index</servlet-name>
     <servlet-class>gameplatform.servlet.IndexPage</servlet-class>
     <init-param>
@@ -126,5 +118,19 @@
   <servlet-mapping>
     <servlet-name>editprofile</servlet-name>
     <url-pattern>/editprofile.op</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>zezzo</servlet-name>
+    <servlet-class>gameplatform.servlet.ZezzoGame</servlet-class>
+    <init-param>
+      <param-name>gioco</param-name>
+      <param-value>Zezzo</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>zezzo</servlet-name>
+    <url-pattern>/Zezzo.op</url-pattern>
   </servlet-mapping>
 </web-app>

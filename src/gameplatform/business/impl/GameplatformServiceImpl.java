@@ -19,6 +19,7 @@ import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Livello;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Trofeo;
 import gameplatform.db.table.Utente;
 
 public class GameplatformServiceImpl implements GameplatformService{
@@ -330,6 +331,56 @@ public class GameplatformServiceImpl implements GameplatformService{
 	@Override
 	public void updateGameplay(Giocare game) {
 		crud.saveOrUpdate(game);
+	}
+
+	@Override
+	public List<Livello> livelliList(String usarname) {
+		// TODO Auto-generated method stub
+		
+		List<Livello> lv = crud.executeQuery("FROM Livello lv WHERE lv.utente.username='" + usarname + "' ORDER BY lv.livello");
+		
+		return lv;
+	}
+
+	@Override
+	public void addLv(Livello lv) {
+		// TODO Auto-generated method stub
+		crud.saveOrUpdate(lv);
+	}
+
+	@Override
+	public int sumUserExp(String username) {
+		// TODO Auto-generated method stub
+		List<Giocare> giocare = crud.executeQuery("FROM Giocare game WHERE game.pk.utente.username='" + username + "'");
+
+		Iterator<Giocare> allExp = giocare.iterator();
+		
+		int expTot = 0;
+		
+		while (allExp.hasNext()) {
+			Giocare gameTemp = allExp.next();
+			
+			expTot += gameTemp.getExp();
+			
+		}
+		return expTot;
+	}
+
+	@Override
+	public void newTroforUser(String nome, String username) {
+		// TODO Auto-generated method stub
+		
+		List<Trofeo> listTrofeo = crud.executeQuery("FROM Trofeo trf WHERE trf.nome='" + nome + "'");
+		
+		List<Utente> listUser = crud.executeQuery("FROM Utente user WHERE user.username='" + username + "'");
+		
+		Trofeo trofeo = listTrofeo.get(listTrofeo.size() -1);
+		Utente user = listUser.get(listUser.size() -1);
+		
+		trofeo.getUtente().add(user);
+		
+		crud.saveOrUpdate(trofeo);
+		
 	}
 
 }

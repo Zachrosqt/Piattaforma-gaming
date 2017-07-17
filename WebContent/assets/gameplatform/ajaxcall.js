@@ -276,4 +276,3 @@ $("#modificaform").submit(function(e){
 		}
 });
 
-
