@@ -11,7 +11,7 @@
       <div class="info">
         <div>
           <div class="container youplay-user">
-            <a href="assets/images/user-photo.jpg" class="angled-img image-popup">
+            <a href="assets/images//avatar/${utenteGameplatform.username}.png" class="angled-img image-popup">
               <div class="img">
               <% 	ServletContext app=getServletContext();
 					String path=app.getRealPath("");

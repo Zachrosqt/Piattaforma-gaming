@@ -6,7 +6,7 @@
   <section class="content-wrap full youplay-login">
 
     <!-- Banner -->
-    <div class="youplay-banner banner-top">
+    <div class="youplay-banner banner-top" style="overflow-y: scroll;">
       <div class="image" style="background-image: url('assets/images/banner-bg.jpg'); background-repeat: repeat-y;"></div>
 
       <div class="info">
@@ -14,7 +14,8 @@
           <div class="container align-center">
             <div class="youplay-form">
               <h1>Registration</h1>
-              
+              <div id="alert"></div>
+
               <form onsubmit="return false" id="registrationform">
               	<div id="alertname"></div>
                 <div class="youplay-input">
