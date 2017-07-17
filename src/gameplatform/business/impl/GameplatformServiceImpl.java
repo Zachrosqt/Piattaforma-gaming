@@ -378,8 +378,10 @@ public class GameplatformServiceImpl implements GameplatformService{
 		Utente user = listUser.get(listUser.size() -1);
 		
 		trofeo.getUtente().add(user);
+		user.getTrofeo().add(trofeo);
 		
-		crud.saveOrUpdate(trofeo);
+		crud.saveOrUpdate(user);
+		//crud.saveOrUpdate(trofeo);
 		
 	}
 

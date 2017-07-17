@@ -133,4 +133,294 @@
     <servlet-name>zezzo</servlet-name>
     <url-pattern>/Zezzo.op</url-pattern>
   </servlet-mapping>
+  
+  
+  <!-- BACKOFFICE -->
+  
+  <servlet>
+    <servlet-name>addGroup</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.addGroup</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>addGroup</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addGroup</servlet-name>
+    <url-pattern>/addGroup.op</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>addGroupPermission</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.addGroupPermission</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>addGroupPermission</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addGroupPermission</servlet-name>
+    <url-pattern>/addGroupPermission.op</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>addPlay</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.addPlay</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>addPlay</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addPlay</servlet-name>
+    <url-pattern>/addPlay.op</url-pattern>
+  </servlet-mapping>
+    <servlet>
+  <servlet-name>addTrophy</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.addTrophy</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>addTrophy</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addTrophy</servlet-name>
+    <url-pattern>/addTrophy.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+   <servlet>
+  <servlet-name>addUser</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.addUser</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>addUser</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addUser</servlet-name>
+    <url-pattern>/addUser.op</url-pattern> <!--url-->
+  </servlet-mapping>
+    <servlet>
+  <servlet-name>addCategoria</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.addCategoria</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>addCategoria</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addCategoria</servlet-name>
+    <url-pattern>/addCategoria.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>addImage</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.addImage</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>addImage</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addImage</servlet-name>
+    <url-pattern>/addImage.op</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>showImage</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.showImage</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showImage</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showImage</servlet-name>
+    <url-pattern>/showImage.op</url-pattern>
+  </servlet-mapping>
+    
+<!-- SHOW -->
+  <servlet>
+  <servlet-name>showCategoria</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.showCategoria</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showCategoria</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showCategoria</servlet-name>
+    <url-pattern>/showCategoria.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>showUser</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.showUser</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showUser</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showUser</servlet-name>
+    <url-pattern>/showUser.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>showTrophy</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.showTrophy</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showTrophy</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showTrophy</servlet-name>
+    <url-pattern>/showTrophy.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  <servlet>
+  <servlet-name>editCategoria</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.editCategoria</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>editCategoria</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editCategoria</servlet-name>
+    <url-pattern>/editCategoria.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+  
+  
+  
+  <servlet>
+  <servlet-name>editGroup</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.editGroup</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>editGroup</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editGroup</servlet-name>
+    <url-pattern>/editGroup.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>editTrophy</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.editTrophy</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>editTrophy</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editTrophy</servlet-name>
+    <url-pattern>/editTrophy.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>editUser</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.editUser</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>editUser</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editUser</servlet-name>
+    <url-pattern>/editUser.op</url-pattern> <!--url-->
+  </servlet-mapping>
+   <servlet>
+  <servlet-name>showGruppo</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.showGruppo</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showGruppo</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showGruppo</servlet-name>
+    <url-pattern>/showGruppo.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  
+  
+   <servlet>
+  <servlet-name>showGroupPermission</servlet-name><!-- nome servlet -->
+    <servlet-class>gameplatform.servlet.backoffice.showGroupPermission</servlet-class><!-- classe servlet -->
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showGroupPermission</param-value> <!-- nome sul db -->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showGroupPermission</servlet-name>
+    <url-pattern>/showGroupPermission.op</url-pattern> <!--url-->
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>showRecensione</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.showRecensione</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showRecensione</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showRecensione</servlet-name>
+    <url-pattern>/showRecensione.op</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>editRecensione</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.editRecensione</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>editRecensione</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editRecensione</servlet-name>
+    <url-pattern>/editRecensione.op</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>editImage</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.editImage</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>editImage</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editImage</servlet-name>
+    <url-pattern>/editImage.op</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>showPlay</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.showPlay</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>showPlay</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>showPlay</servlet-name>
+    <url-pattern>/showPlay.op</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>editPlay</servlet-name>
+    <servlet-class>gameplatform.servlet.backoffice.editPlay</servlet-class>
+    <init-param>
+      <param-name>pageName</param-name>
+      <param-value>editPlay</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>editPlay</servlet-name>
+    <url-pattern>/editPlay.op</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -16,7 +16,7 @@
           <div class="container">
             <h1>${first.nome}</h1>
             <br>
-            <a href="#!" class="btn btn-lg" title="Add to Cart">Gioca</a>
+            <a href="${first.nome}.op?username=${utenteGameplatform.username}" target="_blank" class="btn btn-lg" title="Add to Cart">Gioca</a>
           </div>
         </div>
       </div>

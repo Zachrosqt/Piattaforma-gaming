@@ -142,6 +142,10 @@ public class ZezzoGame extends HttpServlet {
 					}
 				}
 				
+				if (this.gameplay.getLivello()>17){
+					service.newTroforUser("Metà Strada", username);
+				}
+				
 				text=" " + this.gameplay.getLivello() + ", " + this.gameplay.getExp() + ", " + globalLv + ", " + this.gameplay.getNumAccessi();
 				
 			} else {
