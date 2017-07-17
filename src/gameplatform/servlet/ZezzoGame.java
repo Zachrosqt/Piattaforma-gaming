@@ -39,7 +39,6 @@ public class ZezzoGame extends HttpServlet {
      */
     public ZezzoGame() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
     public void init(ServletConfig config) throws ServletException {
