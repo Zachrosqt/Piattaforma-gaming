@@ -119,12 +119,8 @@
                                     }
                                 </script>
 
-                                <br/>
                                 
-                                </div>
-                                
-                            </div>
-                             <input type="text" style="visibility: hidden;"id="minuti" name="minuti" value=" ${index[1]}">
+                                                          
                         </c:forEach>
                  
                                 <div class="form-group">

@@ -113,16 +113,7 @@ public class editRecensione extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DateFormat formatter = new SimpleDateFormat("HH:mm");
-		try {
-			java.sql.Time timeValue = new java.sql.Time(formatter.parse(request.getParameter("minuti")).getTime());
-			this.giocare.setMinuti(timeValue);
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		
 		
 			
 		this.giocare.setRecensione(request.getParameter("testo1"));  
