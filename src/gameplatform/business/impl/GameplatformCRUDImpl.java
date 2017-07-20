@@ -36,7 +36,6 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		session.getTransaction().commit();
 		
-		session.close();
 		
 	}
 
@@ -51,7 +50,6 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		session.getTransaction().commit();
 		
-		session.close();
 		
 	}
 
@@ -66,7 +64,6 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		session.getTransaction().commit();
 		
-		session.close();
 		
 	}
 
@@ -81,7 +78,6 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		session.getTransaction().commit();
 		
-		session.close();
 	}
 
 	@Override
@@ -94,7 +90,6 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		List<T> queryList = insideQuery.getResultList();
 		session.getTransaction().commit();
 		
-		session.close();
 		
 		return queryList;
 	}

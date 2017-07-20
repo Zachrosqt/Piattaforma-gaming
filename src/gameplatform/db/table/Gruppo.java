@@ -59,42 +59,5 @@ public class Gruppo implements java.io.Serializable{
 	public void setPermesso(Set<Permesso> permesso) {
 		this.permesso = permesso;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((permesso == null) ? 0 : permesso.hashCode());
-		result = prime * result + ((utente == null) ? 0 : utente.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Gruppo other = (Gruppo) obj;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (permesso == null) {
-			if (other.permesso != null)
-				return false;
-		} else if (!permesso.equals(other.permesso))
-			return false;
-		if (utente == null) {
-			if (other.utente != null)
-				return false;
-		} else if (!utente.equals(other.utente))
-			return false;
-		return true;
-	}
 	
 }

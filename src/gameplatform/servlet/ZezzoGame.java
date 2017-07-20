@@ -31,8 +31,8 @@ public class ZezzoGame extends HttpServlet {
 	private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
 	
 	private Giocare gameplay = new Giocare();
-	long startTime;
-	long endTime;
+	private long startTime;
+	private long endTime;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,7 +47,7 @@ public class ZezzoGame extends HttpServlet {
 		super.init(config);
     	this.pageName = getInitParameter("gioco");
     	
-    	startTime = System.nanoTime();
+    	startTime = System.currentTimeMillis();
     
 	}
 
@@ -142,18 +142,28 @@ public class ZezzoGame extends HttpServlet {
 					}
 				}
 				
-				if (this.gameplay.getLivello()>17){
-					service.newTroforUser("Metà Strada", username);
+				if (this.gameplay.getLivello()>=17){
+					service.newTroforUser("Ci sei quasi", username);
 				}
 				
 				text=" " + this.gameplay.getLivello() + ", " + this.gameplay.getExp() + ", " + globalLv + ", " + this.gameplay.getNumAccessi();
 				
 			} else {
-				endTime = System.nanoTime();
-				long duration = (endTime - startTime);
-				Time time = new Time(gameplay.getMinuti().getTime() + duration);
 				
-				gameplay.setMinuti(time);
+				List<Giocare> listPlayed = service.playGame(gioco, username);
+				
+				Iterator<Giocare> listIt = listPlayed.iterator();
+					
+				if(listIt.hasNext()){
+					Giocare play = listIt.next();
+					this.gameplay = play;
+				}
+				endTime = System.currentTimeMillis();
+				long duration = (endTime - startTime);
+				long minutes = (int) ((duration / (1000*60)) % 60);
+				long minutsPlay = gameplay.getMinuti() + minutes;
+				
+				gameplay.setMinuti(minutsPlay);
 				
 				service.updateGameplay(gameplay);
 			}

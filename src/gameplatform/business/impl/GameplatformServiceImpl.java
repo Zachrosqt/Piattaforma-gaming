@@ -6,9 +6,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
 
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
@@ -271,6 +276,8 @@ public class GameplatformServiceImpl implements GameplatformService{
 		crud.saveOrUpdate(user);
 	}
 
+	// --------------- Metodi per gioco -------------------------
+	
 	@Override
 	public boolean giocareAtGame(String gioco, String username) {
 		// TODO Auto-generated method stub
@@ -297,8 +304,7 @@ public class GameplatformServiceImpl implements GameplatformService{
 		startGioco.setApprovato(false);
 		startGioco.setData(Calendar.getInstance());
 		startGioco.setExp(0);
-		Time time = new Time(0);
-		startGioco.setMinuti(time);
+		startGioco.setMinuti(0);
 		startGioco.setNumAccessi(1);
 		
 		List<Gioco> game = crud.executeQuery("FROM Gioco game WHERE game.nome='" + gioco + "'");
@@ -368,20 +374,28 @@ public class GameplatformServiceImpl implements GameplatformService{
 
 	@Override
 	public void newTroforUser(String nome, String username) {
-		// TODO Auto-generated method stub
 		
-		List<Trofeo> listTrofeo = crud.executeQuery("FROM Trofeo trf WHERE trf.nome='" + nome + "'");
+		Configuration conf = new Configuration().configure();
+		Session session = conf.buildSessionFactory().getCurrentSession();
+		session.beginTransaction();
 		
-		List<Utente> listUser = crud.executeQuery("FROM Utente user WHERE user.username='" + username + "'");
+		Query queryTrofeo = session.createQuery("FROM Trofeo trf WHERE trf.nome='" + nome + "'");
+		List<Trofeo> listTrofeo = queryTrofeo.getResultList();
+		
+		Query queryUser = session.createQuery("FROM Utente user WHERE user.username='" + username + "'");
+		List<Utente> listUser = queryUser.getResultList();
 		
 		Trofeo trofeo = listTrofeo.get(listTrofeo.size() -1);
 		Utente user = listUser.get(listUser.size() -1);
-		
-		trofeo.getUtente().add(user);
+
 		user.getTrofeo().add(trofeo);
 		
-		crud.saveOrUpdate(user);
-		//crud.saveOrUpdate(trofeo);
+		session.saveOrUpdate(user);
+		
+		session.getTransaction().commit();
+		
+		session.close();
+		
 		
 	}
 

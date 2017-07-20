@@ -3,6 +3,7 @@ package gameplatform.db.table;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,7 +60,7 @@ public class Trofeo implements java.io.Serializable{
 	        this.nome = nome;
 	    }
 	    
-	    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "trofeo")
+	    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "trofeo")
 	    public Set<Utente> getUtente() {
 			return utente;
 		}
@@ -76,52 +77,6 @@ public class Trofeo implements java.io.Serializable{
 
 		public void setGioco(Gioco gioco) {
 			this.gioco = gioco;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((gioco == null) ? 0 : gioco.hashCode());
-			result = prime * result + ((icona == null) ? 0 : icona.hashCode());
-			result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-			result = prime * result + ((obbiettivo == null) ? 0 : nome.hashCode());
-			result = prime * result + ((utente == null) ? 0 : utente.hashCode());
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Trofeo other = (Trofeo) obj;
-			if (gioco == null) {
-				if (other.gioco != null)
-					return false;
-			} else if (!gioco.equals(other.gioco))
-				return false;
-			if (icona == null) {
-				if (other.icona != null)
-					return false;
-			} else if (!icona.equals(other.icona))
-				return false;
-			if (nome == null) {
-				if (other.nome != null)
-					return false;
-			} else if (!nome.equals(other.nome))
-				return false;
-			if (obbiettivo != other.obbiettivo)
-				return false;
-			if (utente == null) {
-				if (other.utente != null)
-					return false;
-			} else if (!utente.equals(other.utente))
-				return false;
-			return true;
 		}
 		
 }

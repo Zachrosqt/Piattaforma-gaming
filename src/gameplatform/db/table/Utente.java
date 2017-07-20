@@ -111,10 +111,10 @@ public class Utente implements java.io.Serializable{
 	}
     
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "utenteTrofeo", joinColumns = {
-			@JoinColumn(name = "username", nullable = false, updatable = true) },
-			inverseJoinColumns = { @JoinColumn(name = "nome",
-					nullable = false, updatable = true) })
+    @JoinTable(name="utenteTrofeo", 
+    		joinColumns = {@JoinColumn(name="username", nullable=false, updatable=true)},
+    		inverseJoinColumns = {@JoinColumn(name="nome", nullable=false, updatable=true)}
+    )
     public Set<Trofeo> getTrofeo() {
 		return trofeo;
 	}
@@ -171,73 +171,6 @@ public class Utente implements java.io.Serializable{
 		this.trofeo = trofeo;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Utente other = (Utente) obj;
-		if (ban != other.ban)
-			return false;
-		if (cognome == null) {
-			if (other.cognome != null)
-				return false;
-		} else if (!cognome.equals(other.cognome))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (eta != other.eta)
-			return false;
-		if (exp_tot == null) {
-			if (other.exp_tot != null)
-				return false;
-		} else if (!exp_tot.equals(other.exp_tot))
-			return false;
-		if (giocare == null) {
-			if (other.giocare != null)
-				return false;
-		} else if (!giocare.equals(other.giocare))
-			return false;
-		if (gruppo == null) {
-			if (other.gruppo != null)
-				return false;
-		} else if (!gruppo.equals(other.gruppo))
-			return false;
-		if (livello == null) {
-			if (other.livello != null)
-				return false;
-		} else if (!livello.equals(other.livello))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (numeroAccessi != other.numeroAccessi)
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (trofeo == null) {
-			if (other.trofeo != null)
-				return false;
-		} else if (!trofeo.equals(other.trofeo))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
-	}
 
 }
 

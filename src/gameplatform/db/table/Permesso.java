@@ -62,48 +62,5 @@ public class Permesso implements java.io.Serializable{
 	public void setGruppo(Set<Gruppo> gruppo) {
 		this.gruppo = gruppo;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((gruppo == null) ? 0 : gruppo.hashCode());
-		result = prime * result + ((indirizzo == null) ? 0 : indirizzo.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((permessoTemplate == null) ? 0 : permessoTemplate.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Permesso other = (Permesso) obj;
-		if (gruppo == null) {
-			if (other.gruppo != null)
-				return false;
-		} else if (!gruppo.equals(other.gruppo))
-			return false;
-		if (indirizzo == null) {
-			if (other.indirizzo != null)
-				return false;
-		} else if (!indirizzo.equals(other.indirizzo))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (permessoTemplate == null) {
-			if (other.permessoTemplate != null)
-				return false;
-		} else if (!permessoTemplate.equals(other.permessoTemplate))
-			return false;
-		return true;
-	}
 	
 }

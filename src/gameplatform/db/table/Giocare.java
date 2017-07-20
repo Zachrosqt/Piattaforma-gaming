@@ -24,7 +24,7 @@ public class Giocare implements java.io.Serializable{
 	private GiocareId pk = new GiocareId();
 	private long numAccessi;
 	private long exp;
-	private Time minuti;
+	private long minuti;
 	private int voto;
 	private int livello;
 	private String recensione;
@@ -87,11 +87,11 @@ public class Giocare implements java.io.Serializable{
 	}
 
 	@Column(name = "minuti", nullable = false)
-	public Time getMinuti() {
+	public long getMinuti() {
 		return minuti;
 	}
 
-	public void setMinuti(Time minuti) {
+	public void setMinuti(long minuti) {
 		this.minuti = minuti;
 	}
 
@@ -138,7 +138,6 @@ public class Giocare implements java.io.Serializable{
 		result = prime * result + (approvato ? 1231 : 1237);
 		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + (int) (exp ^ (exp >>> 32));
-		result = prime * result + ((minuti == null) ? 0 : minuti.hashCode());
 		result = prime * result + (int) (numAccessi ^ (numAccessi >>> 32));
 		result = prime * result + ((pk == null) ? 0 : pk.hashCode());
 		result = prime * result + ((recensione == null) ? 0 : recensione.hashCode());
@@ -163,11 +162,6 @@ public class Giocare implements java.io.Serializable{
 		} else if (!data.equals(other.data))
 			return false;
 		if (exp != other.exp)
-			return false;
-		if (minuti == null) {
-			if (other.minuti != null)
-				return false;
-		} else if (!minuti.equals(other.minuti))
 			return false;
 		if (numAccessi != other.numAccessi)
 			return false;

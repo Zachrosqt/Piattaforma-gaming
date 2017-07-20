@@ -21,6 +21,8 @@ import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Permesso;
 import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Trofeo;
+import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
@@ -76,9 +78,15 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		
 		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			List<Permesso> perm = CRUD.executeQuery ("FROM Permesso");
-
-	    	Iterator<Permesso> permInt = perm.iterator();
+			
+			Configuration conf = new Configuration().configure();
+			Session session = conf.buildSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			
+			Query queryPerm = session.createQuery("FROM Permesso");
+			List<Permesso> perm = queryPerm.getResultList();
+			
+			Iterator<Permesso> permInt = perm.iterator();
 
 	    	while(permInt.hasNext()){
 	    		String text = "";
@@ -92,20 +100,16 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 	    		System.out.println(setGroup.size());
 	    		
 	    		
-	    		//for(Gruppo group : setGroup)
-	    			//text += group.getNome() + ", ";
-	    		
-
-	    		//Iterator<Gruppo> groupItr = setGroup.iterator();
-
-	    		/*while(groupItr.hasNext()){
-	    			Gruppo group = groupItr.next();
-
+	    		for(Gruppo group : setGroup)
 	    			text += group.getNome() + ", ";
-	    		}*/
+	    		
 	    		
 	    		System.out.println(text);
 	    	}
+			
+			session.getTransaction().commit();
+			
+			session.close();
 			
 			request.setAttribute("template", this.template);
 			request.setAttribute("permesso", this.fv);
