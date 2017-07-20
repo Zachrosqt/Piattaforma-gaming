@@ -1,6 +1,11 @@
 package gameplatform.servlet.backoffice;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,6 +42,7 @@ import gameplatform.db.*;
 		private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
 		private GameplatformCRUD CRUD = GameplatformCRUDImpl.getGameplatformCRUDImpl();
     	private List<Categoria> x;
+    	private String returnDate;
 
 	       
 	    /**
@@ -83,7 +89,10 @@ import gameplatform.db.*;
 			gioco.setCategoria(categoria);
 			gioco.setDescrizione(request.getParameter("testo"));
 			gioco.setNome(request.getParameter("name"));
-			gioco.setSpecifiche(request.getParameter("testo1"));
+			gioco.setSpecifiche(request.getParameter("testo1"));	
+	        Calendar cal=Calendar.getInstance();	        
+			gioco.setDate(cal);
+			
 	
 			CRUD.saveOrUpdate(gioco);
 			

@@ -38,7 +38,9 @@
                                     <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12" placeholder=" ">
 
                                 </div>
-                            </div>
+                            </div>                                                            
+                            
+                            
                             
                             <div class="form-group">
                                 <label for="script" class="control-label col-md-3 col-sm-3 col-xs-12">Select Play Specific <span class="required">*</span></label>
