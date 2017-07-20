@@ -276,7 +276,7 @@ public class GameplatformServiceImpl implements GameplatformService{
 		crud.saveOrUpdate(user);
 	}
 
-	// --------------- Metodi per gioco -------------------------
+	// --------------- Metodi per gioco --------------------------
 	
 	@Override
 	public boolean giocareAtGame(String gioco, String username) {
