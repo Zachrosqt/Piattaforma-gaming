@@ -53,9 +53,9 @@
                                 <div class="col-md-2 col-sm-3 col-xs-3">
 
 
-                                    <input type="radio" name="ban" value=1/> Yes
+                                    <input type="radio" name="ban" value="1"> Yes
                                     <br>
-                                    <input type="radio" name="ban" value=0/> No
+                                    <input type="radio" name="ban" value="0"> No
 
                                 </div>
                                 <br>

@@ -37,12 +37,9 @@ public class editUser extends HttpServlet {
 	private List<Utente> ju;
 	private int ko;
 	private int kk;
-	private int ku;
 	private boolean kp;
 	private List<Utente> la;
-	private List<Utente> uu;
-	private Utente user =new Utente();
-
+	
 
        
     /**
@@ -68,13 +65,7 @@ public class editUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub 
-		this.ju = CRUD.executeQuery("FROM Utente WHERE username ='"+request.getParameter("id")+"'");
-		this.la = CRUD.executeQuery("SELECT nome FROM Gruppo");
-		this.uu = CRUD.executeQuery("SELECT gruppo FROM Utente where username ='"+request.getParameter("id")+"'");
-		Object[] w = ju.toArray();
-		String s = w[0].toString();
-		this.user.setUsername(s);
-		CRUD.delete(s);
+
 		process(request, response);
 		
 		
@@ -84,34 +75,54 @@ public class editUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		this.ju = CRUD.executeQuery("FROM Utente WHERE username ='"+request.getParameter("id")+"'");
+		
+		Iterator<Utente> userIt = this.ju.iterator();
+		
+		if(userIt.hasNext()){
+			Utente temp = userIt.next();
+			
+			temp.setNome(request.getParameter("nome"));
+			temp.setUsername(request.getParameter("username"));
+			temp.setCognome(request.getParameter("surname"));
+			
+			this.ko = Integer.parseInt(request.getParameter("eta"));
+			temp.setEta(ko);	
+			temp.setEmail(request.getParameter("email"));
+		    this.kk =Integer.parseInt(request.getParameter("exp"));
+		    temp.setExp_tot(kk);	    
+		    temp.setPassword(request.getParameter("password"));
+		    
+		    if (request.getParameter("ban").equals("1")) 
+		    	kp =true;
+		    else 
+		    	kp =false;
+		    temp.setBan(kp);
+		    
+		    List<Gruppo> listGroup = CRUD.executeQuery("FROM Gruppo WHERE nome ='"+request.getParameter("gruppo")+"'");
+		    
+		    Iterator<Gruppo> groupIt = listGroup.iterator();
+		    
+		    if(groupIt.hasNext()){
+		    	Gruppo tempGroup = groupIt.next();
+		    	
+		    	temp.setGruppo(tempGroup);
+		    }
+		    
+		    CRUD.saveOrUpdate(temp);
+			
+		}
 
-		this.user.setNome(request.getParameter("nome"));
-		this.user.setUsername(request.getParameter("username"));
-		this.user.setCognome(request.getParameter("surname"));
-	   
-
-		this.ko = Integer.parseInt(request.getParameter("eta"));
-	    this.user.setEta(ko);	
-	    this.user.setEmail(request.getParameter("email"));
-	    this.kk =Integer.parseInt(request.getParameter("exp"));
-	    this.user.setExp_tot(kk);	    
-	    this.user.setPassword(request.getParameter("password"));
-	    this.ku =Integer.parseInt(request.getParameter("numeroaccessi"));
-	    this.user.setNumeroAccessi(ku);
-	    kp =Boolean.parseBoolean(request.getParameter("ban"));
-	    this.user.setBan(kp);
-	    Gruppo gruppo = new Gruppo();
-		gruppo.setNome(request.getParameter("gruppo"));
-		this.user.setGruppo(gruppo);
-	    
-	    
-	    
-		CRUD.saveOrUpdate(user);
+		
 				process(request, response);
 		
 	}
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		this.ju = CRUD.executeQuery("FROM Utente WHERE username ='"+request.getParameter("id")+"'");
+		this.la = CRUD.executeQuery("SELECT nome FROM Gruppo");
 		
 		request.setAttribute("template", this.template);
 		request.setAttribute("utente", this.ju);
