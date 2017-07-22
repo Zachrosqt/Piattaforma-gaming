@@ -1,5 +1,6 @@
 package gameplatform.business.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -36,6 +37,8 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		session.getTransaction().commit();
 		
+		session.close();
+		
 		
 	}
 
@@ -50,7 +53,7 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		session.getTransaction().commit();
 		
-		
+		session.close();
 	}
 
 	@Override
@@ -64,7 +67,7 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		session.getTransaction().commit();
 		
-		
+		session.close();
 	}
 
 	@Override
@@ -77,7 +80,7 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		session.delete(obj);
 		
 		session.getTransaction().commit();
-		
+		session.close();
 	}
 
 	@Override
@@ -88,9 +91,11 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		
 		Query insideQuery = session.createQuery(query);
 		List<T> queryList = insideQuery.getResultList();
+
 		session.getTransaction().commit();
-		
+		session.close();
 		
 		return queryList;
 	}
+
 }

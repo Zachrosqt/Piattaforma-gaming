@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -79,7 +80,7 @@ public class showImage extends HttpServlet {
 		super.init(config);
     	this.pageName = getInitParameter("pageName");
     	this.template = service.templates(pageName);
-    	x = CRUD.executeQuery("SELECT id,path, gioco FROM Immagine");
+
     	
     	
     }
@@ -89,25 +90,31 @@ public class showImage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	
-		if(request.getParameter("id")!=null){
-			if(!request.getParameter("del").equals("0")){
+		if(request.getParameter("id")!=null && !request.getParameter("del").equals("0")){
 
-		List<Immagine> y;
-		Immagine immagine= new Immagine();
-		y = CRUD.executeQuery("FROM Immagine WHERE id="+request.getParameter("id"));
-		int id = Integer.parseInt(request.getParameter("id"));
-		Iterator<Immagine> it = y.iterator();
-		while (it.hasNext()) {
-			immagine = (Immagine) it.next();
-        }
-		
-		immagine.setId(id);  
-		CRUD.delete(immagine);
+			List<Immagine> y;
+			Immagine immagine= new Immagine();
+			y = CRUD.executeQuery("FROM Immagine WHERE id="+request.getParameter("id"));
+			int id = Integer.parseInt(request.getParameter("id"));
+			Iterator<Immagine> it = y.iterator();
+			while (it.hasNext()) {
+				immagine = it.next();
+	        }
+			
+			ServletContext app=getServletContext();
+			String path=app.getRealPath("");
+			File f=new File(path+"assets/images/games/" + immagine.getGioco().getNome() + "/" + immagine.getPath());
+			f.delete();
+			  
+			CRUD.delete(immagine);
+			
+			response.sendRedirect("showImage.op");
+			
+		} else {
+			process(request, response);
 		}
-		}//end if request.getparameter != null 
-		
-		process(request, response);
 
 	}
 
@@ -124,6 +131,8 @@ public class showImage extends HttpServlet {
 	
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		x = CRUD.executeQuery("FROM Immagine");
 		
 		request.setAttribute("template", this.template);
 		request.setAttribute("path", this.x);

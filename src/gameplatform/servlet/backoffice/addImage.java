@@ -30,6 +30,7 @@ import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Permesso;
 import gameplatform.db.table.PermessoTemplate;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
@@ -64,12 +65,12 @@ import javax.servlet.ServletException;
 		private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
 		private GameplatformCRUD CRUD = GameplatformCRUDImpl.getGameplatformCRUDImpl();
     	private List<Gioco> x;
+    	
     	private boolean isMultipart;
-    	private String filePath;
-    	private int maxFileSize = 50 * 1024;
-    	private int maxMemSize = 4 * 1024;
-    	private File file ;
-    	private String fileName;
+    	   private String filePath;
+    	   private int maxFileSize = 5000 * 1024;
+    	   private int maxMemSize = 4 * 1024;
+    	   private File file ;
     	
 	    /**
 	     * @see HttpServlet#HttpServlet()
@@ -86,7 +87,7 @@ import javax.servlet.ServletException;
 	    	this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName);
 	    	x = CRUD.executeQuery("SELECT nome FROM Gioco");
-	        filePath = getServletContext().getInitParameter("file-upload"); 
+	    	filePath =  "assets\\images\\games\\temp\\"; 
 
 	    }
 
@@ -103,20 +104,18 @@ import javax.servlet.ServletException;
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			Gioco gioco = new Gioco();
 			
-			// Check that we have a file upload request
+			isMultipart = ServletFileUpload.isMultipartContent(request);
+		   
+		      if( !isMultipart ) {
+		         return;
+		      }
 		      
-		      java.io.PrintWriter out = response.getWriter( );
+		      ServletContext app=getServletContext();
+				String path=app.getRealPath("");
+		  
 		      DiskFileItemFactory factory = new DiskFileItemFactory();
-		      boolean isMultipart;
-		      File file;
-		      ServletContext app =getServletContext();
-		      String path = app.getRealPath("");
-		      long maxFileSize = 5000 * 1024;
-		      int maxMemSize = 4 * 1024;
-		      this.isMultipart = ServletFileUpload.isMultipartContent(request);
-		      
+		   
 		      // maximum size that will be stored in memory
 		      factory.setSizeThreshold(maxMemSize);
 
@@ -125,45 +124,65 @@ import javax.servlet.ServletException;
 		   
 		      // maximum file size to be uploaded.
 		      upload.setSizeMax( maxFileSize );
+
 		      try { 
-		          // Parse the request to get file items.
-		          List fileItems = upload.parseRequest(request);
-		 	
-		          // Process the uploaded file items
-		          Iterator i = fileItems.iterator();
-		          while ( i.hasNext () ) {
-		              FileItem fi = (FileItem)i.next();
-		              if(fi.isFormField()){
-		            	  String fieldname=fi.getFieldName();
-		            	  if(fieldname.equals("gioco")){
-		            		  gioco.setNome(fi.getString());
-		            	  }
-		              }
-
-		              if ( !fi.isFormField () ) {
-		            	
-		                 // Write the file
-		            	  
-		                 if( fileName.lastIndexOf("\\") >= 0 ) {
-		                    file = new File( path+filePath + this.fileName+".jpg") ;
-		                 } else {
-		                    file = new File( path+filePath + this.fileName+".jpg") ;
-		                 }
-		                 fi.write( file ) ;
-		                 System.out.println("Uploaded Filename: " + this.fileName + "<br>");
-		              }
-		           }
-		           } catch(Exception ex) {
-		              System.out.println("ERRORE");
-		           }
-		
-	        Immagine immagine = new Immagine();
-			immagine.setPath(fileName);        
-			immagine.setGioco(gioco);
+		    	  Gioco gioco = null;
+		    	  
+		         // Parse the request to get file items.
+		         List fileItems = upload.parseRequest(request);
 			
-			CRUD.saveOrUpdate(immagine);
+		         // Process the uploaded file items
+		         Iterator i = fileItems.iterator();
+		         Iterator i2 = fileItems.iterator();
 
-
+		         while ( i2.hasNext () ) {
+			          FileItem fi = (FileItem)i2.next();
+			          if ( fi.isFormField () ) {
+			        	  String fieldname = fi.getFieldName();
+			        	  
+			        	  if (fieldname.equals("gioco")){
+			        		  filePath =  "assets\\images\\games\\" + fi.getString() + "\\"; 
+			        		  List<Gioco> listGame = CRUD.executeQuery("FROM Gioco game WHERE game.nome ='" + fi.getString() + "'");
+			        		  gioco = listGame.get(0);
+			        	  }
+			        	  
+			          }
+			      }
+		   
+		         while ( i.hasNext () ) {
+		            FileItem fi = (FileItem)i.next();
+		            String fileName = "";
+		            
+		            if ( !fi.isFormField () ) {
+		               // Get the uploaded file parameters
+		               fileName = fi.getName();
+		               String contentType = fi.getContentType();
+		               long sizeInBytes = fi.getSize();
+		            
+		               // Write the file
+		               
+		               if((contentType.equals("image/jpeg") || contentType.equals("image/png")) && sizeInBytes <= maxFileSize){
+			               if( fileName.lastIndexOf("\\") >= 0 ) {
+			                  file = new File( path + filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
+			               } else {
+			                  file = new File( path + filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
+			               }
+			               fi.write( file ) ;
+			               
+			               Immagine img = new Immagine();
+			               
+			               img.setPath(fileName);
+			               img.setGioco(gioco);
+			               
+			               CRUD.saveOrUpdate(img);
+		               }
+		            } 
+		            
+		         }
+		         } catch(Exception ex) {
+		            System.out.println(ex);
+		         }
+			
 			process(request, response);
 		}
 		

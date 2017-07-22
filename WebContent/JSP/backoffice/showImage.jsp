@@ -41,18 +41,16 @@
                             
 
                         <tr>
-                        <c:forEach items="${index}" begin="0" end="${fn:length(index) - 3}" var="io">
                         
                         
-                            <td class="col-md-3 col-sm-3 col-xs-12">  <img src="assets/images/${index[1]}"> </td>
-                            <td class="col-md-3 col-sm-3 col-xs-12"> ${index[2].nome}  </td>
+                            <td class="col-md-3 col-sm-3 col-xs-3">  <img style="width: 250px; height: auto;" src="assets/images/games/${index.gioco.nome}/${index.path}"> </td>
+                            <td class="col-md-3 col-sm-3 col-xs-6"> ${index.gioco.nome}  </td>
 
 
                             <td class="col-md-1 col-sm-1 col-xs-12">
-                                <a href="showImage.op?del=${1}&id=${index[0]}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
-                                <a href="editImage.op?id=${index[0]}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>
+                                <a href="showImage.op?del=${1}&id=${index.id}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
+                                <a href="editImage.op?id=${index.id}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>
                             </td>
-                                                    </c:forEach>
                             
                         </tr>
                         
