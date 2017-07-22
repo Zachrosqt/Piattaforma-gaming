@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -19,6 +20,7 @@ import org.hibernate.cfg.Configuration;
 import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
@@ -60,11 +62,23 @@ public class editCategoria extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub 
+		
+		HttpSession session =  request.getSession();
+		if (session.getAttribute("utenteGameplatform")==null){
+			response.sendRedirect("login.op");
+		} else {
+			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+			if (perm == true){
+				this.v=request.getParameter("id");	
+				this.category.setCategoria(this.v);
+				CRUD.delete(this.category);
+				process(request, response);
+			} else {
+				response.sendRedirect("accessdenied.op");
+			}	
+		}
 
-			this.v=request.getParameter("id");	
-			this.category.setCategoria(this.v);
-			CRUD.delete(this.category);
-		process(request, response);
+			
 		
 	}
 	/**

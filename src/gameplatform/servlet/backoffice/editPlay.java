@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -61,22 +62,34 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-				this.y = CRUD.executeQuery("FROM Gioco WHERE nome ='"+request.getParameter("id")+"'");
-				this.x = CRUD.executeQuery("FROM Categoria");
-				this.gioco.setNome(request.getParameter("id"));
+			
+			HttpSession session =  request.getSession();
+			if (session.getAttribute("utenteGameplatform")==null){
+				response.sendRedirect("login.op");
+			} else {
+				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+				if (perm == true){
+					this.y = CRUD.executeQuery("FROM Gioco WHERE nome ='"+request.getParameter("id")+"'");
+					this.x = CRUD.executeQuery("FROM Categoria");
+					this.gioco.setNome(request.getParameter("id"));
+					
+					List<Gioco> w;
+					w= CRUD.executeQuery("SELECT categoria.categoria FROM Gioco WHERE nome ='"+request.getParameter("id")+"'");
+					
+					Categoria categoria = new Categoria();
+					Object[] a = w.toArray();
+					categoria.setCategoria(a[0].toString());
+					
+					this.gioco.setCategoria(categoria);
+					this.gioco.setDescrizione("");
+					this.gioco.setSpecifiche("");
+					CRUD.delete(this.gioco);
+					process(request, response);
+				} else {
+					response.sendRedirect("accessdenied.op");
+				}	
+			}
 				
-				List<Gioco> w;
-				w= CRUD.executeQuery("SELECT categoria.categoria FROM Gioco WHERE nome ='"+request.getParameter("id")+"'");
-				
-				Categoria categoria = new Categoria();
-				Object[] a = w.toArray();
-				categoria.setCategoria(a[0].toString());
-				
-				this.gioco.setCategoria(categoria);
-				this.gioco.setDescrizione("");
-				this.gioco.setSpecifiche("");
-				CRUD.delete(this.gioco);
-			process(request, response);
 		}
 
 		/**

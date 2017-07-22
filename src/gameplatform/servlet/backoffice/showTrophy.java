@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -63,31 +64,44 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-	    	this.sl = CRUD.executeQuery("SELECT  nome, obiettivo , gioco FROM Trofeo");
-
-			if(request.getParameter("id")!=null){
-				if(!request.getParameter("del").equals("0")){
-					List<Trofeo> sl;
-					Trofeo trofeo= new Trofeo();
-					
-					System.out.print(request.getParameter("id"));
-
-					sl = CRUD.executeQuery("FROM Trofeo WHERE id ='"+request.getParameter("id")+"'");
-					System.out.print(request.getParameter("id"));
-
-				String id =(request.getParameter("id"));
-					Iterator<Trofeo> it = sl.iterator();
-					while(it.hasNext()){
-						trofeo = (Trofeo) it.next();
-					}
-					
-				trofeo.setNome(id);
-				CRUD.delete(trofeo);
-			}
-			}
-			process(request, response);
 			
+			HttpSession session =  request.getSession();
+			if (session.getAttribute("utenteGameplatform")==null){
+				response.sendRedirect("login.op");
+			} else {
+				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+				if (perm == true){
+
+					this.sl = CRUD.executeQuery("SELECT  nome, obiettivo , gioco FROM Trofeo");
+
+					if(request.getParameter("id")!=null){
+						if(!request.getParameter("del").equals("0")){
+							List<Trofeo> sl;
+							Trofeo trofeo= new Trofeo();
+							
+							System.out.print(request.getParameter("id"));
+
+							sl = CRUD.executeQuery("FROM Trofeo WHERE id ='"+request.getParameter("id")+"'");
+							System.out.print(request.getParameter("id"));
+
+						String id =(request.getParameter("id"));
+							Iterator<Trofeo> it = sl.iterator();
+							while(it.hasNext()){
+								trofeo = (Trofeo) it.next();
+							}
+							
+						trofeo.setNome(id);
+						CRUD.delete(trofeo);
+					}
+					}
+					process(request, response);
+				} else {
+					response.sendRedirect("accessdenied.op");
+				}	
 			}
+	    	
+			
+		}
 		
 
 		/**

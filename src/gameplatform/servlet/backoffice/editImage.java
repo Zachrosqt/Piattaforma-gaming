@@ -12,10 +12,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -41,11 +37,8 @@ import java.util.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
- import javax.servlet.http.HttpServlet;
- import javax.servlet.http.HttpServletRequest;
- import javax.servlet.http.HttpServletResponse;
- 
- import java.io.*;
+
+import java.io.*;
  import java.sql.*;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -62,9 +55,6 @@ import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @MultipartConfig
 public class editImage extends HttpServlet {
@@ -100,8 +90,17 @@ public class editImage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		process(request, response);
+		HttpSession session =  request.getSession();
+		if (session.getAttribute("utenteGameplatform")==null){
+			response.sendRedirect("login.op");
+		} else {
+			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+			if (perm == true){
+				process(request, response);
+			} else {
+				response.sendRedirect("accessdenied.op");
+			}	
+		}
 	}
 
 	/**

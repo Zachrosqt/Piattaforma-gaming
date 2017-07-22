@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,6 +21,7 @@ import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
@@ -59,30 +61,43 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-	    	this.fv = CRUD.executeQuery("SELECT nome FROM Gruppo");
+			
+			HttpSession session =  request.getSession();
+			if (session.getAttribute("utenteGameplatform")==null){
+				response.sendRedirect("login.op");
+			} else {
+				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+				if (perm == true){
 
-			if(request.getParameter("id")!=null){
-				if(!request.getParameter("del").equals("0")){
-					List<Gruppo> fv;
-					Gruppo group= new Gruppo();
-					
-					System.out.print(request.getParameter("id"));
+					this.fv = CRUD.executeQuery("SELECT nome FROM Gruppo");
 
-					fv = CRUD.executeQuery("FROM Gruppo WHERE id ='"+request.getParameter("id")+"'");
-					System.out.print(request.getParameter("id"));
+					if(request.getParameter("id")!=null){
+						if(!request.getParameter("del").equals("0")){
+							List<Gruppo> fv;
+							Gruppo group= new Gruppo();
+							
+							System.out.print(request.getParameter("id"));
 
-					String id = (request.getParameter("id"));
-					Iterator<Gruppo> it = fv.iterator();
-					while(it.hasNext()){
-						group=(Gruppo) it.next();
+							fv = CRUD.executeQuery("FROM Gruppo WHERE id ='"+request.getParameter("id")+"'");
+							System.out.print(request.getParameter("id"));
+
+							String id = (request.getParameter("id"));
+							Iterator<Gruppo> it = fv.iterator();
+							while(it.hasNext()){
+								group=(Gruppo) it.next();
+							}
+							
+						group.setNome(id);
+						CRUD.delete(group);
 					}
-					
-				group.setNome(id);
-				CRUD.delete(group);
+					}
+					process(request, response);
+				} else {
+					response.sendRedirect("accessdenied.op");
+				}	
 			}
-			}
-			process(request, response);
-			}
+	    	
+		}
 
 		/**
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

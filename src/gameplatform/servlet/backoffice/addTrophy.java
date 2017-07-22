@@ -4,10 +4,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,6 +17,7 @@ import gameplatform.db.table.Permesso;
 import gameplatform.db.table.PermessoTemplate;
 import gameplatform.db.table.Template;
 import gameplatform.db.table.Trofeo;
+import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
@@ -31,10 +28,8 @@ import java.util.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
- import javax.servlet.http.HttpServlet;
- import javax.servlet.http.HttpServletRequest;
- import javax.servlet.http.HttpServletResponse;
- import java.io.*;
+
+import java.io.*;
  import java.sql.*;
  import java.util.*;
  import java.util.regex.*;
@@ -77,7 +72,6 @@ import org.apache.commons.io.FilenameUtils;
 			super.init(config);
 	    	this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName); 
-			h = CRUD.executeQuery("SELECT nome FROM Gioco");
 
 			
 		}
@@ -87,7 +81,17 @@ import org.apache.commons.io.FilenameUtils;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-			process(request, response);
+			HttpSession session =  request.getSession();
+			if (session.getAttribute("utenteGameplatform")==null){
+				response.sendRedirect("login.op");
+			} else {
+				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+				if (perm == true){
+					process(request, response);
+				} else {
+					response.sendRedirect("accessdenied.op");
+				}	
+			}
 		}
 
 		/**
@@ -176,6 +180,9 @@ import org.apache.commons.io.FilenameUtils;
 		}
 		
 		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+
+			h = CRUD.executeQuery("SELECT nome FROM Gioco");
 			
 			request.setAttribute("template", this.template);
 			request.setAttribute("gioco1", this.h);

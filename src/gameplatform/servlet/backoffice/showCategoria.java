@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,6 +21,7 @@ import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
@@ -59,28 +61,41 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-	    	this.v = CRUD.executeQuery("SELECT categoria FROM Categoria");
 			
-			if(request.getParameter("id")!=null){
-				if(!request.getParameter("del").equals("0")){
-					List<Categoria> v;
-					Categoria categoria= new Categoria();
-					
+			HttpSession session =  request.getSession();
+			if (session.getAttribute("utenteGameplatform")==null){
+				response.sendRedirect("login.op");
+			} else {
+				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+				if (perm == true){
 
-					v = CRUD.executeQuery("FROM Categoria WHERE categoria ='" +request.getParameter("id")+ "'");
-					String id = (request.getParameter("id"));
-					Iterator<Categoria> it = v.iterator();
-					while(it.hasNext()){
-						categoria = (Categoria) it.next();
+					this.v = CRUD.executeQuery("SELECT categoria FROM Categoria");
+					
+					if(request.getParameter("id")!=null){
+						if(!request.getParameter("del").equals("0")){
+							List<Categoria> v;
+							Categoria categoria= new Categoria();
+							
+
+							v = CRUD.executeQuery("FROM Categoria WHERE categoria ='" +request.getParameter("id")+ "'");
+							String id = (request.getParameter("id"));
+							Iterator<Categoria> it = v.iterator();
+							while(it.hasNext()){
+								categoria = (Categoria) it.next();
+							}
+						
+							categoria.setCategoria(id);
+						CRUD.delete(categoria);
 					}
-				
-					categoria.setCategoria(id);
-				CRUD.delete(categoria);
+					}
+					process(request, response);
+				} else {
+					response.sendRedirect("accessdenied.op");
+				}	
 			}
-			}
-			process(request, response);
+	    	
 			
-			}
+		}
 		
 
 		/**

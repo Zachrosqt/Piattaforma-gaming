@@ -9,10 +9,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -26,6 +22,7 @@ import gameplatform.db.table.Immagine;
 import gameplatform.db.table.Permesso;
 import gameplatform.db.table.PermessoTemplate;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
 import gameplatform.business.impl.GameplatformServiceImpl;
@@ -36,11 +33,8 @@ import java.util.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
- import javax.servlet.http.HttpServlet;
- import javax.servlet.http.HttpServletRequest;
- import javax.servlet.http.HttpServletResponse;
- 
- import java.io.*;
+
+import java.io.*;
  import java.sql.*;
  import java.util.*;
  import java.util.regex.*;
@@ -53,9 +47,6 @@ import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @MultipartConfig
 public class showRecensione extends HttpServlet {
@@ -89,40 +80,52 @@ public class showRecensione extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	this.x = CRUD.executeQuery("SELECT recensione, pk FROM Giocare WHERE approvato ="+"0");
-
-		if(request.getParameter("del")!=null){
-
-			if(request.getParameter("del").equals("0")){ //approve
-				List<Giocare> y;
-				Giocare giocare= new Giocare();
-				y = CRUD.executeQuery("FROM Giocare WHERE pk.gioco.nome='"+request.getParameter("nome")+"'" +" AND pk.utente.username ='"+request.getParameter("username")+"'");
+		
+		HttpSession session =  request.getSession();
+		if (session.getAttribute("utenteGameplatform")==null){
+			response.sendRedirect("login.op");
+		} else {
+			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+			if (perm == true){
 				
-				Iterator<Giocare> it = y.iterator();
-				while (it.hasNext()) {
-					giocare = (Giocare) it.next();
-		        }
-				giocare.setApprovato(true);  
-				CRUD.saveOrUpdate(giocare);
+				this.x = CRUD.executeQuery("SELECT recensione, pk FROM Giocare WHERE approvato ="+"0");
+
+				if(request.getParameter("del")!=null){
+
+					if(request.getParameter("del").equals("0")){ //approve
+						List<Giocare> y;
+						Giocare giocare= new Giocare();
+						y = CRUD.executeQuery("FROM Giocare WHERE pk.gioco.nome='"+request.getParameter("nome")+"'" +" AND pk.utente.username ='"+request.getParameter("username")+"'");
+						
+						Iterator<Giocare> it = y.iterator();
+						while (it.hasNext()) {
+							giocare = (Giocare) it.next();
+				        }
+						giocare.setApprovato(true);  
+						CRUD.saveOrUpdate(giocare);
+						}
+						
+						
+					
+					if(request.getParameter("del").equals("1")){
+						List<Giocare> y;
+						Giocare giocare= new Giocare();
+						y = CRUD.executeQuery("FROM Giocare WHERE pk.gioco.nome='"+request.getParameter("nome")+"'"+"and pk.utente.username ='"+request.getParameter("username")+"'");
+						Iterator<Giocare> it = y.iterator();
+						while (it.hasNext()) {
+							giocare = (Giocare) it.next();
+				        }
+						giocare.setRecensione("");
+						giocare.setApprovato(true);
+						CRUD.saveOrUpdate(giocare);
+					}
 				}
 				
-				
-			
-			if(request.getParameter("del").equals("1")){
-				List<Giocare> y;
-				Giocare giocare= new Giocare();
-				y = CRUD.executeQuery("FROM Giocare WHERE pk.gioco.nome='"+request.getParameter("nome")+"'"+"and pk.utente.username ='"+request.getParameter("username")+"'");
-				Iterator<Giocare> it = y.iterator();
-				while (it.hasNext()) {
-					giocare = (Giocare) it.next();
-		        }
-				giocare.setRecensione("");
-				giocare.setApprovato(true);
-				CRUD.saveOrUpdate(giocare);
-			}
+				process(request, response);
+			} else {
+				response.sendRedirect("accessdenied.op");
+			}	
 		}
-		 
-		process(request, response);
 		
 	}
 

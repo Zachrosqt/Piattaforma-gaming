@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -62,31 +63,44 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-	    	this.ss = CRUD.executeQuery("SELECT username, nome, cognome, email FROM Utente");
-
-			if(request.getParameter("id")!=null){
-				if(!request.getParameter("del").equals("0")){
-					List<Utente> ss;
-					Utente utente= new Utente();
-					
-					System.out.print(request.getParameter("id"));
-
-					ss = CRUD.executeQuery("FROM Utente WHERE id ='"+request.getParameter("id")+"'");
-					System.out.print(request.getParameter("id"));
-
-				String id =(request.getParameter("id"));
-					Iterator<Utente> it = ss.iterator();
-					while(it.hasNext()){
-						utente = (Utente) it.next();
-					}
-					
-				utente.setNome(id);
-				CRUD.delete(utente);
-			}
-			}
-			process(request, response);
 			
+			HttpSession session =  request.getSession();
+			if (session.getAttribute("utenteGameplatform")==null){
+				response.sendRedirect("login.op");
+			} else {
+				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+				if (perm == true){
+
+					this.ss = CRUD.executeQuery("SELECT username, nome, cognome, email FROM Utente");
+
+					if(request.getParameter("id")!=null){
+						if(!request.getParameter("del").equals("0")){
+							List<Utente> ss;
+							Utente utente= new Utente();
+							
+							System.out.print(request.getParameter("id"));
+
+							ss = CRUD.executeQuery("FROM Utente WHERE id ='"+request.getParameter("id")+"'");
+							System.out.print(request.getParameter("id"));
+
+						String id =(request.getParameter("id"));
+							Iterator<Utente> it = ss.iterator();
+							while(it.hasNext()){
+								utente = (Utente) it.next();
+							}
+							
+						utente.setNome(id);
+						CRUD.delete(utente);
+					}
+					}
+					process(request, response);
+				} else {
+					response.sendRedirect("accessdenied.op");
+				}	
 			}
+	    	
+			
+		}
 
 		/**
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

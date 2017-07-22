@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
 import org.hibernate.Query;
@@ -61,7 +62,6 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			super.init(config);
 			this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName); 
-			l = CRUD.executeQuery("SELECT nome FROM Gruppo");
 
 			
 		}
@@ -71,7 +71,17 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-			process(request, response);
+			HttpSession session =  request.getSession();
+			if (session.getAttribute("utenteGameplatform")==null){
+				response.sendRedirect("login.op");
+			} else {
+				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
+				if (perm == true){
+					process(request, response);
+				} else {
+					response.sendRedirect("accessdenied.op");
+				}	
+			}
 		}
 
 		/**
@@ -113,7 +123,6 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			// ignore
 			}
 			user.setPassword(ciccio);
-			System.out.println(ciccio);
 			
 	
 			 
@@ -127,7 +136,10 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		}
 		
 		
-private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+
+			l = CRUD.executeQuery("SELECT nome FROM Gruppo");
 			
 			request.setAttribute("template", this.template);
 			request.setAttribute("gruppo", this.l);
