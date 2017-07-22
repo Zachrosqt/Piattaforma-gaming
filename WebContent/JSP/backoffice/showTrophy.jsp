@@ -58,7 +58,7 @@
                                                          
                                                                    
                                                                                       
-                                                        <td class="col-md-2 col-sm-3 col-xs-12">
+                                                        <td class="col-md-1 col-sm-3 col-xs-12">
                             
                                <a href="showTrophy.op?del=${1}&id=${item[0]}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
                                 <a href="editTrophy.op?del=${0}&id=${item[0]}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>

@@ -49,7 +49,7 @@
                             <c:forEach items="${item}" var="pippo">
                             <td class="col-md-2 col-sm-3 col-xs-12"> ${pippo}</td>                                                                          
                                                          </c:forEach>
-                                                        <td class="col-md-2 col-sm-3 col-xs-12">
+                                                        <td class="col-md-1 col-sm-3 col-xs-12">
                             
                                 <a href="showUser.op?del=${1}&id=${item[0]}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
                                 <a href="editUser.op?del=${0}&id=${item[0]}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>

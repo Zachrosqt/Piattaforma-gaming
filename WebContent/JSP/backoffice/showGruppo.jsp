@@ -38,7 +38,7 @@
 <tbody>
                             <tr>
                             <c:forEach items="${item}" var="pippo">
-                            <td class="col-md-2 col-sm-3 col-xs-12"> ${pippo}</td>  
+                            <td class="col-md-3 col-sm-3 col-xs-12"> ${pippo}</td>  
                             <td class="col-md-1 col-sm-1 col-xs-12">
                                 <a href="showGruppo.op?del=${1}&id=${item}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
                                 <a href="editGroup.op?id=${item}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>

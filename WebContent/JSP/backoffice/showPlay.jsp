@@ -46,7 +46,7 @@
                             <td class="col-md-2 col-sm-3 col-xs-12"> ${pluto}</td>                                                                          
                                                          </c:forEach>
                             
-                            <td class="col-md-2 col-sm-3 col-xs-12">
+                            <td class="col-md-1 col-sm-3 col-xs-12">
                                 <a href="showPlay.op?del=${1}&id=${item[0]}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
                                 <a href="editPlay.op?id=${item[0]}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>
                             </td>
