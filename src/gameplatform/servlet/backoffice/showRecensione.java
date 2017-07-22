@@ -81,7 +81,7 @@ public class showRecensione extends HttpServlet {
 		super.init(config);
     	this.pageName = getInitParameter("pageName");
     	this.template = service.templates(pageName);
-    	x = CRUD.executeQuery("SELECT recensione, pk FROM Giocare WHERE approvato ="+"0");
+    	this.x = CRUD.executeQuery("SELECT recensione, pk FROM Giocare WHERE approvato ="+"0");
     }
 
 	/**
@@ -89,6 +89,8 @@ public class showRecensione extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+    	this.x = CRUD.executeQuery("SELECT recensione, pk FROM Giocare WHERE approvato ="+"0");
+
 		if(request.getParameter("del")!=null){
 
 			if(request.getParameter("del").equals("0")){ //approve

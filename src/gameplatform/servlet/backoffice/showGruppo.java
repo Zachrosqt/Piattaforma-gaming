@@ -59,6 +59,8 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
+	    	this.fv = CRUD.executeQuery("SELECT nome FROM Gruppo");
+
 			if(request.getParameter("id")!=null){
 				if(!request.getParameter("del").equals("0")){
 					List<Gruppo> fv;

@@ -50,8 +50,8 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			super.init(config);
 	    	this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName); 
-	    	v = CRUD.executeQuery("SELECT categoria FROM Categoria");
-			
+	    	this.v = CRUD.executeQuery("SELECT categoria FROM Categoria");
+
 		}
 
 		/**
@@ -59,7 +59,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-			
+	    	this.v = CRUD.executeQuery("SELECT categoria FROM Categoria");
 			
 			if(request.getParameter("id")!=null){
 				if(!request.getParameter("del").equals("0")){
@@ -88,7 +88,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
-			
+
 			
 			process(request, response);
 		}

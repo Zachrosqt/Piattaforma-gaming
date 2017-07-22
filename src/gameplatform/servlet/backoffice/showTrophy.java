@@ -52,8 +52,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			super.init(config);
 	    	this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName); 
-	    	sl = CRUD.executeQuery("SELECT  nome, obiettivo , gioco FROM Trofeo");
-	    	//sh = CRUD.executeQuery("SELECT nome FROM Gioco");
+	    	this.sl = CRUD.executeQuery("SELECT  nome, obiettivo , gioco FROM Trofeo");
 
 	    	
 			
@@ -64,6 +63,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
+	    	this.sl = CRUD.executeQuery("SELECT  nome, obiettivo , gioco FROM Trofeo");
 
 			if(request.getParameter("id")!=null){
 				if(!request.getParameter("del").equals("0")){
