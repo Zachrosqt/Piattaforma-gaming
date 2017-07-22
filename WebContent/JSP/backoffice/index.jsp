@@ -29,7 +29,6 @@
     <!-- Bootstrap -->
     <link href="JSP/backoffice/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="JSP/backoffice/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="JSP/backoffice/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
@@ -72,7 +71,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>nome</h2>
+                <h2>Admin</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -112,7 +111,7 @@
                       <li><a href="showTrophy.op">Trophy</a></li>
                       <li><a href="showUser.op">User</a></li>
                          
-                      <li><a href="showRecensione.op">Show Recensione</a></li>
+                      <li><a href="showRecensione.op">Review</a></li>
                       
                     </ul>
                   </li>
@@ -148,7 +147,6 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="index.php   "> Profile</a></li>
                     <li><a href="/tec web/logout.php"> Log Out</a></li>
                   </ul>
                 </li>
