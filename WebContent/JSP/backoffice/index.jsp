@@ -25,8 +25,6 @@
     <link href="JSP/backoffice/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
 
     <!-- Custom styling plus plugins -->
-    <link href="JSP/backoffice/build/css/custom.min.css" rel="stylesheet">
-    <!-- Bootstrap -->
     <link href="JSP/backoffice/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <!-- NProgress -->
@@ -190,7 +188,6 @@
 <!-- iCheck -->
 <script src="JSP/backoffice/vendors/iCheck/icheck.min.js"></script>
 <!-- bootstrap-daterangepicker -->
-<script src="JSP/backoffice/vendors/moment/min/moment.min.js"></script>
 <script src="JSP/backoffice/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap-wysiwyg -->
 <script src="JSP/backoffice/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
