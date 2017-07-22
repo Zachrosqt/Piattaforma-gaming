@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <!-- Navbar -->
   <nav class="navbar-youplay navbar navbar-default navbar-fixed-top ">
@@ -35,8 +37,14 @@
             </a>
             <div class="dropdown-menu">
               <ul role="menu">
+              	<c:if test = "${utenteGameplatform.gruppo.nome == 'Admin'}">
+	              	<li><a href="showUser.op">BackOffice <span class="badge pull-right bg-warning"></span></a>
+					</li>
+				</c:if>
+              	
                 <li><a href="userprofile.op?user=${utenteGameplatform.username}">Profilo <span class="badge pull-right bg-warning"></span></a>
-
+				</li>
+				
                 <li><a id = "logout" style="cursor: pointer; cursor: hand;">Log Out</a>
                 </li>
               </ul>
