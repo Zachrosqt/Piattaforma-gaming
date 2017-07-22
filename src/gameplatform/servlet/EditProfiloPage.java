@@ -171,9 +171,8 @@ public class EditProfiloPage extends HttpServlet {
 			               // Get the uploaded file parameters
 			               String fileName = user;
 			               String contentType = fi.getContentType();
-			               long maxGrandezza = 5000000;
 				        
-			               if(fi.getSize() > maxGrandezza) {
+			               if(fi.getSize() > maxFileSize) {
 				        	   text = "false size";
 				           } else if (contentType.equals("image/png")){
 					           // Write the file

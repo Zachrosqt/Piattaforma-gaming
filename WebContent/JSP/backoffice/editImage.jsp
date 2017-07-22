@@ -28,28 +28,19 @@
                         <br />
 
 
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="editImage.op" enctype="multipart/form-data">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="editImage.op">
 
                               <div class="form-group">
                                 <label for="gioco" class="control-label col-md-3 col-sm-3 col-xs-12">Select Game <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 <select name="gioco" type="file">
                                         <optgroup >
-<c:forEach begin="0" end="${fn:length(gioco) - 1}" var="index">
-                                            <option value="${gioco[index]}" > <c:out value="${gioco[index]}"/> </option>
+<c:forEach items="${gioco}" var="game">
+                                            <option value="${game.nome}" > <c:out value="${game.nome}"/> </option>
                                            
 </c:forEach>
 </optgroup>
                                     </select>
-                                </div>
-                            </div>
-                            
-                            
-                            <div class="form-group">
-                                <label for="fileToUpload" class="control-label col-md-3 col-sm-3 col-xs-12">Insert Photo <span class="required"></span></label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="file" name="uploadFile" />
-                                
                                 </div>
                             </div>
                             
@@ -59,9 +50,11 @@
 														<label for="fileToUpload" class="control-label col-md-3 col-sm-3 col-xs-12">Mantain Photo <span class="required"></span></label>
 							
 							 <div class="col-md-6 col-sm-6 col-xs-12">
-							<img align="left"src="assets/images/${foto[0]}" />
+							<img align="left"src="assets/images/games/${foto[0].gioco.nome}/${foto[0].path}" style="width: 80% ; height: auto"/>
 							</div>
                             </div>
+                            
+                            <input type="hidden" name="id" value="${idImg}">
 
 
 
@@ -69,7 +62,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button type="submit" class="btn btn-primary">Cancel</button>
-                                    <button type="submit" class="btn btn-success"value="Upload" name="submit"> Upload</button>
+                                    <button type="submit" class="btn btn-success"value="Upload" name="submit"> Edit</button>
                                 </div>
                             </div>
 

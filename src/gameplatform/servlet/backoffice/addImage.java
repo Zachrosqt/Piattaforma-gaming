@@ -86,7 +86,6 @@ import javax.servlet.ServletException;
 			super.init(config);
 	    	this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName);
-	    	x = CRUD.executeQuery("SELECT nome FROM Gioco");
 	    	filePath =  "assets\\images\\games\\temp\\"; 
 
 	    }
@@ -104,6 +103,7 @@ import javax.servlet.ServletException;
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
 			
 			isMultipart = ServletFileUpload.isMultipartContent(request);
 		   
@@ -189,6 +189,8 @@ import javax.servlet.ServletException;
 		
 		
 		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			x = CRUD.executeQuery("SELECT nome FROM Gioco");
 			
 			request.setAttribute("template", this.template);
 			request.setAttribute("gioco", this.x);
