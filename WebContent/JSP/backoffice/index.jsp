@@ -57,7 +57,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="" onclick="window.open('../index.php');" class="site_title"><i class="fa fa-paw"></i> <span>Game Platform </span></a>
+              <a href="" onclick="window.open('../index.php');" class="site_title"><i class="fa fa-gamepad"></i> <span>Game Platform </span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -65,7 +65,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="22.png" alt="..." class="img-circle profile_img">
+                <img src="assets/images/avatar/${utenteGameplatform.username}.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -84,7 +84,7 @@
                   <li><a><i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Add<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                      
-                     
+                     <c:if test = "${utenteGameplatform.gruppo.nome == 'Admin'}">
                       <li><a href="addCategoria.op">Category</a></li> 
                       <li><a href="addGroup.op">Group</a></li>
                       <li><a href="addGroupPermission.op">Group Permission </a></li> 
@@ -92,6 +92,7 @@
                       <li><a href="addPlay.op">Play</a></li>                  
                       <li><a href="addTrophy.op">Trophy</a></li>
                       <li><a href="addUser.op">User</a></li>
+                      </c:if>
                     </ul>
                   </li>
 
@@ -99,6 +100,8 @@
 
                   <li><a><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> Show<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                    
+                    <c:if test = "${utenteGameplatform.gruppo.nome == 'Admin'}">
                       <li><a href="showCategoria.op">Category</a></li>
                       <li><a href="showGruppo.op">Group</a></li>
                       
@@ -110,6 +113,11 @@
                       <li><a href="showUser.op">User</a></li>
                          
                       <li><a href="showRecensione.op">Review</a></li>
+                    </c:if>
+                    
+                    <c:if test = "${utenteGameplatform.gruppo.nome == 'Moderatore'}">
+                      <li><a href="showRecensione.op">Review</a></li>
+                    </c:if>
                       
                     </ul>
                   </li>

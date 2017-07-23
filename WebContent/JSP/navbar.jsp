@@ -37,7 +37,7 @@
             </a>
             <div class="dropdown-menu">
               <ul role="menu">
-              	<c:if test = "${utenteGameplatform.gruppo.nome == 'Admin'}">
+              	<c:if test = "${utenteGameplatform.gruppo.nome == 'Admin' || utenteGameplatform.gruppo.nome == 'Moderatore'}">
 	              	<li><a href="showUser.op">BackOffice <span class="badge pull-right bg-warning"></span></a>
 					</li>
 				</c:if>
