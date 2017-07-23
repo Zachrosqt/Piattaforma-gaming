@@ -272,7 +272,6 @@ public class GameplatformServiceImpl implements GameplatformService{
 
 	@Override
 	public void insertUser(Utente user) {
-		// TODO Auto-generated method stub
 		crud.saveOrUpdate(user);
 	}
 
