@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import gameplatform.business.GameplatformService;
+import gameplatform.business.impl.GameplatformGAMEImp;
 import gameplatform.business.impl.GameplatformServiceImpl;
 import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Livello;
@@ -28,7 +29,7 @@ public class ZezzoGame extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private String pageName;
-	private GameplatformService service = GameplatformServiceImpl.getGameplatformServiceImpl();
+	private GameplatformGAMEImp service = GameplatformGAMEImp.getGameplatformGAMEImp();
 	
 	private Giocare gameplay = new Giocare();
 	private long startTime;

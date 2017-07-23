@@ -78,15 +78,15 @@ function profileInfo(nome, cognome, username, age, data, exp, accessi, mail){
 	      	'</div>');
 };
 
-function profileActivity(livelli){
+function profileActivity(livelli, trofy){
 	$("#profileButton").removeClass("active");
 	$("#activityButton").addClass("active");
 	var activityHtml = '<div class="row">' +
 
-    '<div class="col-md-9">' +
+    '<div class="col-sm-6">' +
 
       '<!-- Activity -->' +
-      '<h2 class="mt-0">Attivit&agrave</h2>' +
+      '<h2 class="mt-0">Livello Globale</h2>' +
       '<div class="youplay-timeline">';
 	for (i = 0; i < livelli.length; i++) {
 		
@@ -112,6 +112,38 @@ function profileActivity(livelli){
     '<!-- /Activity -->' +
 
   '</div>' +
+  
+  '<div class="col-sm-6">' +
+
+	  '<!-- Activity -->' +
+	  '<h2 class="mt-0">Trofei</h2>' +
+	  '<div class="youplay-timeline">';
+	for (i = 0; i < trofy.length; i++) {
+		
+		activityHtml += '<!-- Timeline Message -->' +
+        '<div class="youplay-timeline-block">' +
+        '<!-- icon -->' +
+        '<div class="youplay-timeline-icon bg-primary">' +
+          '<img src="assets/images/trofeo/' + trofy[i][3] + '" alt="' + trofy[i][0] + '" title="' + trofy[i][0] + '">' +
+        '</div>' +
+        '<!-- /icon -->' +
+
+        '<!-- content -->' +
+        '<div class="youplay-timeline-content">' +
+          '<h3 class="mb-0">Trofeo: ' + trofy[i][0] + '</h3>' +
+          '<span class="youplay-timeline-date pt-0">Gioco: ' + trofy[i][2] + '</span>' +
+          trofy[i][1] +
+        '</div>' +
+        '<!-- /content -->' +
+      '</div>' +
+      '<!-- /Timeline Message -->'; 
+			
+	} 
+	
+	activityHtml += '</div>' +
+	'<!-- /Activity -->' +
+	
+	'</div>' +
 
 '</div>';
 	$('#profileBody').html(activityHtml);

@@ -75,7 +75,8 @@ public class ProfilePage extends HttpServlet {
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("livelli", service.livelli(request.getParameter("user")));
+		request.setAttribute("trofei", service.trofeiJavaScript(request.getParameter("user")));
+		request.setAttribute("livelli", service.livelliJavaScript(request.getParameter("user")));
 		request.setAttribute("giocati", service.giocare(request.getParameter("user")));
 		
 		request.setAttribute("template", this.template);

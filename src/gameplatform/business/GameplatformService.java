@@ -26,23 +26,16 @@ public interface GameplatformService {
 	List<Utente> username(String username);
 	List<Utente> userEmail(String email);
 	List<Gruppo> group (String group);
-	List<Giocare> allReview(String game);
-	List<Giocare> playGame(String gioco, String username);
-	List<Livello> livelliList (String usarname);
-	String livelli (String usarname);
+	List<Giocare> allReview(String game);	
+	String livelliJavaScript (String usarname);
+	String trofeiJavaScript (String usarname);
 	int giocare(String usarname);
-	int sumUserExp(String username);
 	void logout(Utente user, HttpSession session);
 	void insertUser(Utente user);
-	void startGiocare(String gioco, String username);
-	void updateGameplay(Giocare game);
-	void addLv(Livello lv);
-	void newTroforUser(String nome, String username);
 	boolean insertReview(String review, int voto, String gioco, String username);
 	boolean login(String username, String Password, HttpServletRequest request);
 	boolean registration(Utente user, Livello lv);
 	boolean permControl(Utente user, String pageName);
-	boolean giocareAtGame(String gioco, String username);
 	
 	
 }

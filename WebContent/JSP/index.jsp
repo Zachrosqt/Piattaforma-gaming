@@ -152,8 +152,9 @@
 					}); 
 					 
 					 $("#activityButton").click(function(){
-						 var items = ${livelli};
-						 profileActivity(items);
+						 var level = ${livelli};
+						 var trofy = ${trofei};
+						 profileActivity(level, trofy);
 					 }); 
 				});
 				
