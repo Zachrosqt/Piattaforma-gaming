@@ -93,6 +93,7 @@ public class showRecensione extends HttpServlet {
 				if(request.getParameter("del")!=null){
 
 					if(request.getParameter("del").equals("0")){ //approve
+						String gioco = request.getParameter("nome");
 						List<Giocare> y;
 						Giocare giocare= new Giocare();
 						y = CRUD.executeQuery("FROM Giocare WHERE pk.gioco.nome='"+request.getParameter("nome")+"'" +" AND pk.utente.username ='"+request.getParameter("username")+"'");
@@ -103,11 +104,37 @@ public class showRecensione extends HttpServlet {
 				        }
 						giocare.setApprovato(true);  
 						CRUD.saveOrUpdate(giocare);
+						
+						List<Giocare> mediaGioco = CRUD.executeQuery("FROM Giocare gioca WHERE gioca.pk.gioco.nome='" + gioco + "' AND gioca.approvato = '1'");
+						
+						Iterator<Giocare> medIt = mediaGioco.iterator();
+						
+						int somma=0;
+						
+						while(medIt.hasNext()){
+							Giocare play = medIt.next();
+							somma += play.getVoto();
 						}
+						
+						int media=somma/mediaGioco.size();
+						
+						List<Gioco> game = CRUD.executeQuery("FROM Gioco game WHERE game.nome='" + gioco + "'");
+						
+						Iterator<Gioco> gameIt = game.iterator();
+						
+						if(gameIt.hasNext()){
+							Gioco gameMed = gameIt.next();
+							gameMed.setMediaGioco(media);
+							
+							CRUD.saveOrUpdate(gameMed);
+							
+						}
+					}
 						
 						
 					
 					if(request.getParameter("del").equals("1")){
+						String gioco = request.getParameter("nome");
 						List<Giocare> y;
 						Giocare giocare= new Giocare();
 						y = CRUD.executeQuery("FROM Giocare WHERE pk.gioco.nome='"+request.getParameter("nome")+"'"+"and pk.utente.username ='"+request.getParameter("username")+"'");
@@ -118,6 +145,31 @@ public class showRecensione extends HttpServlet {
 						giocare.setRecensione("");
 						giocare.setApprovato(false);
 						CRUD.saveOrUpdate(giocare);
+						
+						List<Giocare> mediaGioco = CRUD.executeQuery("FROM Giocare gioca WHERE gioca.pk.gioco.nome='" + gioco + "' AND gioca.approvato = '1'");
+						
+						Iterator<Giocare> medIt = mediaGioco.iterator();
+						
+						int somma=0;
+						
+						while(medIt.hasNext()){
+							Giocare play = medIt.next();
+							somma += play.getVoto();
+						}
+						
+						int media=somma/mediaGioco.size();
+						
+						List<Gioco> game = CRUD.executeQuery("FROM Gioco game WHERE game.nome='" + gioco + "'");
+						
+						Iterator<Gioco> gameIt = game.iterator();
+						
+						if(gameIt.hasNext()){
+							Gioco gameMed = gameIt.next();
+							gameMed.setMediaGioco(media);
+							
+							CRUD.saveOrUpdate(gameMed);
+							
+						}
 					}
 					
 					response.sendRedirect("showRecensione.op");
