@@ -238,7 +238,7 @@ public class GameplatformServiceImpl implements GameplatformService{
 			
 			crud.saveOrUpdate(gioc);
 			
-			List<Giocare> mediaGioco = crud.executeQuery("FROM Giocare gioca WHERE gioca.pk.gioco.nome='" + gioco + "'");
+			List<Giocare> mediaGioco = crud.executeQuery("FROM Giocare gioca WHERE gioca.pk.gioco.nome='" + gioco + "' AND gioca.approvato = '1'");
 			
 			Iterator<Giocare> medIt = mediaGioco.iterator();
 			

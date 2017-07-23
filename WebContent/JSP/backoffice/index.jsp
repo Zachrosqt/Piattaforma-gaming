@@ -68,8 +68,8 @@
                 <img src="assets/images/avatar/${utenteGameplatform.username}.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Admin</h2>
+                <span>Benvenuto,</span>
+                <h2>${utenteGameplatform.nome} ${utenteGameplatform.cognome}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->

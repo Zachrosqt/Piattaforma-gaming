@@ -88,7 +88,7 @@ public class showRecensione extends HttpServlet {
 			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
 			if (perm == true){
 				
-				this.x = CRUD.executeQuery("SELECT recensione, pk FROM Giocare WHERE approvato ="+"0");
+				this.x = CRUD.executeQuery("SELECT recensione, pk FROM Giocare WHERE approvato ="+"0"+" AND recensione!=''");
 
 				if(request.getParameter("del")!=null){
 
@@ -116,12 +116,15 @@ public class showRecensione extends HttpServlet {
 							giocare = (Giocare) it.next();
 				        }
 						giocare.setRecensione("");
-						giocare.setApprovato(true);
+						giocare.setApprovato(false);
 						CRUD.saveOrUpdate(giocare);
 					}
+					
+					response.sendRedirect("showRecensione.op");
+				} else {
+					process(request, response);
 				}
 				
-				process(request, response);
 			} else {
 				response.sendRedirect("accessdenied.op");
 			}	
