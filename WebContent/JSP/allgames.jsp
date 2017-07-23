@@ -17,6 +17,7 @@
           <li data-filter="all" class="active"><span>Tutti</span>
           </li>
           
+          <!-- Visualizzazione delle diverse categorie -->
           <c:forEach items="${categorie}" var="categoria">
           	<li data-filter="${categoria.categoria}"><span>${categoria.categoria}</span>
           </li>
@@ -30,7 +31,7 @@
           <!-- Single Product Block -->
           <c:forEach items="${giochi}" var="gioco">
           
-          	<div class="item col-lg-4 col-md-6 col-xs-12" data-filters="${gioco.categoria.categoria }">
+          	<div class="item col-lg-4 col-md-6 col-xs-12" data-filters="${gioco.categoria.categoria }"> <!-- categorizzazione giochi -->
           		
             <a href="game.op?id=${gioco.nome}" class="angled-img">
               <div class="img img-offset">
@@ -42,9 +43,9 @@
                 <div class="row">
                   <div class="col-xs-6">
                     <div class="rating">
-                     <c:forEach var="i" begin= "1" end = "5">
+                     <c:forEach var="i" begin= "1" end = "5"> <!-- ciclo per ottenere la media dei voti del gioco -->
               	 	 	<c:choose>
-         					<c:when test = "${gioco.mediaGioco >= i}">
+         					<c:when test = "${gioco.mediaGioco >= i}"> 
            						<i class="fa fa-star"></i>
          					</c:when>
          					<c:otherwise>
@@ -70,23 +71,13 @@
       <!-- Right Side -->
       <div class="col-md-3">
 
-        <!-- Side Search -->
-        <div class="side-block">
-          <p>Cerca giochi:</p>
-          <form action="http://html.nkdev.info/youplay/dark/search.html">
-            <div class="youplay-input">
-              <input type="text" name="search" placeholder="cerca...">
-            </div>
-          </form>
-        </div>
-        <!-- /Side Search -->
-
         <!-- Side Popular News -->
         <div class="side-block">
           <h4 class="block-title">Ultimi giochi</h4>
           <div class="block-content p-0">
 
             <!-- Single News Block -->
+            <!--  Visualizzazione ultimi 4 aggiunti sulla piattaforma in ordine cronologico -->
             <%
             boolean esc = false;
             List<Gioco> game = (List<Gioco>)request.getAttribute("giochi");

@@ -37,7 +37,7 @@
             </a>
             <div class="dropdown-menu">
               <ul role="menu">
-              	<c:if test = "${utenteGameplatform.gruppo.nome == 'Admin' || utenteGameplatform.gruppo.nome == 'Moderatore'}">
+              	<c:if test = "${utenteGameplatform.gruppo.nome == 'Admin' || utenteGameplatform.gruppo.nome == 'Moderatore'}"> <!-- Se l'utente è un amministratore o moderatore comparirà la redirezione al backoffice nel menù a tendina relativa all'utente -->
 	              	<li><a href="showUser.op">BackOffice <span class="badge pull-right bg-warning"></span></a>
 					</li>
 				</c:if>
@@ -49,11 +49,6 @@
                 </li>
               </ul>
             </div>
-          </li>
-          <li>
-            <a class="search-toggle" href="search.html">
-              <i class="fa fa-search"></i>
-            </a>
           </li>
         </ul>
       </div>

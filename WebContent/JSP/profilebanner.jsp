@@ -19,6 +19,7 @@
         </div>
       </div>
 
+	  <!-- Banner con immagini del profilo, username, livello e giochi giocati dall'utente -->
       <div class="info">
         <div>
           <div class="container youplay-user">
@@ -36,8 +37,7 @@
               </div>
               <i class="fa fa-search-plus icon"></i>
             </a>
-            <!--
-                -->
+            <!-- Informazioni utente -->
             <div class="user-data">
               <h2>${utenteGameplatform.nome} ${utenteGameplatform.cognome}</h2>
               <div class="activity">

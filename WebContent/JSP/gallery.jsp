@@ -23,7 +23,7 @@
     </div>
     <!-- /Banner -->
 
-
+<!-- Slider con le immagini del gioco -->
     <!-- Images With Text -->
     <div class="youplay-carousel gallery-popup">
     <c:forEach items="${gallery}" var="immagine">

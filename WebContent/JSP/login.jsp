@@ -15,12 +15,12 @@
               <h1>Login</h1>
 				
               <form onsubmit="return false" id="loginform">
-              <div id="alertusername">
+              <div id="alertusername"> <!-- messaggio di errore in caso di campo vuoto -->
 				</div>
                 <div class="youplay-input">
                   <input type="text" id="username" name="username" placeholder="Username">
                 </div>
-              <div id="alertpassword">
+              <div id="alertpassword"> <!-- messaggio di errore in caso di campo vuoto -->
 				</div>
                 <div class="youplay-input">
                   <input type="password" id="password" name="password" placeholder="Password">

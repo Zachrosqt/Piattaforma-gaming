@@ -17,35 +17,35 @@
               <div id="alert"></div>
 
               <form onsubmit="return false" id="registrationform">
-              	<div id="alertname"></div>
+              	<div id="alertname"></div> <!-- div di segnalazione errore in caso di campo vuoto -->
                 <div class="youplay-input">
                   <input type="text" id="nome" name="nome" placeholder="Nome">
                 </div>
-              	<div id="alertsurname"></div>
+              	<div id="alertsurname"></div> <!-- div di segnalazione errore in caso di campo vuoto -->
                 <div class="youplay-input">
                   <input type="text" id="cognome" name="cognome" placeholder="Cognome">
                 </div>
-              	<div id="alerteta"></div>
+              	<div id="alerteta"></div> <!-- div di segnalazione errore in caso di campo vuoto -->
                 <div class="youplay-input">
                   <input type="number" id="eta" name="eta" placeholder="Età" min="3" max="99">
                 </div>
-                <div id="alertusername"></div>
+                <div id="alertusername"></div> <!-- div di segnalazione errore in caso di campo vuoto -->
                 <div class="youplay-input">
                   <input type="text" id="username" name="username" placeholder="Username">
                 </div>
-                <div id="alertpassword"></div>
+                <div id="alertpassword"></div> <!-- div di segnalazione errore in caso di campo vuoto -->
                 <div class="youplay-input">
                   <input type="password" id="password" name="password" placeholder="Password">
                 </div>
-                <div id="alertconfirm"></div>
+                <div id="alertconfirm"></div> <!-- div di segnalazione errore in caso di campo vuoto o non corrispondente alla password sopra digitata-->
                 <div class="youplay-input">
                   <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Conferma Password">
                 </div>
-                <div id="alertemail"></div>
+                <div id="alertemail"></div> <!-- div di segnalazione errore in caso di campo vuoto -->
                 <div class="youplay-input">
                   <input type="email" id="mail" name="mail" placeholder="E-Mail">
                 </div>
-                <div id="alertconfirmemail"></div>
+                <div id="alertconfirmemail"></div> <!-- div di segnalazione errore in caso di campo vuoto o non corrispondente all'email sopra digitata -->
                 <div class="youplay-input">
                   <input type="email" id="confirmmail" name="mail" placeholder="Conferma E-Mail">
                 </div>

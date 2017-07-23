@@ -2,5 +2,5 @@
     pageEncoding="ISO-8859-1"%>
 
 <div class="container youplay-content" id="profileBody" style="margin-top: 5%; margin-bottom: 5%;">
-
+ <!-- Il profilo è presente in WebContent/gameplatform/profile.js -->
 </div>

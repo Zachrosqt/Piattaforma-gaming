@@ -15,7 +15,7 @@
 	                <div id="alertfile">
 			  		</div>
 	                <div class="youplay-input">
-	                  <input type = "file" name = "file" id="file" size = "50"/>
+	                  <input type = "file" name = "file" id="file" size = "50"/> <!-- upload file di dimensione massima di 5mb e in formato png -->
 	                </div>
 	                </td>
 	              </tr>
@@ -24,7 +24,7 @@
 	                  <p>Nome</p>
 	                </td>
 	                <td>
-	                <div id="alertinome">
+	                <div id="alertinome"> <!-- div di errore in caso di campo vuoto -->
 			  		</div>
 	                <div class="youplay-input">
 	                  <input type="text" name="inome" id="inome" value="${utenteGameplatform.nome}">
@@ -36,7 +36,7 @@
 	                  <p>Cognome</p>
 	                </td>
 	                <td>
-	                <div id="alerticognome">
+	                <div id="alerticognome"> <!-- div di errore in caso di campo vuoto -->
 			  		</div>
 	                <div class="youplay-input">
 	                    <input type="text" name="icognome" id="icognome" value="${utenteGameplatform.cognome}">
@@ -48,7 +48,7 @@
 	                  <p>Et&agrave</p>
 	                </td>
 	                <td>
-	                <div id="alertieta">
+	                <div id="alertieta"> <!-- div di errore in caso di campo vuoto -->
 			  		</div>
 	                <div class="youplay-input">
 	                	<input type="int" name="ieta" id="ieta" value="${utenteGameplatform.eta}">
@@ -60,7 +60,7 @@
 	                  <p>e-mail</p>
 	                </td>
 	                <td>
-	                <div id="alertiemail">
+	                <div id="alertiemail"> <!-- div di errore in caso di campo vuoto -->
 			  		</div>
 	                <div class="youplay-input">
 	                	<input type="email" name="iemail" id="iemail" value="${utenteGameplatform.email}">
@@ -72,7 +72,7 @@
 	                  <p>Password</p>
 	                </td>
 	                <td>
-	                <div id="alertipassword">
+	                <div id="alertipassword"> <!-- div di errore in caso di campo vuoto -->
 			  		</div>
 	                <div class="youplay-input">
 	                	<input type="password" name="ipassword" id="ipassword" value="${utenteGameplatform.password}">
