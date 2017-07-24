@@ -78,7 +78,7 @@
                                                          
                             <td class="col-md-1 col-sm-3 col-xs-12">
                              
-                                <a href="showToPlay.php?cognome=<[cognome]>&nome=<[nome]>&anno=<[anno]>&nome1=<[nome_competizione]>"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
+                                <a href="showGroupPermission.op?del=1&g=${groupToControl.nome}&p=${permesso.nome}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
                             </td>
                       
                          </tr>

@@ -73,7 +73,46 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 				if (perm == true){
 
 					request.setAttribute("test", false);
-					process(request, response);
+					
+					if (request.getParameter("del")!= null && request.getParameter("del").equals("1")){
+						
+						Configuration conf = new Configuration().configure();
+						Session sessionHib = conf.buildSessionFactory().getCurrentSession();
+						sessionHib.beginTransaction();
+						
+						Query queryGroup = sessionHib.createQuery("FROM Gruppo group WHERE group.nome='" + request.getParameter("g") + "'");
+						List<Gruppo> group = queryGroup.getResultList();
+						
+						Iterator<Gruppo> groupInt = group.iterator();
+
+				    	if(groupInt.hasNext()){
+
+				    		Gruppo groupTemp = groupInt.next();
+				    		
+				    		Query queryPerm = sessionHib.createQuery("FROM Permesso perm WHERE perm.nome='" + request.getParameter("p") + "'");
+							List<Permesso> permesso = queryPerm.getResultList();
+							
+							Iterator<Permesso> permessoIt = permesso.iterator();
+							
+							if(permessoIt.hasNext()){
+								Permesso permTemp = permessoIt.next();
+								groupTemp.getPermesso().remove(permTemp);
+					    		
+					    		sessionHib.saveOrUpdate(groupTemp);
+							}
+				    		
+				    	}
+						
+				    	sessionHib.getTransaction().commit();
+						
+				    	sessionHib.close();
+				    	
+				    	response.sendRedirect("showGroupPermission.op");
+						
+					} else {
+						process(request, response);
+					}
+				
 				} else {
 					response.sendRedirect("accessdenied.op");
 				}	
