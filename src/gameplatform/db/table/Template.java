@@ -41,35 +41,4 @@ public class Template implements java.io.Serializable{
 		this.permessoTemplate = permessoTemplate;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((indirizzo == null) ? 0 : indirizzo.hashCode());
-		result = prime * result + ((permessoTemplate == null) ? 0 : permessoTemplate.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Template other = (Template) obj;
-		if (indirizzo == null) {
-			if (other.indirizzo != null)
-				return false;
-		} else if (!indirizzo.equals(other.indirizzo))
-			return false;
-		if (permessoTemplate == null) {
-			if (other.permessoTemplate != null)
-				return false;
-		} else if (!permessoTemplate.equals(other.permessoTemplate))
-			return false;
-		return true;
-	}
-	
 }

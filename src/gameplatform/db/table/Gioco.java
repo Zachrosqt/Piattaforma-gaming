@@ -92,7 +92,7 @@ public class Gioco implements java.io.Serializable{
 		this.giocare = giocare;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "gioco")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "gioco")
 	public Set<Trofeo> getTrofeo() {
 		return trofeo;
 	}
@@ -101,7 +101,7 @@ public class Gioco implements java.io.Serializable{
 		this.trofeo = trofeo;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "gioco")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "gioco")
 	public Set<Immagine> getImmagine() {
 		return immagine;
 	}

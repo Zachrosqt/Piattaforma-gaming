@@ -131,53 +131,6 @@ public class Giocare implements java.io.Serializable{
 		this.approvato = approvato;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (approvato ? 1231 : 1237);
-		result = prime * result + ((data == null) ? 0 : data.hashCode());
-		result = prime * result + (int) (exp ^ (exp >>> 32));
-		result = prime * result + (int) (numAccessi ^ (numAccessi >>> 32));
-		result = prime * result + ((pk == null) ? 0 : pk.hashCode());
-		result = prime * result + ((recensione == null) ? 0 : recensione.hashCode());
-		result = prime * result + voto;
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Giocare other = (Giocare) obj;
-		if (approvato != other.approvato)
-			return false;
-		if (data == null) {
-			if (other.data != null)
-				return false;
-		} else if (!data.equals(other.data))
-			return false;
-		if (exp != other.exp)
-			return false;
-		if (numAccessi != other.numAccessi)
-			return false;
-		if (pk == null) {
-			if (other.pk != null)
-				return false;
-		} else if (!pk.equals(other.pk))
-			return false;
-		if (recensione == null) {
-			if (other.recensione != null)
-				return false;
-		} else if (!recensione.equals(other.recensione))
-			return false;
-		if (voto != other.voto)
-			return false;
-		return true;
-	}
 
 }

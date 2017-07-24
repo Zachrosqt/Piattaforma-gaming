@@ -46,39 +46,5 @@ public class Immagine implements java.io.Serializable{
 	public void setGioco(Gioco gioco) {
 		this.gioco = gioco;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((gioco == null) ? 0 : gioco.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((path == null) ? 0 : path.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Immagine other = (Immagine) obj;
-		if (gioco == null) {
-			if (other.gioco != null)
-				return false;
-		} else if (!gioco.equals(other.gioco))
-			return false;
-		if (id != other.id)
-			return false;
-		if (path == null) {
-			if (other.path != null)
-				return false;
-		} else if (!path.equals(other.path))
-			return false;
-		return true;
-	}
 	
 }

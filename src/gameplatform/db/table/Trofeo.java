@@ -69,7 +69,7 @@ public class Trofeo implements java.io.Serializable{
 			this.utente = utente;
 		}
 		
-		@ManyToOne(fetch = FetchType.LAZY)
+		@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 		@JoinColumn(name = "game", nullable = false)
 		public Gioco getGioco() {
 			return gioco;
