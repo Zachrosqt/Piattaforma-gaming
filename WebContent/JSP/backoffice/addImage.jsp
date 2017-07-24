@@ -35,7 +35,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 <select name="gioco" type="file">
                                         <optgroup >
-<c:forEach begin="0" end="${fn:length(gioco) - 1}" var="index">
+<c:forEach begin="0" end="${fn:length(gioco) }" var="index">
                                             <option value="${gioco[index]}" > <c:out value="${gioco[index]}"/> </option>
                                            
 </c:forEach>

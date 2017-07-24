@@ -61,7 +61,8 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub 
-			
+	    	this.v = CRUD.executeQuery("SELECT categoria FROM Categoria");
+
 			HttpSession session =  request.getSession();
 			if (session.getAttribute("utenteGameplatform")==null){
 				response.sendRedirect("login.op");
@@ -83,8 +84,18 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 							while(it.hasNext()){
 								categoria = (Categoria) it.next();
 							}
-						
-							categoria.setCategoria(id);
+							
+							// cancello la categoria su tutti i giochi.
+							Gioco g = new Gioco();
+							List <Gioco> a=CRUD.executeQuery("FROM Gioco WHERE CATEGORIA='"+request.getParameter("id")+ "'");
+							Iterator<Gioco> it1 = a.iterator();
+							while(it1.hasNext()){
+								g = (Gioco) it1.next();
+								g.setCategoria(null);
+								CRUD.saveOrUpdate(g);	
+							}
+							
+							categoria.setCategoria(null);
 						CRUD.delete(categoria);
 					}
 					}
