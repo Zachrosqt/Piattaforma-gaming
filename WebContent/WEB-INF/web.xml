@@ -120,18 +120,19 @@
     <url-pattern>/editprofile.op</url-pattern>
   </servlet-mapping>
   
+  <!-- Game -->
   
   <servlet>
-    <servlet-name>zezzo</servlet-name>
-    <servlet-class>gameplatform.servlet.ZezzoGame</servlet-class>
+    <servlet-name>testGame</servlet-name>
+    <servlet-class>gameplatform.servlet.TestGame</servlet-class>
     <init-param>
       <param-name>gioco</param-name>
-      <param-value>Zezzo</param-value>
+      <param-value>Soulcalibur</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>zezzo</servlet-name>
-    <url-pattern>/Zezzo.op</url-pattern>
+    <servlet-name>testGame</servlet-name>
+    <url-pattern>/Soulcalibur.op</url-pattern>
   </servlet-mapping>
   
   

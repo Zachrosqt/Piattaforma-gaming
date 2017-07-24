@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "categoria")
 public class Categoria implements java.io.Serializable{
 
+	private int Id;
 	private String categoria;
 	private Set<Gioco> gioco = new HashSet<Gioco>(0);
 
