@@ -164,13 +164,16 @@ import java.io.*;
 		            
 		               // Write the file
 		               
+		               
 		               if((contentType.equals("image/jpeg") || contentType.equals("image/png")) && sizeInBytes <= maxFileSize){
+		            	   
 			               if( fileName.lastIndexOf("\\") >= 0 ) {
 			                  file = new File( path + filePath + fileName.substring( fileName.lastIndexOf("\\"))) ;
 			               } else {
 			                  file = new File( path + filePath + fileName.substring(fileName.lastIndexOf("\\")+1)) ;
 			               }
 			               fi.write( file ) ;
+			               
 			               
 			               Immagine img = new Immagine();
 			               

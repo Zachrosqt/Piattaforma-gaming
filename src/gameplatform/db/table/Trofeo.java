@@ -1,6 +1,8 @@
 package gameplatform.db.table;
 
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -80,3 +82,5 @@ public class Trofeo implements java.io.Serializable{
 		}
 		
 }
+
+

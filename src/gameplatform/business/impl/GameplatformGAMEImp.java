@@ -99,6 +99,8 @@ public class GameplatformGAMEImp implements GameplatformGAME{
 		startGioco.setUtente(player);
 		startGioco.setGioco(gameToPlay);
 		
+		crud.saveOrUpdate(startGioco);
+		
 	}
 
 	@Override
@@ -146,7 +148,7 @@ public class GameplatformGAMEImp implements GameplatformGAME{
 	}
 
 	@Override
-	public void newTroforUser(String nome, String username) {
+	public void newTrofeoUser(String nome, String username) {
 		
 		Configuration conf = new Configuration().configure();
 		Session session = conf.buildSessionFactory().getCurrentSession();
@@ -155,15 +157,24 @@ public class GameplatformGAMEImp implements GameplatformGAME{
 		Query queryTrofeo = session.createQuery("FROM Trofeo trf WHERE trf.nome='" + nome + "'");
 		List<Trofeo> listTrofeo = queryTrofeo.getResultList();
 		
-		Query queryUser = session.createQuery("FROM Utente user WHERE user.username='" + username + "'");
-		List<Utente> listUser = queryUser.getResultList();
+		Iterator<Trofeo> trofIt = listTrofeo.iterator();
 		
-		Trofeo trofeo = listTrofeo.get(listTrofeo.size() -1);
-		Utente user = listUser.get(listUser.size() -1);
+		if(trofIt.hasNext()){
+			Trofeo trofeo = trofIt.next();
+			
+			Query queryUser = session.createQuery("FROM Utente user WHERE user.username='" + username + "'");
+			List<Utente> listUser = queryUser.getResultList();
+			
+			Iterator<Utente> userIt = listUser.iterator();
+			
+			if(userIt.hasNext()){
+				Utente user = userIt.next();
+				user.getTrofeo().add(trofeo);
+				
+				session.saveOrUpdate(user);
+			}
 
-		user.getTrofeo().add(trofeo);
-		
-		session.saveOrUpdate(user);
+		}
 		
 		session.getTransaction().commit();
 		

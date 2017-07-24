@@ -21,11 +21,9 @@ import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Livello;
 import gameplatform.db.table.Utente;
 
-/**
- * Servlet implementation class Zezzo
- */
 
-public class ZezzoGame extends HttpServlet {
+
+public class TestGame extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private String pageName;
@@ -38,7 +36,7 @@ public class ZezzoGame extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ZezzoGame() {
+    public TestGame() {
         super();
     }
     
@@ -110,6 +108,10 @@ public class ZezzoGame extends HttpServlet {
 					this.gameplay.setLivello(curLv);
 						
 					service.updateGameplay(this.gameplay);
+					
+					System.out.println("Livello " + curLv);
+					
+					service.newTrofeoUser("Livello " + curLv, username);
 	
 				}
 				
@@ -140,11 +142,12 @@ public class ZezzoGame extends HttpServlet {
 						newLv.setUtente(currUser);
 						
 						service.addLv(newLv);
+						
 					}
 				}
 				
 				if (this.gameplay.getLivello()>=17){
-					service.newTroforUser("Ci sei quasi", username);
+					service.newTrofeoUser("Ci sei quasi", username);
 				}
 				
 				text=" " + this.gameplay.getLivello() + ", " + this.gameplay.getExp() + ", " + globalLv + ", " + this.gameplay.getNumAccessi();
@@ -163,6 +166,10 @@ public class ZezzoGame extends HttpServlet {
 				long duration = (endTime - startTime);
 				long minutes = (int) ((duration / (1000*60)) % 60);
 				long minutsPlay = gameplay.getMinuti() + minutes;
+				
+				if ((gameplay.getMinuti() + minutes)>=5){
+					service.newTrofeoUser("Novellino", username);
+				}
 				
 				gameplay.setMinuti(minutsPlay);
 				
@@ -200,7 +207,7 @@ public class ZezzoGame extends HttpServlet {
 			}
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("JSP/zezzo.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("JSP/testgioco.jsp");
 		view.forward(request, response);
 	}
 

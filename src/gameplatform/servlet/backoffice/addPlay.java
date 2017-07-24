@@ -1,4 +1,5 @@
 package gameplatform.servlet.backoffice;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -107,6 +109,18 @@ import gameplatform.db.*;
 			
 	
 			CRUD.saveOrUpdate(gioco);
+			
+			ServletContext app=getServletContext();
+			String path=app.getRealPath("");
+			
+			String filePath =  "assets\\images\\games\\" + request.getParameter("name") + "\\";
+			
+			File file = new File(path + filePath);
+			
+			if (!file.exists()) {
+	            if (file.mkdir()) {
+	            }
+			}
 			
 			process(request, response);
 		}

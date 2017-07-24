@@ -17,6 +17,6 @@ public interface GameplatformGAME {
 	void startGiocare(String gioco, String username);
 	void updateGameplay(Giocare game);
 	void addLv(Livello lv);
-	void newTroforUser(String nome, String username);
+	void newTrofeoUser(String nome, String username);
 	boolean giocareAtGame(String gioco, String username);
 }

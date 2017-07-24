@@ -4,26 +4,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Zezzo Game</title>
+<title>Test Game</title>
 </head>
 <body>
 <div id="lv"></div>
 <div id="lvGlobale"></div>
 <div id="exp"></div>
 <div id="accessi"></div>
- <button type="button" id="zezzopoint">Add Point!</button> 
- <button type="button" id="zezzoclose">Close Game!</button> 
+ <button type="button" id="testpoint">Add Point!</button> 
+ <button type="button" id="testclose">Close Game!</button> 
  
 <!-- jQuery -->
 <script type="text/javascript" src="assets/bower_components/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript">
-$("#zezzopoint").click(function(e){
-	var url = "Zezzo.op";
+$("#testpoint").click(function(e){
+	var url = "Soulcalibur.op";
 	$.ajax ({
 		type: "POST",
 		url: url,
-		data: {button: "exp", user: "Er Zezzo"},
+		data: {button: "exp", user: "${utenteGameplatform.username}"},
 		
 		success: function(data){
 			var res = data.split(",");
@@ -36,12 +36,12 @@ $("#zezzopoint").click(function(e){
 	e.preventDefault();
 });
 
-$("#zezzoclose").click(function(e){
-	var url = "Zezzo.op";
+$("#testclose").click(function(e){
+	var url = "Soulcalibur.op";
 	$.ajax ({
 		type: "POST",
 		url: url,
-		data: {button: "close", user: "Er Zezzo"},
+		data: {button: "close", user: "${utenteGameplatform.username}"},
 		
 		success: function(data){
 			var res = data.split(",");
