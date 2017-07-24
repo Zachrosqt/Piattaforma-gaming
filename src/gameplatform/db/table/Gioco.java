@@ -110,7 +110,7 @@ public class Gioco implements java.io.Serializable{
 		this.immagine = immagine;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria", nullable = true)
 	public Categoria getCategoria() {
 		return categoria;

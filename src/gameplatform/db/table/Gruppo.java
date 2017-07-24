@@ -39,7 +39,7 @@ public class Gruppo implements java.io.Serializable{
         this.nome = nome;
     }
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "gruppo")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gruppo")
     public Set<Utente> getUtente() {
 		return utente;
 	}

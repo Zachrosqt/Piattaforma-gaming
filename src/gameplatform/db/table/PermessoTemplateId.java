@@ -7,7 +7,7 @@ public class PermessoTemplateId implements java.io.Serializable{
 	private Permesso permesso;
 	private Template template;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	public Permesso getPermesso() {
 		return permesso;
 	}
@@ -15,7 +15,7 @@ public class PermessoTemplateId implements java.io.Serializable{
 		this.permesso = page;
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	public Template getTemplate() {
 		return template;
 	}

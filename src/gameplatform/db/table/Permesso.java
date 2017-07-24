@@ -54,7 +54,7 @@ public class Permesso implements java.io.Serializable{
 		this.permessoTemplate = permessoTemplate;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "permesso")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "permesso")
 	public Set<Gruppo> getGruppo() {
 		return gruppo;
 	}

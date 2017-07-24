@@ -94,7 +94,7 @@ public class Utente implements java.io.Serializable{
         return numeroAccessi;
     }
     
-    @ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "nomeGruppo", nullable = false)
     public Gruppo getGruppo(){
     	return this.gruppo;

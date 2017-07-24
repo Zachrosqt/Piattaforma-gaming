@@ -9,7 +9,7 @@ public class GiocareId implements java.io.Serializable{
 	private Utente utente;
 	private Gioco gioco;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	public Utente getUtente() {
 		return utente;
 	}
@@ -17,7 +17,7 @@ public class GiocareId implements java.io.Serializable{
 		this.utente = utente;
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	public Gioco getGioco() {
 		return gioco;
 	}

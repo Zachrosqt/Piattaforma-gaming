@@ -60,7 +60,7 @@ public class Trofeo implements java.io.Serializable{
 	        this.nome = nome;
 	    }
 	    
-	    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "trofeo")
+	    @ManyToMany(mappedBy = "trofeo")
 	    public Set<Utente> getUtente() {
 			return utente;
 		}
@@ -69,7 +69,7 @@ public class Trofeo implements java.io.Serializable{
 			this.utente = utente;
 		}
 		
-		@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "game", nullable = false)
 		public Gioco getGioco() {
 			return gioco;

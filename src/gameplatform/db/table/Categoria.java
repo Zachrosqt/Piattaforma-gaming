@@ -30,7 +30,7 @@ public class Categoria implements java.io.Serializable{
 		this.categoria = categoria;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "categoria")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
 	public Set<Gioco> getGioco() {
 		return gioco;
 	}
