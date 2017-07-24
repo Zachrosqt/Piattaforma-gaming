@@ -95,7 +95,6 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 								CRUD.saveOrUpdate(g);	
 							}
 							
-							//categoria.setCategoria();
 						CRUD.delete(categoria);
 					}
 					}

@@ -18,6 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
 import gameplatform.db.table.Categoria;
+import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
 import gameplatform.db.table.Template;
 import gameplatform.db.table.Utente;
@@ -36,6 +37,9 @@ public class editCategoria extends HttpServlet {
 	private GameplatformCRUD CRUD = GameplatformCRUDImpl.getGameplatformCRUDImpl();
 	private String v;
 	private Categoria category=new Categoria();
+	private List<Categoria> cat;
+	private List<Gioco> gioc;
+
 
 
        
@@ -69,9 +73,8 @@ public class editCategoria extends HttpServlet {
 		} else {
 			boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
 			if (perm == true){
-				this.v=request.getParameter("id");	
-				this.category.setCategoria(this.v);
-				CRUD.delete(this.category);
+				
+				
 				process(request, response);
 			} else {
 				response.sendRedirect("accessdenied.op");
@@ -86,9 +89,33 @@ public class editCategoria extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		this.gioc= CRUD.executeQuery("FROM Gioco WHERE categoria.categoria ='"+request.getParameter("id")+"'");
+		this.cat= CRUD.executeQuery("FROM Categoria WHERE categoria  ='"+request.getParameter("id")+"'");
+		Iterator<Categoria> userIt = this.cat.iterator();
+		while(userIt.hasNext()){
+			this.category= userIt.next();
+			
+		}
 
-		this.category.setCategoria(request.getParameter("name"));
-		CRUD.saveOrUpdate(category);
+		//mettiamo le categorie a null
+		Iterator<Gioco> giocoIt = this.gioc.iterator();
+			while(giocoIt.hasNext()){
+				Gioco game= giocoIt.next();	
+				game.setCategoria(null);
+				CRUD.saveOrUpdate(game);		
+		}
+			System.out.println(request.getParameter("name"));
+			this.category.setCategoria(request.getParameter("name"));
+			CRUD.saveOrUpdate(category);
+			
+			
+			Iterator<Gioco> gioco = this.gioc.iterator();
+			while(gioco.hasNext()){
+				Gioco game= gioco.next();	
+				game.setCategoria(this.category);
+				CRUD.saveOrUpdate(game);		
+		}
+
 				process(request, response);
 		
 	}
