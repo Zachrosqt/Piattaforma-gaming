@@ -25,48 +25,68 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_content">
+                
+                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="showGroupPermission.op" >
 
-                    <table id="datatable" class="table table-striped table-bordered">
+
+
+                            <div class="form-group">
+                                <label for="nome" class="control-label col-md-3 col-sm-3 col-xs-12">Select Group <span class="required">*</span></label>
+                                <div class="col-md-3 col-sm-5 col-xs-12">
+
+                                    <select name="nome" onchange="this.form.submit()">
+                                        <optgroup >
+                                         <option value="" > --- </option>
+										<c:forEach items="${gruppo}" var="group">
+                                            <option value="${group.nome}" > <c:out value="${group.nome}"/> </option>
+                                           
+										</c:forEach>
+										</optgroup>
+                                    </select>
+
+                                </div>
+                           </div>
+                           
+                  </form>
+
+				<c:if test = "${test == true}"> 
+                   <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th> Page Name</th>
-                            <th> Name</th>
+                            <th> Gruppo</th>
+                            <th> Permesso</th>
                             <th> </th>
                            
 
 
-                        </tr>
+                       </tr>
                         </thead>
 
 
                         
 
-                        
-         <c:forEach items="${permesso}" var="item">
-         <c:forEach items="${gruppo}" var="lol">
+                       
+						<c:forEach items="${perm}" var="permesso">
 
-                            <tr>
-                            <c:forEach items="${lol}" var="ios">
-                            <c:forEach items="${item}" var="pluto">
-                            <td class="col-md-2 col-sm-3 col-xs-12"> ${pluto}</td>
-                            <td class="col-md-2 col-sm-3 col-xs-12"> ${ios}</td>                                                                          
+                          <tr>
+                            
+                            <td class="col-md-2 col-sm-3 col-xs-12">${groupToControl.nome}</td>
+                            <td class="col-md-2 col-sm-3 col-xs-12">${permesso.nome} (${permesso.indirizzo})</td>                                                                          
                                                                                                       
-                                                         </c:forEach>
-                                                         </c:forEach>
+
                                                          
                                                          
-                                                         <td class="col-md-1 col-sm-3 col-xs-12">
+                            <td class="col-md-1 col-sm-3 col-xs-12">
                              
                                 <a href="showToPlay.php?cognome=<[cognome]>&nome=<[nome]>&anno=<[anno]>&nome1=<[nome_competizione]>"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
-                                <a href="editToPlay.php?cognome=<[cognome]>&nome=<[nome]>&anno=<[anno]>&nome1=<[nome_competizione]>"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>
                             </td>
-                            </c:forEach>
                       
-                         <tr>
-                         </c:forEach>
-                        
+                         </tr>
+                        </c:forEach>
+                       
                     
                     </table>
+                  </c:if>
                 </div>
             </div>
         </div>

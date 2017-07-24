@@ -34,33 +34,14 @@
 
 
 
-
-
-
-                            <div class="form-group">
-                                <label for="script" class="control-label col-md-3 col-sm-3 col-xs-12">Select Service <span class="required">*</span></label>
-                                <div class="col-md-3 col-sm-5 col-xs-12">
-
-                                    <select name="servizio">
-                                        <optgroup >
-          <c:forEach begin="0" end="${fn:length(servizio) - 1}" var="yy">
-                                            <option value="${servizio[yy]}"> <c:out value="${servizio[yy]}"/> </option>
-</c:forEach>
-                                        </optgroup>
-
-
-                                    </select>
-
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label for="nome" class="control-label col-md-3 col-sm-3 col-xs-12">Select Group <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-5 col-xs-12">
 
                                     <select name="nome">
                                         <optgroup >
-<c:forEach begin="0" end="${fn:length(gruppo) - 1}" var="index">
-                                            <option value="${gruppo[index]}" > <c:out value="${gruppo[index]}"/> </option>
+<c:forEach items="${gruppo}" var="group">
+                                            <option value="${group.nome}" > <c:out value="${group.nome}"/> </option>
                                            
 </c:forEach>
 </optgroup>
@@ -68,6 +49,20 @@
 
                                 </div>
                            </div>
+                           
+                           <div class="form-group">
+                                <label for="script" class="control-label col-md-3 col-sm-3 col-xs-12">Select Service <span class="required">*</span></label>
+                                <div class="col-md-3 col-sm-5 col-xs-12">
+
+                                 <c:forEach items="${servizio}" var="service">
+                                  
+                                 	<c:if test = "${service.nome != 'AccessDenied' && service.nome != 'Login' && service.nome != 'Registrazione'}">
+                                 		<input type="checkbox" name="permessi" value="${service.nome}"/> ${service.nome} (${service.indirizzo})<br>
+                                 	</c:if>
+                                 </c:forEach>   
+
+                                </div>
+                            </div>
 
 
 

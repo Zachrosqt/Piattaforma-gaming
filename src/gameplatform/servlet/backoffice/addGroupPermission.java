@@ -85,11 +85,44 @@ import gameplatform.db.*;
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
-			Gruppo gruppo = new Gruppo();
-			Permesso permesso = new Permesso();
 			
+			Configuration conf = new Configuration().configure();
+			Session session = conf.buildSessionFactory().getCurrentSession();
+			session.beginTransaction();
 			
-			gruppo.setNome(request.getParameter("nome"));
+			Query queryGroup = session.createQuery("FROM Gruppo group WHERE group.nome='" + request.getParameter("nome")  + "'");
+			List<Gruppo> groupList = queryGroup.getResultList();
+			
+			Iterator<Gruppo> groupIt = groupList.iterator();
+			
+			if(groupIt.hasNext()){
+				Gruppo gruppo = groupIt.next();
+				String[] perm = request.getParameterValues("permessi");
+				
+				for(String temp: perm){
+					
+					Query queryPerm = session.createQuery("FROM Permesso perm WHERE perm.nome='" + temp + "'");
+					List<Permesso> permList = queryPerm.getResultList();
+					
+					Iterator<Permesso> permIt = permList.iterator();
+					
+					if(permIt.hasNext()){
+
+						Permesso permesso = permIt.next();
+						
+						gruppo.getPermesso().add(permesso);
+					}
+					
+				}
+				
+				session.saveOrUpdate(gruppo);
+			}
+			
+			session.getTransaction().commit();
+			
+			session.close();
+			
+			/*gruppo.setNome(request.getParameter("nome"));
 			permesso.setNome(request.getParameter("servizio"));
 			System.out.println(permesso.getNome());
 			System.out.println(gruppo.getNome());
@@ -99,20 +132,18 @@ import gameplatform.db.*;
 			
 			//permesso.getGruppo().add(gruppo); //join
 			gruppo.getPermesso().add(permesso);
-			CRUD.saveOrUpdate(gruppo);
+			CRUD.saveOrUpdate(gruppo);*/
 			
 			process(request, response);
 		}
 		
 		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-			x = CRUD.executeQuery("SELECT nome FROM Gruppo");
-	    	y = CRUD.executeQuery("SELECT nome FROM Permesso");
-	    	z = CRUD.executeQuery("SELECT indirizzo FROM Permesso");
+			x = CRUD.executeQuery("FROM Gruppo");
+	    	y = CRUD.executeQuery("FROM Permesso");
 			
 			request.setAttribute("template", this.template);
 			request.setAttribute("gruppo", this.x);
-			request.setAttribute("pippo", this.z);
 			request.setAttribute("servizio", this.y);
 
 			RequestDispatcher view = request.getRequestDispatcher("JSP/backoffice/index.jsp");

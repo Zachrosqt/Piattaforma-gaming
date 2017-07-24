@@ -72,6 +72,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
 				if (perm == true){
 
+					request.setAttribute("test", false);
 					process(request, response);
 				} else {
 					response.sendRedirect("accessdenied.op");
@@ -83,8 +84,38 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			// TODO Auto-generated method stub
 			
+			Configuration conf = new Configuration().configure();
+			Session session = conf.buildSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			
+			Query queryGroup = session.createQuery("FROM Gruppo group WHERE group.nome='" + request.getParameter("nome") + "'");
+			List<Gruppo> group = queryGroup.getResultList();
+			
+			Iterator<Gruppo> groupInt = group.iterator();
+
+	    	if(groupInt.hasNext()){
+
+	    		Gruppo groupTemp = groupInt.next();
+	    		
+	    		
+	    		Set<Permesso> setPermesso = groupTemp.getPermesso();
+	    		List<Permesso> permessi = new ArrayList<Permesso>();
+	    		
+	    		for(Permesso tempPer: setPermesso)
+	    			permessi.add(tempPer);
+	    		
+	    		request.setAttribute("groupToControl", groupTemp);
+	    		request.setAttribute("perm", permessi);
+	    		
+	    		
+	    	}
+			
+			session.getTransaction().commit();
+			
+			session.close();
+			
+			request.setAttribute("test", true);
 			
 			process(request, response);
 		}
@@ -92,40 +123,10 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			
-			Configuration conf = new Configuration().configure();
-			Session session = conf.buildSessionFactory().getCurrentSession();
-			session.beginTransaction();
 			
-			Query queryPerm = session.createQuery("FROM Permesso");
-			List<Permesso> perm = queryPerm.getResultList();
-			
-			Iterator<Permesso> permInt = perm.iterator();
-
-	    	while(permInt.hasNext()){
-	    		String text = "";
-
-	    		Permesso permTemp = permInt.next();
-	    		
-	    		text += "Permesso " + permTemp.getNome() + " associato ai gruppi: ";
-	    		
-	    		Set<Gruppo> setGroup = permTemp.getGruppo();
-	    		
-	    		System.out.println(setGroup.size());
-	    		
-	    		
-	    		for(Gruppo group : setGroup)
-	    			text += group.getNome() + ", ";
-	    		
-	    		
-	    		System.out.println(text);
-	    	}
-			
-			session.getTransaction().commit();
-			
-			session.close();
+			this.fc = CRUD.executeQuery("FROM Gruppo");
 			
 			request.setAttribute("template", this.template);
-			request.setAttribute("permesso", this.fv);
 			request.setAttribute("gruppo", this.fc);
 			
 			RequestDispatcher view = request.getRequestDispatcher("JSP/backoffice/index.jsp");
