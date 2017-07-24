@@ -39,7 +39,7 @@
                               <div class="form-group">
                                 <label for="fileToUpload" class="control-label col-md-3 col-sm-3 col-xs-12">Insert Icons <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                <input type="file" name="uploadFile" />
+                                                                <input type="file" name="file" />
                                 
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                             <div class="form-group">
                                 <label for="obiettivo" class="control-label col-md-3 col-sm-3 col-xs-12">Insert Objective <span class="required">*</span></label>
                                 <div class="col-md-1 col-sm-2 col-xs-12">
-                                    <input id="obiettivo" required="required" name="obiettivo" class="form-control col-md-7 col-xs-12" type="number" >
+                                    <input id="obiettivo" required="required" name="obiettivo" class="form-control col-md-7 col-xs-12" type="text" >
                                 </div>
                             </div>
 
@@ -60,8 +60,8 @@
 
                                     <select name="gioco">
                                         <optgroup >
-           <c:forEach begin="0" end="${fn:length(gioco1) - 1}" var="yy">
-                                            <option value="${gioco1[yy]}"> <c:out value="${gioco1[yy]}"/> </option>                                 
+           <c:forEach items="${gioco}" var="game">
+                                            <option value="${game.nome}"> <c:out value="${game.nome}"/> </option>                                 
 </c:forEach>
                                       </optgroup>
 

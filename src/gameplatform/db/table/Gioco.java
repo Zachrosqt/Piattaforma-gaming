@@ -47,7 +47,7 @@ public class Gioco implements java.io.Serializable{
         this.nome = nome;
     }
 
-    @Column(name = "descrizione", unique = false, nullable = false)
+    @Column(name = "descrizione", unique = false, nullable = false, length = 10000)
     public String getDescrizione() {
         return descrizione;
     }
@@ -56,7 +56,7 @@ public class Gioco implements java.io.Serializable{
         this.descrizione = descrizione;
     }
 
-    @Column(name = "specifiche", unique = false, nullable = false)
+    @Column(name = "specifiche", unique = false, nullable = false, length = 10000)
     public String getSpecifiche() {
         return specifiche;
     }
