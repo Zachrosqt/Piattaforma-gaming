@@ -25,12 +25,12 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2> Attention!<small></small></h2>
+                        <h2> Attention! Don't forget to set the ban.<small></small></h2>
 
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <br />
+                        <br/>
 
 
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" >
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
 
-                            <<div class="form-group">
+                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ban" >Insert Ban <span class="required">*</span>
                                 </label>
                                 <div class="col-md-2 col-sm-3 col-xs-3">
