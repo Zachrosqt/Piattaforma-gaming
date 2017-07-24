@@ -57,7 +57,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="" onclick="window.open('../index.php');" class="site_title"><i class="fa fa-gamepad"></i> <span>Game Platform </span></a>
+              <a href="" onclick="window.open('gameplatform.op');" class="site_title"><i class="fa fa-gamepad"></i> <span>Game Platform </span></a>
             </div>
 
             <div class="clearfix"></div>

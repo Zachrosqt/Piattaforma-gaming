@@ -1,11 +1,16 @@
 package gameplatform.db.table;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +18,7 @@ import javax.persistence.Table;
 public class Categoria implements java.io.Serializable{
 
 	private String categoria;
+	private Set<Gioco> gioco = new HashSet<Gioco>(0);
 
 	@Id
 	@Column(name = "categoria", unique = false, nullable = false)
@@ -23,5 +29,15 @@ public class Categoria implements java.io.Serializable{
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "categoria")
+	public Set<Gioco> getGioco() {
+		return gioco;
+	}
+
+	public void setGioco(Set<Gioco> gioco) {
+		this.gioco = gioco;
+	}
+	
 	
 }

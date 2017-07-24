@@ -110,8 +110,8 @@ public class Gioco implements java.io.Serializable{
 		this.immagine = immagine;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "categoria", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "categoria", nullable = true)
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -120,59 +120,5 @@ public class Gioco implements java.io.Serializable{
 		this.categoria = categoria;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((descrizione == null) ? 0 : descrizione.hashCode());
-		result = prime * result + ((giocare == null) ? 0 : giocare.hashCode());
-		result = prime * result + ((immagine == null) ? 0 : immagine.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((specifiche == null) ? 0 : specifiche.hashCode());
-		result = prime * result + ((trofeo == null) ? 0 : trofeo.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Gioco other = (Gioco) obj;
-		if (descrizione == null) {
-			if (other.descrizione != null)
-				return false;
-		} else if (!descrizione.equals(other.descrizione))
-			return false;
-		if (giocare == null) {
-			if (other.giocare != null)
-				return false;
-		} else if (!giocare.equals(other.giocare))
-			return false;
-		if (immagine == null) {
-			if (other.immagine != null)
-				return false;
-		} else if (!immagine.equals(other.immagine))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (specifiche == null) {
-			if (other.specifiche != null)
-				return false;
-		} else if (!specifiche.equals(other.specifiche))
-			return false;
-		if (trofeo == null) {
-			if (other.trofeo != null)
-				return false;
-		} else if (!trofeo.equals(other.trofeo))
-			return false;
-		return true;
-	}
 
 }
