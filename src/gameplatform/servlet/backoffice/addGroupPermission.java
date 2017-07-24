@@ -122,17 +122,6 @@ import gameplatform.db.*;
 			
 			session.close();
 			
-			/*gruppo.setNome(request.getParameter("nome"));
-			permesso.setNome(request.getParameter("servizio"));
-			System.out.println(permesso.getNome());
-			System.out.println(gruppo.getNome());
-			permesso.setIndirizzo(request.getParameter("servizio") + ".op");
-			
-			CRUD.saveOrUpdate(permesso);
-			
-			//permesso.getGruppo().add(gruppo); //join
-			gruppo.getPermesso().add(permesso);
-			CRUD.saveOrUpdate(gruppo);*/
 			
 			process(request, response);
 		}
