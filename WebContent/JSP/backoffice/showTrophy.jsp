@@ -24,10 +24,17 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_content">
+                	<c:if test = "${error == true}"> 
+                		<div align="center">
+                			<p style="color: red">Impossibile eliminare trofeo ${id}. Già conquistato da giocatori</p>
+                		</div>
+                	
+                	</c:if>
 
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
+                        	<th>Icona</th>
                             <th>Name</th>
                             <th>Objective</th>
                             <th>Game</th>
@@ -42,14 +49,14 @@
                         
 
                         
-<c:forEach items="${trofeo}" var="item">
+						<c:forEach items="${trofeo}" var="item">
 
 
                             <tr>
-                            <c:forEach items="${item}" begin="0" end="${fn:length(item) - 3 }" var="go">
-                            <td class="col-md-2 col-sm-3 col-xs-12"> ${item[0]}</td>
-                            <td class="col-md-2 col-sm-3 col-xs-12"> ${item[1]}</td>    
-                            <td class="col-md-2 col-sm-3 col-xs-12"> ${item[2].nome}</td>    
+                            <td class="col-md-2 col-sm-3 col-xs-12"> <img style=" max-width: 60px; height: auto;" src="assets/images/trofeo/${item.icona}"></td>
+                            <td class="col-md-2 col-sm-3 col-xs-12"> ${item.nome}</td>
+                            <td class="col-md-2 col-sm-3 col-xs-12"> ${item.obiettivo}</td>    
+                            <td class="col-md-2 col-sm-3 col-xs-12"> ${item.gioco.nome}</td>    
                             
                                                                                                                          
                                                                                                                      
@@ -60,12 +67,12 @@
                                                                                       
                                                         <td class="col-md-1 col-sm-3 col-xs-12">
                             
-                               <a href="showTrophy.op?del=${1}&id=${item[0]}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
-                                <a href="editTrophy.op?del=${0}&id=${item[0]}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>
+                               <a href="showTrophy.op?del=${1}&id=${item.nome}"><button type="submit" id="upload2"  class="btn btn-success"value="Upload Image" name="submit"> Delete</button></a>
+                                <a href="editTrophy.op?del=${0}&id=${item.nome}"><button type="submit" id="upload"  class="btn btn-success"value="Upload Image" name="submit"> Edit</button></a>
                             </td>
-                                                                                     </c:forEach>
+
                             <tr>
-                             </c:forEach>
+                         </c:forEach>
                                                
                 
                     

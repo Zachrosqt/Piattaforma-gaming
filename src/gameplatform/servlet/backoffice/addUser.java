@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.security.*;
@@ -25,6 +26,7 @@ import gameplatform.db.table.Utente;
 import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
+import gameplatform.db.table.Livello;
 import gameplatform.db.table.Permesso;
 import gameplatform.db.table.Template;
 import gameplatform.business.GameplatformCRUD;
@@ -111,17 +113,8 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			pippo = Integer.parseInt(request.getParameter("eta"));
 			user.setEta(pippo);			
 			user.setUsername(request.getParameter("username"));
-			//MD5 code
 			String ciccio=(request.getParameter("password"));
 			
-			try {
-			MessageDigest md5 = MessageDigest.getInstance("MD5");
-			md5.update(ciccio.getBytes());
-			BigInteger hash = new BigInteger(1, md5.digest());
-			ciccio = hash.toString(16);
-			} catch (NoSuchAlgorithmException nsae) {
-			// ignore
-			}
 			user.setPassword(ciccio);
 			
 	
@@ -132,6 +125,14 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			user.setGruppo(gruppo);
 			
 			CRUD.saveOrUpdate(user);
+			
+			Livello lv = new Livello();
+			
+			lv.setDate(Calendar.getInstance());
+			lv.setLivello(0);
+			lv.setUtente(user);
+			
+			CRUD.saveOrUpdate(lv);
 			process(request, response);
 		}
 		
