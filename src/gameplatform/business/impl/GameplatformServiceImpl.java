@@ -249,7 +249,12 @@ public class GameplatformServiceImpl implements GameplatformService{
 				somma += play.getVoto();
 			}
 			
-			int media=somma/mediaGioco.size();
+			int media=0;
+			if(mediaGioco.size()>0){
+				media=somma/mediaGioco.size();
+			} else {
+				media=somma;
+			}
 			
 			List<Gioco> game = crud.executeQuery("FROM Gioco game WHERE game.nome='" + gioco + "'");
 			

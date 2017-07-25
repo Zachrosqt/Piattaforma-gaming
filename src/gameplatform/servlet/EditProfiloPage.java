@@ -174,7 +174,7 @@ public class EditProfiloPage extends HttpServlet {
 				        
 			               if(fi.getSize() > maxFileSize) {
 				        	   text = "false size";
-				           } else if (contentType.equals("image/png")){
+				           } else if (contentType.equals("image/png") || contentType.equals("image/jpeg")){
 					           // Write the file
 					           if( fileName.lastIndexOf("\\") >= 0 ) {
 					               file = new File( path + filePath + fileName + ".png") ;

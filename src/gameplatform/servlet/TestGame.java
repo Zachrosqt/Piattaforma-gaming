@@ -45,8 +45,6 @@ public class TestGame extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
     	this.pageName = getInitParameter("gioco");
-    	
-    	startTime = System.currentTimeMillis();
     
 	}
 
@@ -59,6 +57,7 @@ public class TestGame extends HttpServlet {
 		if (session.getAttribute("utenteGameplatform")==null){
 			response.sendRedirect("login.op");
 		} else {
+			startTime = System.currentTimeMillis();
 			process(request, response);
 
 		}
@@ -102,16 +101,14 @@ public class TestGame extends HttpServlet {
 				
 				int currentLv = (this.gameplay.getLivello()*100) + 100;
 				
-				if(this.gameplay.getExp() >= currentLv){
+				if(this.gameplay.getExp() >= currentLv && this.gameplay.getLivello() < 30){
 					
 					int curLv = (int) (this.gameplay.getExp()/100);
 					this.gameplay.setLivello(curLv);
 						
 					service.updateGameplay(this.gameplay);
 					
-					System.out.println("Livello " + curLv);
-					
-					service.newTrofeoUser("Livello " + curLv, username);
+					service.newTrofeoUser("Lv " + curLv + " Soulcalibur", username);
 	
 				}
 				
@@ -123,7 +120,7 @@ public class TestGame extends HttpServlet {
 				
 				int curGlobalLv = (lv.getLivello()*100*service.allGames().size()) + (100*service.allGames().size());
 				
-				if(service.sumUserExp(username) >= curGlobalLv){
+				if(service.sumUserExp(username) >= curGlobalLv && (service.sumUserExp(username)/(100 * service.allGames().size())) < 30){
 					
 					List<Utente> listCurrentUser = service.username(username);
 					
@@ -146,8 +143,8 @@ public class TestGame extends HttpServlet {
 					}
 				}
 				
-				if (this.gameplay.getLivello()>=17){
-					service.newTrofeoUser("Ci sei quasi", username);
+				if (this.gameplay.getNumAccessi()>=15){
+					service.newTrofeoUser("Costante", username);
 				}
 				
 				text=" " + this.gameplay.getLivello() + ", " + this.gameplay.getExp() + ", " + globalLv + ", " + this.gameplay.getNumAccessi();
@@ -167,7 +164,7 @@ public class TestGame extends HttpServlet {
 				long minutes = (int) ((duration / (1000*60)) % 60);
 				long minutsPlay = gameplay.getMinuti() + minutes;
 				
-				if ((gameplay.getMinuti() + minutes)>=5){
+				if (minutsPlay>=5){
 					service.newTrofeoUser("Novellino", username);
 				}
 				

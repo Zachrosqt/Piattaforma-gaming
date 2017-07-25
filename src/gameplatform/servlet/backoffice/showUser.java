@@ -18,8 +18,10 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
 import gameplatform.db.table.Utente;
+import gameplatform.db.table.Giocare;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
+import gameplatform.db.table.Livello;
 import gameplatform.db.table.Template;
 import gameplatform.db.table.Trofeo;
 import gameplatform.business.GameplatformCRUD;
@@ -83,10 +85,41 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 							ss = CRUD.executeQuery("FROM Utente WHERE id ='"+request.getParameter("id")+"'");
 							System.out.print(request.getParameter("id"));
 
-						String id =(request.getParameter("id"));
+							String id =(request.getParameter("id"));
 							Iterator<Utente> it = ss.iterator();
 							while(it.hasNext()){
 								utente = (Utente) it.next();
+							}
+							
+							// cancello le recensioni su tutti i giochi dell'utente
+							Giocare play = new Giocare();
+							List <Giocare> a=CRUD.executeQuery("FROM Giocare WHERE username='"+request.getParameter("id")+ "'");
+							Iterator<Giocare> it1 = a.iterator();
+							while(it1.hasNext()){
+								play = (Giocare) it1.next();
+								play.setUtente(null);
+								CRUD.saveOrUpdate(play);	
+							}
+							
+							// cancello i trofei conquistati dall'utente
+							Livello liv = new Livello();
+							List <Livello> b=CRUD.executeQuery("FROM Livello WHERE username='"+request.getParameter("id")+ "'");
+							Iterator<Livello> it2 = b.iterator();
+							while(it2.hasNext()){
+								liv = (Livello) it2.next();
+								liv.setUtente(null);
+								CRUD.saveOrUpdate(liv);	
+							}
+							
+							// cancello i trofei conquistati dall'utente INCOMPLETO
+							Trofeo trof = new Trofeo();
+							List <Trofeo> c=CRUD.executeQuery("FROM utente WHERE username='"+request.getParameter("id")+ "'");
+							Iterator<Trofeo> it3 = c.iterator();
+							 
+							while(it3.hasNext()){
+								trof = (Trofeo) it3.next();
+								trof.setUtente(null);
+								CRUD.saveOrUpdate(trof);	
 							}
 							
 						utente.setNome(id);

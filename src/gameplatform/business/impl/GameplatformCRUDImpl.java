@@ -68,6 +68,7 @@ public class GameplatformCRUDImpl implements GameplatformCRUD{
 		session.getTransaction().commit();
 		
 		session.close();
+	
 	}
 
 	@Override
