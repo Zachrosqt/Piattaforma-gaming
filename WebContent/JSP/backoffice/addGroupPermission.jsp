@@ -56,7 +56,7 @@
 
                                  <c:forEach items="${servizio}" var="service">
                                   
-                                 	<c:if test = "${service.nome != 'AccessDenied' && service.nome != 'Login' && service.nome != 'Registrazione'}">
+                                 	<c:if test = "${service.nome != 'AccessDenied' && service.nome != 'Login' && service.nome != 'Registration'}">
                                  		<input type="checkbox" name="permessi" value="${service.nome}"/> ${service.nome} (${service.indirizzo})<br>
                                  	</c:if>
                                  </c:forEach>   

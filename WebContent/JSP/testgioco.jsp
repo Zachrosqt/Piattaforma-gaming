@@ -49,6 +49,7 @@ $("#testclose").click(function(e){
 			$('#exp').html("<p> Exp in gioco: " + res[1] + "</p>");
 			$('#lvGlobale').html("<h3 style='color: red;'> Lv globale: " + res[2] + "</h3>");
 			$('#accessi').html("<p> Numero Accessi: " + res[3] + "</p>");
+			close();
 		}
 	});
 	e.preventDefault();

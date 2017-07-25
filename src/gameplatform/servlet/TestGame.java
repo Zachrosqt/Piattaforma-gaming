@@ -102,7 +102,7 @@ public class TestGame extends HttpServlet {
 				
 				int currentLv = (this.gameplay.getLivello()*100) + 100;
 				
-				if(this.gameplay.getExp() >= currentLv){
+				if(this.gameplay.getExp() >= currentLv && currentLv <= 30){
 					
 					int curLv = (int) (this.gameplay.getExp()/100);
 					this.gameplay.setLivello(curLv);
@@ -121,7 +121,7 @@ public class TestGame extends HttpServlet {
 				
 				int curGlobalLv = (lv.getLivello()*100*service.allGames().size()) + (100*service.allGames().size());
 				
-				if(service.sumUserExp(username) >= curGlobalLv){
+				if(service.sumUserExp(username) >= curGlobalLv && curGlobalLv <= 30){
 					
 					List<Utente> listCurrentUser = service.username(username);
 					
@@ -144,8 +144,8 @@ public class TestGame extends HttpServlet {
 					}
 				}
 				
-				if (this.gameplay.getLivello()>=17){
-					service.newTrofeoUser("Ci sei quasi", username);
+				if (this.gameplay.getNumAccessi()>=15){
+					service.newTrofeoUser("Costante", username);
 				}
 				
 				text=" " + this.gameplay.getLivello() + ", " + this.gameplay.getExp() + ", " + globalLv + ", " + this.gameplay.getNumAccessi();
