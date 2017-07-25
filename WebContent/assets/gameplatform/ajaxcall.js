@@ -258,7 +258,7 @@ $("#modificaform").submit(function(e){
 				} else if (data == "false form") {
 					sweetAlert("Oops...", "Errore comunicazione dati!", "error");
 				} else if (data == "false file") {
-					sweetAlert("Oops...", "File selezionato incorretto! Inserire un file di tipo png", "error");
+					sweetAlert("Oops...", "File selezionato incorretto! Inserire un file di tipo png o jpeg", "error");
 				} else if (data == "false size") {
 					sweetAlert("Oops...", "Sembra che il tuo file sia di dimensioni superiori a 5Mb", "error");
 				} else if (data == "false email") {
