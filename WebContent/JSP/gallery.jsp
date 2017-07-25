@@ -29,7 +29,7 @@
     <c:forEach items="${gallery}" var="immagine">
          
       <a class="angled-img" href="assets/images/games/${first.nome}/${immagine.path}">
-        <div class="img">
+        <div class="img" style = "width: 500px; height: 250px">
           <img src="assets/images/games/${first.nome}/${immagine.path}" alt="">
         </div>
         <i class="fa fa-search-plus icon"></i>

@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>YouPlay GamePlatform - Backoffice </title>
+	
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta charset="utf-8">
 		 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -153,7 +155,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="/tec web/logout.php"> Log Out</a></li>
+                    <li><a id = "logout" style="cursor: pointer; cursor: hand;"> Log Out</a></li>
                   </ul>
                 </li>
               </ul>
@@ -215,6 +217,9 @@
 <script src="JSP/backoffice/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
 <!-- starrr -->
 <script src="JSP/backoffice/vendors/starrr/dist/starrr.js"></script>
+
+
+		  <script type="text/javascript" src="assets/gameplatform/ajaxcall.js"></script>
 
 <!-- Cropper -->
 <script>

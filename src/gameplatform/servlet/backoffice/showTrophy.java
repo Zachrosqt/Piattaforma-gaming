@@ -53,7 +53,6 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			super.init(config);
 	    	this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName); 
-	    	this.sl = CRUD.executeQuery("SELECT  nome, obiettivo , gioco FROM Trofeo");
 
 	    	
 			
@@ -72,29 +71,32 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
 				if (perm == true){
 
-					this.sl = CRUD.executeQuery("SELECT  nome, obiettivo , gioco FROM Trofeo");
+					if(request.getParameter("id")!=null && !request.getParameter("del").equals("0")){
 
-					if(request.getParameter("id")!=null){
-						if(!request.getParameter("del").equals("0")){
-							List<Trofeo> sl;
-							Trofeo trofeo= new Trofeo();
+						List<Trofeo> listTrof = CRUD.executeQuery("FROM Trofeo WHERE id ='"+request.getParameter("id")+"'");
+
+						Iterator<Trofeo> trofeoIt = listTrof.iterator();
+						
+						if (trofeoIt.hasNext()){
+
+							Trofeo trofeo=trofeoIt.next();
 							
-							System.out.print(request.getParameter("id"));
-
-							sl = CRUD.executeQuery("FROM Trofeo WHERE id ='"+request.getParameter("id")+"'");
-							System.out.print(request.getParameter("id"));
-
-						String id =(request.getParameter("id"));
-							Iterator<Trofeo> it = sl.iterator();
-							while(it.hasNext()){
-								trofeo = (Trofeo) it.next();
+							List<?> listJoin = CRUD.executeQuery("FROM Trofeo trof JOIN trof.utente WHERE trof.id ='"+request.getParameter("id")+"'");
+							
+							if(listJoin.size()>0){
+								request.setAttribute("error", true);
+								process(request, response);
+							} else {
+								CRUD.delete(trofeo);
+								response.sendRedirect("showTrophy.op");
 							}
-							
-						trofeo.setNome(id);
-						CRUD.delete(trofeo);
+						}
+						
+					} else {
+						request.setAttribute("error", false);
+						process(request, response);
 					}
-					}
-					process(request, response);
+					
 				} else {
 					response.sendRedirect("accessdenied.op");
 				}	
@@ -109,16 +111,14 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
-			Trofeo trophy= new Trofeo();
-			Gioco gioco = new Gioco();
-			gioco.setNome(request.getParameter("gioco"));
-			trophy.setGioco(gioco);
 			
 			process(request, response);
 		}
 		
 		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
+
+	    	this.sl = CRUD.executeQuery("FROM Trofeo");
 			request.setAttribute("template", this.template);
 			request.setAttribute("trofeo", this.sl);
 			//request.setAttribute("gioco", this.sh);
