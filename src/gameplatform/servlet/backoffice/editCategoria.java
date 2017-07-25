@@ -80,9 +80,6 @@ public class editCategoria extends HttpServlet {
 				response.sendRedirect("accessdenied.op");
 			}	
 		}
-
-			
-		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

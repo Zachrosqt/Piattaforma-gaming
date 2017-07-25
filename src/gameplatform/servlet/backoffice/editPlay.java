@@ -70,20 +70,22 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 				boolean perm = service.permControl((Utente)session.getAttribute("utenteGameplatform"), this.pageName);
 				if (perm == true){
 					this.y = CRUD.executeQuery("FROM Gioco WHERE nome ='"+request.getParameter("id")+"'");
-					this.x = CRUD.executeQuery("FROM Categoria");
+					this.x = CRUD.executeQuery("SELECT categoria FROM Categoria");
 					this.gioco.setNome(request.getParameter("id"));
 					
 					List<Gioco> w;
 					w= CRUD.executeQuery("SELECT categoria.categoria FROM Gioco WHERE nome ='"+request.getParameter("id")+"'");
 					
 					Categoria categoria = new Categoria();
+					if (!w.isEmpty()){ // categoria is null, è stata cancellata
+						System.out.println(w);
+					} else{
 					Object[] a = w.toArray();
-					categoria.setCategoria(a[0].toString());
+					categoria.setCategoria(a[0].toString());}
 					
 					this.gioco.setCategoria(categoria);
 					this.gioco.setDescrizione("");
 					this.gioco.setSpecifiche("");
-					CRUD.delete(this.gioco);
 					process(request, response);
 				} else {
 					response.sendRedirect("accessdenied.op");
@@ -97,6 +99,8 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
+			System.out.println(request.getParameter("categoria"));
+
 			Categoria categoria = new Categoria();
 			categoria.setCategoria(request.getParameter("categoria"));
 			this.gioco.setCategoria(categoria);

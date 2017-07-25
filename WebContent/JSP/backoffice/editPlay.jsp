@@ -34,15 +34,15 @@
                         <div class="form-group">
                                 <label for="nome" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category <span class="required">*</span></label>
                                 <div class="col-md-3 col-sm-5 col-xs-12">
-<c:forEach items="${categoria}" begin="0" end="${fn:length(categoria) }" var="index">
 
                                     <select name="categoria">
                                         <optgroup >
-                                            <option value="${index.categoria}" > <c:out value="${index.categoria}"/> </option>
-                   
+<c:forEach begin="0" end="${fn:length(categoria) - 1}" var="index">
+                                            <option value="${categoria[index]}" > <c:out value="${categoria[index]}"/> </option>
+                                           
+</c:forEach>
 </optgroup>
                                     </select>
-                            </c:forEach>
 
                                 </div>
                                 
