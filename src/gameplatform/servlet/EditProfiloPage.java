@@ -168,7 +168,7 @@ public class EditProfiloPage extends HttpServlet {
 			         while ( i2.hasNext () ) {
 			            FileItem fi = (FileItem)i2.next();
 			            if ( !fi.isFormField () ) {
-			               // Get the uploaded file parameters
+			            	
 			               String fileName = user;
 			               String contentType = fi.getContentType();
 				        
