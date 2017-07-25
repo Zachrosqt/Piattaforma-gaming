@@ -115,7 +115,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 							Trofeo trof = new Trofeo();
 							List <Trofeo> c=CRUD.executeQuery("FROM utente WHERE username='"+request.getParameter("id")+ "'");
 							Iterator<Trofeo> it3 = c.iterator();
-							
+							 
 							while(it3.hasNext()){
 								trof = (Trofeo) it3.next();
 								trof.setUtente(null);
