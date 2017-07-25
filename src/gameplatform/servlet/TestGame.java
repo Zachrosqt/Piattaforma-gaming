@@ -109,8 +109,6 @@ public class TestGame extends HttpServlet {
 						
 					service.updateGameplay(this.gameplay);
 					
-					System.out.println("Livello " + curLv);
-					
 					service.newTrofeoUser("Livello " + curLv, username);
 	
 				}
