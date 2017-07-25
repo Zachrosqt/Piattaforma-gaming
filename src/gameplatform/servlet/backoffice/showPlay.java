@@ -71,19 +71,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 				if (perm == true){
 
 					this.sv = CRUD.executeQuery("SELECT nome, descrizione, specifiche  FROM Gioco");	    	
-
-					if(request.getParameter("del")!=null){
-						List<Gioco> y;
-						Gioco gioco= new Gioco();
-						y = CRUD.executeQuery("FROM Gioco WHERE nome ='"+request.getParameter("id")+"'");
-						
-						Iterator<Gioco> it = y.iterator();
-						while (it.hasNext()) {
-							gioco = (Gioco)it.next();
-				        }
-						
-						CRUD.delete(gioco);
-					}
+					
 					process(request, response);
 				} else {
 					response.sendRedirect("accessdenied.op");
