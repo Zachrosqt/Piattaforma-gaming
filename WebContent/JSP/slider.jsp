@@ -31,7 +31,7 @@
           <!-- LAYER NR. 2 -->
           <div class="tp-caption customin customout" data-x="left" data-hoffset="60" data-y="center" data-voffset="60" data-customin="x:200;scaleX:0.5;scaleY:0.5;" data-customout="x:0;scaleX:1;scaleY:1;" data-start="1000" data-speed="700" data-easing="Sine.easeInOut"
           data-endspeed="600" data-endeasing="Linear.easeNone">
-            <a class="btn btn-lg" href="<%= obj.getNome() %>.op?username=${utenteGameplatform.username}" target="_blank">Gioca</a>
+            <a class="btn btn-lg" href="<%= obj.getNome() %>.op?username=${utenteGameplatform.username}&nome=<%= obj.getNome() %>" target="_blank">Gioca</a>
           </div>
         </li>
 

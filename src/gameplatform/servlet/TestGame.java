@@ -200,10 +200,10 @@ public class TestGame extends HttpServlet {
 				Giocare play = listGameIt.next();
 					
 				this.gameplay.setNumAccessi(play.getNumAccessi() + 1);
-				
 			}
 		}
 		
+		request.setAttribute("gioco", request.getParameter("nome"));
 		RequestDispatcher view = request.getRequestDispatcher("JSP/testgioco.jsp");
 		view.forward(request, response);
 	}
