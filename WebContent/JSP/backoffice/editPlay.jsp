@@ -39,7 +39,7 @@
                                         <optgroup >
 <c:forEach begin="0" end="${fn:length(categoria) - 1}" var="index">
                                             <option value="${categoria[index]}" > <c:out value="${categoria[index]}"/> </option>
-                                           
+                                              
 </c:forEach>
 </optgroup>
                                     </select>
