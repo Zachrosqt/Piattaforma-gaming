@@ -100,16 +100,22 @@ public class editCategoria extends HttpServlet {
 				Gioco game= giocoIt.next();	
 				game.setCategoria(null);
 				CRUD.saveOrUpdate(game);		
-		}
-			System.out.println(request.getParameter("name"));
-			this.category.setCategoria(request.getParameter("name"));
-			CRUD.saveOrUpdate(category);
+		}	
+			this.category.setCategoria(request.getParameter("id"));
+			CRUD.delete(this.category);
+			
+			Categoria a = new Categoria();
+			a.setCategoria(request.getParameter("name"));
+			CRUD.saveOrUpdate(a);
+
+			//this.category.setCategoria(request.getParameter("name"));
+			//CRUD.saveOrUpdate(category);
 			
 			
 			Iterator<Gioco> gioco = this.gioc.iterator();
 			while(gioco.hasNext()){
 				Gioco game= gioco.next();	
-				game.setCategoria(this.category);
+				game.setCategoria(a);
 				CRUD.saveOrUpdate(game);		
 		}
 
