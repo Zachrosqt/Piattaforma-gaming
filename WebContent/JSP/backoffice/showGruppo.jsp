@@ -25,6 +25,13 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_content">
+                
+                	<c:if test = "${error == true}"> 
+                		<div align="center">
+                			<p style="color: red">Impossibile eliminare Gruppo ${id}. Già assegnato ad un utente</p>
+                		</div>
+                	
+                	</c:if>
 
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>

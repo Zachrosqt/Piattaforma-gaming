@@ -20,7 +20,9 @@ import org.hibernate.cfg.Configuration;
 import gameplatform.db.table.Categoria;
 import gameplatform.db.table.Gioco;
 import gameplatform.db.table.Gruppo;
+import gameplatform.db.table.Permesso;
 import gameplatform.db.table.Template;
+import gameplatform.db.table.Trofeo;
 import gameplatform.db.table.Utente;
 import gameplatform.business.GameplatformCRUD;
 import gameplatform.business.GameplatformService;
@@ -52,7 +54,6 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 			super.init(config);
 	    	this.pageName = getInitParameter("pageName");
 	    	this.template = service.templates(pageName); 
-	    	fv = CRUD.executeQuery("SELECT nome FROM Gruppo");
 			
 		}
 
@@ -71,27 +72,49 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 
 					this.fv = CRUD.executeQuery("SELECT nome FROM Gruppo");
 
-					if(request.getParameter("id")!=null){
-						if(!request.getParameter("del").equals("0")){
-							List<Gruppo> fv;
-							Gruppo group= new Gruppo();
+					if(request.getParameter("id")!=null && !request.getParameter("del").equals("0")){
+						
+						Configuration conf = new Configuration().configure();
+						Session sessionHib = conf.buildSessionFactory().getCurrentSession();
+						sessionHib.beginTransaction();
+						
+						Query queryGroup = sessionHib.createQuery("FROM Gruppo group WHERE group.nome='" + request.getParameter("id") + "'");
+						List<Gruppo> listGroup = queryGroup.getResultList();;
+
+						Iterator<Gruppo> groupIt = listGroup.iterator();
+						
+						if (groupIt.hasNext()){
+
+							Gruppo group=groupIt.next();
 							
-							System.out.print(request.getParameter("id"));
-
-							fv = CRUD.executeQuery("FROM Gruppo WHERE id ='"+request.getParameter("id")+"'");
-							System.out.print(request.getParameter("id"));
-
-							String id = (request.getParameter("id"));
-							Iterator<Gruppo> it = fv.iterator();
-							while(it.hasNext()){
-								group=(Gruppo) it.next();
+							
+							if(group.getUtente().size()>0){
+								
+								sessionHib.getTransaction().commit();
+								
+						    	sessionHib.close();
+						    	
+								request.setAttribute("error", true);
+								process(request, response);
+							} else {
+								group.getPermesso().removeAll(group.getPermesso());
+								sessionHib.saveOrUpdate(group);
+								sessionHib.delete(group);
+								
+								sessionHib.getTransaction().commit();
+								
+						    	sessionHib.close();
+						    	
+								response.sendRedirect("showGruppo.op");
 							}
-							
-						group.setNome(id);
-						CRUD.delete(group);
+						}
+						
+						
+					} else {
+						request.setAttribute("error", false);
+						process(request, response);
 					}
-					}
-					process(request, response);
+					
 				} else {
 					response.sendRedirect("accessdenied.op");
 				}	
@@ -111,6 +134,7 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 		
 		private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
+			fv = CRUD.executeQuery("SELECT nome FROM Gruppo");
 			request.setAttribute("template", this.template);
 			request.setAttribute("gruppo", this.fv);
 			

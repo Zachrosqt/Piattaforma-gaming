@@ -121,7 +121,6 @@ import gameplatform.business.impl.GameplatformCRUDImpl;
 	    	this.sl = CRUD.executeQuery("FROM Trofeo");
 			request.setAttribute("template", this.template);
 			request.setAttribute("trofeo", this.sl);
-			//request.setAttribute("gioco", this.sh);
 			
 			RequestDispatcher view = request.getRequestDispatcher("JSP/backoffice/index.jsp");
 			view.forward(request, response);
